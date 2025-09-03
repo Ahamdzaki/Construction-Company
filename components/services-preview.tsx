@@ -1,0 +1,55 @@
+import { Card, CardContent } from "@/components/ui/card"
+import { Home, Wrench, Palette, Building } from "lucide-react"
+
+const services = [
+  {
+    icon: Home,
+    title: "New Home Construction",
+    description: "Custom-built homes designed to your specifications with quality materials and expert craftsmanship.",
+  },
+  {
+    icon: Wrench,
+    title: "Home Renovations",
+    description:
+      "Transform your existing space with our comprehensive renovation services, from kitchens to full home makeovers.",
+  },
+  {
+    icon: Palette,
+    title: "Custom Design",
+    description:
+      "Work with our architects and designers to create a unique home that reflects your lifestyle and preferences.",
+  },
+  {
+    icon: Building,
+    title: "Commercial Projects",
+    description: "Professional construction services for commercial properties, offices, and retail spaces.",
+  },
+]
+
+export default function ServicesPreview() {
+  return (
+    <section className="py-16 bg-background">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Our Services</h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            With 13 years of experience, we offer comprehensive building services to bring your vision to life. From new
+            home construction to renovations and custom designs, we deliver excellence in every project.
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {services.map((service, index) => (
+            <Card key={index} className="text-center hover:shadow-lg transition-shadow duration-300">
+              <CardContent className="p-6">
+                <service.icon className="w-12 h-12 text-accent mx-auto mb-4" />
+                <h3 className="text-xl font-semibold mb-3">{service.title}</h3>
+                <p className="text-muted-foreground">{service.description}</p>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
