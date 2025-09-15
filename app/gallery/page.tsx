@@ -166,7 +166,7 @@ const projects = [
     id: 17,
     title: "Premier Executive Villa",
     category: "Exterior",
-    image: "/exterior-16.jpg",
+    image: "/Exterior-16.jpg",
     bedrooms: 4,
     bathrooms: 3,
     carSpaces: 3,
