@@ -23,7 +23,7 @@ export default function AboutPreview() {
                 <Building className="w-5 h-5 text-accent mt-1 flex-shrink-0" />
                 <div>
                   <p className="font-medium">Company Name:</p>
-                  <p className="text-muted-foreground">BYD B PTY LTD (formerly WA TOP BRICKLAYING SERVICES PTY LTD)</p>
+                  <p className="text-muted-foreground">BYD B PTY LTD</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">

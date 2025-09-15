@@ -10,67 +10,67 @@ const projects = [
     id: 1,
     title: "Modern Family Home - Brisbane",
     category: "New Construction",
-    image: "/modern-family-home-brisbane-with-contemporary-arch.png",
-    bedrooms: 4,
+    image: "/Exterior-18.jpg",
+    bedrooms: 3,
     bathrooms: 3,
     carSpaces: 2,
     size: "280m²",
-    price: "$450,000",
+    price: "Start from $299,999",
   },
   {
     id: 2,
-    title: "Luxury Master Bedroom - Gold Coast",
+    title: "Luxury Pool Area",
     category: "Custom Design",
-    image: "/luxury-master-bedroom-with-ensuite.png",
-    bedrooms: 5,
-    bathrooms: 4,
-    carSpaces: 3,
+    image: "/Exterior-19.jpg",
+    bedrooms: 3,
+    bathrooms: 2,
+    carSpaces: 2,
     size: "350m²",
-    price: "$1,200,000",
+    price: "Start from $299,999",
   },
   {
     id: 3,
-    title: "Heritage Renovation - Melbourne",
-    category: "Renovation",
-    image: "/heritage-home-renovation-melbourne-with-modern-ext.png",
-    bedrooms: 4,
-    bathrooms: 3,
+    title: "Signature Home",
+    image: "/1.jpg",
+    category: "Exterior",
+    bedrooms: 2,
+    bathrooms: 2,
     carSpaces: 2,
     size: "300m²",
-    price: "$850,000",
+    price: "Start from $299,999",
   },
   {
     id: 4,
-    title: "Coastal Retreat - Byron Bay",
-    category: "New Construction",
-    image: "/coastal-retreat-byron-bay-with-timber-and-glass-de.png",
-    bedrooms: 4,
-    bathrooms: 3,
+    title: "Luxury Executive Home",
+    image: "/exterior-5.jpg",
+    category: "Exterior",
+    bedrooms: 3,
+    bathrooms: 2,
     carSpaces: 2,
     size: "320m²",
-    price: "$1,000,000",
+    price: "Start from $299,999",
   },
   {
     id: 5,
-    title: "Urban Townhouse - Sydney",
-    category: "Custom Design",
-    image: "/urban-townhouse-sydney-with-modern-facade.png",
+    title: "High-End Executive Home",
+    image: "/main.png",
+    category: "Exterior",
     bedrooms: 3,
     bathrooms: 2,
     carSpaces: 2,
     size: "220m²",
-    price: "$950,000",
+    price: "Start from $299,999",
   },
   {
     id: 6,
-    title: "Modern Kitchen Design - Perth",
-    category: "New Construction",
-    image: "/modern-kitchen-island-lights.png",
+    title: "Modern Townhouse",
+    category: "Exterior",
+    image: "/exterior-4.jpg",
     bedrooms: 3,
     bathrooms: 2,
     carSpaces: 1,
     size: "180m²",
-    price: "$600,000",
+    price: "Start from $299,999",
   },
 
   // --- INTERIOR IMAGES ---
@@ -79,47 +79,47 @@ const projects = [
     title: "Elegant Dining Area",
     category: "Interior",
     image: "/elegant-dining-area-with-chandelier.png",
-    price: "$12,000",
+    price: "Start from $10,000",
   },
   {
     id: 8,
     title: "Designer Bathroom",
     category: "Interior",
     image: "/designer-bathroom-with-marble-finishes.png",
-    price: "$9,500",
+    price: "Start from $10,000",
   },
   {
     id: 9,
     title: "Luxury Master Bedroom",
     category: "Interior",
     image: "/luxury-master-bedroom-with-ensuite.png",
-    price: "$15,000",
+    price: "Start from $10,000",
   },
   {
     id: 10,
     title: "Modern Kitchen Design",
     category: "Interior",
     image: "/modern-kitchen-island-lights.png",
-    price: "$18,000",
+    price: "Start from $10,000",
   },
   {
     id: 11,
     title: "Modern Home Office",
     category: "Interior",
     image: "/modern-home-office-with-built-in-storage.png",
-    price: "$8,000",
+    price: "Start from $10,000",
   },
   {
     id: 12,
     title: "Walk-in Wardrobe",
     category: "Interior",
     image: "/walk-in-wardrobe-with-custom-storage.png",
-    price: "$7,500",
+    price: "Start from $10,000",
   },
 
   // --- EXTERIOR IMAGES ---
   {
-    id: 195,
+    id: 13,
     title: "Contemporary Exterior",
     category: "Exterior",
     image: "/exterior-1.jpg",
@@ -127,54 +127,54 @@ const projects = [
     bathrooms: 3,
     carSpaces: 2,
     size: "280m²",
-    price: "$22,000",
+    price: "Start from $299,999",
   },
   {
-    id: 196,
-    title: "Luxury Pool Area",
+    id: 14,
+    title: "Luxury House",
     category: "Exterior",
     image: "/exterior-2.jpg",
-    bedrooms: 5,
-    bathrooms: 4,
-    carSpaces: 3,
+    bedrooms: 4,
+    bathrooms: 3,
+    carSpaces: 2,
     size: "350m²",
-    price: "$30,000",
+    price: "Start from $299,999",
   },
   {
-    id: 197,
-    title: "Outdoor Entertainment",
+    id: 15,
+    title: "Executive Estate",
     category: "Exterior",
     image: "/exterior-3.jpg",
     bedrooms: 4,
     bathrooms: 3,
-    carSpaces: 2,
+    carSpaces: 3,
     size: "300m²",
-    price: "$16,000",
+    price: "Start from $299,999",
   },
   {
-    id: 198,
-    title: "Modern Townhouse",
+    id: 16,
+    title: "Luxury Pool Area",
+    image: "/luxury-pool-area-with-outdoor-kitchen.png",
     category: "Exterior",
-    image: "/exterior-4.jpg",
     bedrooms: 3,
     bathrooms: 2,
     carSpaces: 2,
     size: "220m²",
-    price: "$25,000",
+    price: "Start from $299,999",
   },
   {
-    id: 199,
-    title: "Luxury Executive Home",
+    id: 17,
+    title: "Premier Executive Villa",
     category: "Exterior",
-    image: "/exterior-5.jpg",
-    bedrooms: 5,
-    bathrooms: 4,
+    image: "/exterior-16.jpg",
+    bedrooms: 4,
+    bathrooms: 3,
     carSpaces: 3,
     size: "350m²",
-    price: "$40,000",
+    price: "Start from $299,999",
   },
   {
-    id: 200,
+    id: 18,
     title: "Coastal Style Home",
     category: "Exterior",
     image: "/exterior-6.jpg",
@@ -182,54 +182,54 @@ const projects = [
     bathrooms: 2,
     carSpaces: 2,
     size: "220m²",
-    price: "$28,000",
+    price: "Start from $299,999",
   },
   {
-    id: 201,
-    title: "Luxury Pool Area",
+    id: 19,
+    title: "Luxury House",
     category: "Exterior",
-    image: "/luxury-pool-area-with-outdoor-kitchen.png",
-    bedrooms: 5,
-    bathrooms: 4,
+    image: "/7.jpg",
+    bedrooms: 4,
+    bathrooms: 3,
     carSpaces: 3,
     size: "350m²",
-    price: "$30,000",
+    price: "Start from $299,999",
   },
   {
-    id: 202,
+    id: 20,
     title: "Outdoor Entertainment",
     category: "Exterior",
     image: "/outdoor-entertainment-area-with-deck.png",
-    bedrooms: 4,
-    bathrooms: 3,
+    bedrooms: 3,
+    bathrooms: 2,
     carSpaces: 2,
     size: "300m²",
-    price: "$16,000",
+    price: "Start from $299,999",
   },
   {
-    id: 203,
+    id: 21,
     title: "Modern Townhouse",
     category: "Exterior",
-    image: "/modern-townhouse-with-rooftop-garden.png",
+    image: "/Exterior-17.jpg",
     bedrooms: 3,
     bathrooms: 2,
     carSpaces: 2,
     size: "220m²",
-    price: "$25,000",
+    price: "Start from $299,999",
   },
   {
-    id: 204,
-    title: "Luxury Executive Home",
+    id: 22,
+    title: "Upscale Executive Retreat",
     category: "Exterior",
     image: "/luxury-executive-home-with-premium-materials-and-l.png",
     bedrooms: 5,
     bathrooms: 4,
     carSpaces: 3,
     size: "350m²",
-    price: "$40,000",
+    price: "Start from $299,999",
   },
   {
-    id: 205,
+    id: 23,
     title: "Coastal Style Home",
     category: "Exterior",
     image: "/coastal-style-home-with-natural-timber-and-beach-i.png",
@@ -237,10 +237,10 @@ const projects = [
     bathrooms: 2,
     carSpaces: 2,
     size: "220m²",
-    price: "$28,000",
+    price: "Start from $299,999",
   },
   {
-    id: 206,
+    id: 24,
     title: "Contemporary Exterior",
     category: "Exterior",
     image: "/contemporary-home-exterior-with-landscaping.png",
@@ -248,7 +248,7 @@ const projects = [
     bathrooms: 3,
     carSpaces: 2,
     size: "280m²",
-    price: "$22,000",
+    price: "Start from $299,999",
   },
 ];
 
@@ -304,40 +304,28 @@ export default function GalleryPage() {
                   fill
                   className="object-cover group-hover:scale-110 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-
-                {/* Hover Info (Category only visible on hover) */}
-                <div className="absolute bottom-12 left-0 right-0 p-6 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                  <span className="inline-block px-3 py-1 bg-accent rounded-full text-sm font-medium mb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    {project.category}
-                  </span>
-                  <h3 className="text-xl font-semibold">{project.title}</h3>
-                  {project.price && (
-                    <p className="mt-1 text-sm font-semibold">{project.price}</p>
+              </div>
+              {/* Details bar below image */}
+              <div className="w-full px-3 py-2 bg-gray-100 text-gray-800 text-center rounded-b-lg min-h-[56px] flex flex-col justify-center">
+                <h3 className="text-lg font-semibold mb-1">{project.title}</h3>
+                <p className="text-sm">{project.category}</p>
+                {project.price && (
+                  <div>
+                    <span className="inline-block px-3 py-1 bg-accent text-white rounded-full text-sm font-semibold mt-1 w-auto">{project.price}</span>
+                  </div>
+                )}
+                <div className="flex justify-center gap-4 mt-2">
+                  {project.bedrooms !== undefined && (
+                    <span className="flex items-center gap-1"><Bed className="w-4 h-4" />{project.bedrooms}</span>
                   )}
-                </div>
-
-                {/* Fixed Bottom Info (Centered & Larger) */}
-                <div className="absolute bottom-0 left-0 right-0 p-4 bg-black/60 text-white flex justify-center gap-6 text-base font-semibold">
-                  {project.bedrooms && (
-                    <div className="flex items-center gap-2">
-                      <Bed className="w-5 h-5" /> {project.bedrooms}
-                    </div>
+                  {project.bathrooms !== undefined && (
+                    <span className="flex items-center gap-1"><Bath className="w-4 h-4" />{project.bathrooms}</span>
                   )}
-                  {project.bathrooms && (
-                    <div className="flex items-center gap-2">
-                      <Bath className="w-5 h-5" /> {project.bathrooms}
-                    </div>
-                  )}
-                  {project.carSpaces && (
-                    <div className="flex items-center gap-2">
-                      <Car className="w-5 h-5" /> {project.carSpaces}
-                    </div>
+                  {project.carSpaces !== undefined && (
+                    <span className="flex items-center gap-1"><Car className="w-4 h-4" />{project.carSpaces}</span>
                   )}
                   {project.size && (
-                    <div className="flex items-center gap-2">
-                      <Home className="w-5 h-5" /> {project.size}
-                    </div>
+                    <span className="flex items-center gap-1"><Home className="w-4 h-4" />{project.size}</span>
                   )}
                 </div>
               </div>

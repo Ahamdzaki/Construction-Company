@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
+import { Bed, Bath, Car, Home } from "lucide-react";
 
 export default function ProjectDetails({  }) {
   const searchParams = useSearchParams();
@@ -16,8 +17,8 @@ export default function ProjectDetails({  }) {
   // Optionally, you can add more fields (bedrooms, bathrooms, carSpaces, size) if you add them to the galleryImages array and pass them in the query.
 
   return (
-    <main className="min-h-screen flex flex-col items-center justify-center bg-muted/30 py-16">
-      <div className="bg-white rounded-lg shadow-lg p-8 max-w-2xl w-full flex flex-col items-center">
+    <main className="min-h-screen flex flex-col items-center justify-center bg-muted/30">
+      <div className="bg-white rounded-xs shadow-lg p-8 max-w-2xl w-full flex flex-col items-center">
         <div className="w-full flex justify-center mb-6">
           <Image
             src={image || "/placeholder.svg"}
@@ -29,26 +30,26 @@ export default function ProjectDetails({  }) {
         </div>
         <h1 className="text-3xl font-bold mb-2 text-center">{title}</h1>
         <p className="text-lg text-muted-foreground mb-2 text-center">{category}</p>
-        {price && <p className="text-xl font-semibold text-primary mb-4 text-center">Price: {price}</p>}
+        {price && <p className="text-xl font-semibold text-white mb-4 text-center bg-accent rounded-full px-3">Price: {price}</p>}
         <div className="flex flex-wrap justify-center gap-4 mt-4">
           {bedrooms && (
-            <div className="flex items-center gap-2 bg-muted px-4 py-2 rounded">
-              <span className="font-semibold">Bedrooms:</span> {bedrooms}
+            <div className="flex items-center gap-2  px-4 py-2 rounded-lg text-white bg-accent">
+              <Bed className="w-5 h-5" /> {bedrooms}
             </div>
           )}
           {bathrooms && (
-            <div className="flex items-center gap-2 bg-muted px-4 py-2 rounded">
-              <span className="font-semibold">Bathrooms:</span> {bathrooms}
+            <div className="flex items-center gap-2 px-4 py-2 rounded-lg text-white bg-accent">
+              <Bath className="w-5 h-5" /> {bathrooms}
             </div>
           )}
           {carSpaces && (
-            <div className="flex items-center gap-2 bg-muted px-4 py-2 rounded">
-              <span className="font-semibold">Car Spaces:</span> {carSpaces}
+            <div className="flex items-center gap-2  px-4 py-2 rounded-lg text-white bg-accent">
+              <Car className="w-5 h-5" /> {carSpaces}
             </div>
           )}
           {size && (
-            <div className="flex items-center gap-2 bg-muted px-4 py-2 rounded">
-              <span className="font-semibold">Size:</span> {size}
+            <div className="flex items-center gap-2  px-4 py-2 rounded-lg text-white bg-accent">
+              <Home className="w-5 h-5" /> {size}
             </div>
           )}
         </div>

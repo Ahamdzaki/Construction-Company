@@ -26,29 +26,23 @@ export default function AboutPage() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="text-3xl font-bold text-foreground mb-6">Company Overview</h2>
-              <p className="text-muted-foreground mb-4">
-                BYD B PTY LTD (formerly WA TOP BRICKLAYING SERVICES PTY LTD) was established/registered on 10/JUL/2024, but brings 13 years of experience in the
+              <p className="text-muted-foreground mb-4 text-justify">
+                BYD B PTY LTD was established/registered on 10/JUL/2024, but brings 13 years of experience in the
                 construction industry. We specialize in building high-quality residential houses and have built a
                 reputation for quality, reliability, and innovation.
               </p>
-              <p className="text-muted-foreground mb-4">
+              <p className="text-muted-foreground mb-4 text-justify">
                 Our company holds ACN: 678 883 488, ABN: 66678883488, and is fully licensed with Builder License:
                 BP106072. We are registered with the Building Commission and maintain comprehensive insurance coverage
                 for all our projects.
               </p>
-              <h2 className="text-3xl font-bold text-foreground mt-6 mb-3">Important Note</h2>
-              <p className="text-muted-foreground mb-4">
-                This is to certify that
-                WA TOP BRICKLAYING SERVICES PTY LTD
-                Australian Company Number 678 883 488
-                did on the thirteenth day of August 2025 change its name to
-                BYD B PTY LTD
-                Australian Company Number 678 883 488
-                The company is a proprietary company.
+              <p className="text-muted-foreground text-justify tracking-[0.99px]">
+                This is to certify that BYD B PTY LTD Australian Company Number 
+              </p>
+              <p className="text-muted-foreground text-justify">
+                678 883 488 is a proprietary company.
                 The company is limited by shares.
-                The company is registered under the Corporations Act 2001 and is taken to be registered
-                in Western Australia and the date of commencement of registration is the fifth day of July,
-                2024.
+                The company is registered under the Corporations Act 2001 and is taken to be registered in Western Australia and the date of commencement of registration is the fifth day of July, 2024
               </p>
             </div>
             <div className="relative">

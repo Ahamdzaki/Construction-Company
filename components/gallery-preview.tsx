@@ -3,141 +3,145 @@ import { useState } from "react"
 import { Card } from "@/components/ui/card"
 import Image from "next/image"
 import Link from "next/link"
-
+import { Bed, Bath, Car, Home } from "lucide-react";
+import { Button } from "@/components/ui/button"
 const galleryImages = [
   
   // --- EXTERIOR IMAGES ---
-    {
-    id: 195,
+  {
+    id: 1,
     title: "Contemporary Exterior",
     image: "/exterior-1.jpg",
     category: "Exterior",
-    price: "$22,000"
+    price: "Start from $299,999",
+    bedrooms: 4,
+    bathrooms: 3,
+    carSpaces: 2,
+    size: "280m²"
   },
   {
-    id: 196,
+    id: 2,
     title: "Luxury Pool Area",
     image: "/exterior-2.jpg",
     category: "Exterior",
-    price: "$30,000"
+    price: "Start from $299,999",
+    bedrooms: 5,
+    bathrooms: 4,
+    carSpaces: 3,
+    size: "350m²"
   },
   {
-    id: 197,
-    title: "Outdoor Entertainment",
-    image: "/exterior-3.jpg",
-    category: "Exterior",
-    price: "$16,000"
-  },
-  {
-    id: 198,
-    title: "Modern Townhouse",
-    image: "/exterior-4.jpg",
-    category: "Exterior",
-    price: "$25,000"
-  },
-  {
-    id: 199,
-    title: "Luxury Executive Home",
-    image: "/exterior-5.jpg",
-    category: "Exterior",
-    price: "$40,000"
-  },
-  {
-    id: 200,
+    id: 3,
     title: "Coastal Style Home",
     category: "Exterior",
     image: "/exterior-6.jpg",
-    price: "$28,000"
-  },
-  {
-    id: 201,
-    title: "Luxury Pool Area",
-    image: "/luxury-pool-area-with-outdoor-kitchen.png",
-    category: "Exterior",
-    price: "$30,000"
-  },
-  {
-    id: 202,
-    title: "Outdoor Entertainment",
-    image: "/outdoor-entertainment-area-with-deck.png",
-    category: "Exterior",
-    price: "$16,000"
-  },
-  {
-    id: 203,
-    title: "Modern Townhouse",
-    image: "/modern-townhouse-with-rooftop-garden.png",
-    category: "Exterior",
-    price: "$25,000"
-  },
-  {
-    id: 204,
-    title: "Luxury Executive Home",
-    image: "/luxury-executive-home-with-premium-materials-and-l.png",
-    category: "Exterior",
-    price: "$40,000"
-  },
-  {
-    id: 205,
-    title: "Coastal Style Home",
-    image: "/coastal-style-home-with-natural-timber-and-beach-i.png",
-    category: "Exterior",
-    price: "$28,000"
-  },
-  {
-    id: 206,
-    title: "Contemporary Exterior",
-    image: "/contemporary-home-exterior-with-landscaping.png",
-    category: "Exterior",
-    price: "$22,000"
+    price: "Start from $299,999",
+    bedrooms: 3,
+    bathrooms: 2,
+    carSpaces: 2,
+    size: "210m²"
   },
   
-  // --- INTERIOR IMAGES ---
-
   {
-    id: 207,
+    id: 4,
+    title: "Modern Townhouse",
+    image: "/exterior-4.jpg",
+    category: "Exterior",
+    price: "Start from $299,999",
+    bedrooms: 4,
+    bathrooms: 3,
+    carSpaces: 2,
+    size: "320m²"
+  },
+  {
+    id: 5,
+    title: "Luxury Executive Home",
+    image: "/exterior-5.jpg",
+    category: "Exterior",
+    price: "Start from $299,999",
+    bedrooms: 3,
+    bathrooms: 2,
+    carSpaces: 2,
+    size: "200m²"
+  },
+  {
+    id: 6,
+    title: "High-End Executive Home",
+    image: "/main.png",
+    category: "Exterior",
+    bedrooms: 3,
+    bathrooms: 2,
+    carSpaces: 2,
+    size: "220m²",
+    price: "Start from $299,999",
+  },
+  
+  {
+    id: 7,
     title: "Modern Home Office",
     image: "/modern-home-office-with-built-in-storage.png",
     category: "Interior",
-    price: "$8,000"
+    price: "Start from $10,000",
+    bedrooms: 1,
+    bathrooms: 1,
+    carSpaces: 1,
+    size: "40m²"
   },
-  
   {
     id: 208,
     title: "Elegant Dining Area",
     image: "/elegant-dining-area-with-chandelier.png",
     category: "Interior",
-    price: "$12,000"
+    price: "Start from $10,000",
+    bedrooms: 1,
+    bathrooms: 1,
+    carSpaces: 0,
+    size: "30m²"
   },
   {
     id: 209,
     title: "Luxury Master Bedroom",
     image: "/luxury-master-bedroom-with-ensuite.png",
     category: "Interior",
-    price: "$15,000"
+    price: "Start from $10,000",
+    bedrooms: 1,
+    bathrooms: 1,
+    carSpaces: 0,
+    size: "35m²"
   },
   {
     id: 210,
     title: "Modern Kitchen Design",
     image: "/modern-kitchen-island-lights.png",
     category: "Interior",
-    price: "$18,000"
+    price: "Start from $10,000",
+    bedrooms: 1,
+    bathrooms: 1,
+    carSpaces: 0,
+    size: "25m²"
   },
-  
   {
     id: 211,
     title: "Walk-in Wardrobe",
     image: "/walk-in-wardrobe-with-custom-storage.png",
     category: "Interior",
-    price: "$7,500"
+    price: "Start from $10,000",
+    bedrooms: 1,
+    bathrooms: 1,
+    carSpaces: 0,
+    size: "20m²"
   },
   {
     id: 212,
     title: "Designer Bathroom",
     image: "/designer-bathroom-with-marble-finishes.png",
     category: "Interior",
-    price: "$28,000"
-  },
+    price: "Start from $10,000",
+    bedrooms: 1,
+    bathrooms: 1,
+    carSpaces: 0,
+    size: "18m²"
+  }
   
   
 ]
@@ -168,6 +172,10 @@ export default function GalleryPreview() {
                     category: item.category,
                     price: item.price,
                     image: item.image,
+                    bedrooms: item.bedrooms,
+                    bathrooms: item.bathrooms,
+                    carSpaces: item.carSpaces,
+                    size: item.size,
                   },
                 }}
                 className="block"
@@ -180,21 +188,43 @@ export default function GalleryPreview() {
                     height={300}
                     className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                    <div className="text-white text-center">
-                      <h3 className="text-lg font-semibold mb-1">{item.title}</h3>
-                      <p className="text-sm">{item.category}</p>
-                      {item.price && (
-                        <p className="text-sm font-semibold mt-1">{item.price}</p>
-                      )}
-                    </div>
+                </div>
+                {/* Details bar below image */}
+                <div className="w-full px-3 py-2 bg-gray-100 text-gray-800 text-center rounded-b-lg min-h-[56px] flex flex-col justify-center">
+                  <h3 className="text-lg font-semibold mb-1">{item.title}</h3>
+                  <p className="text-sm">{item.category}</p>
+                    {item.price && (
+                      <div>
+                        <span className="inline-block px-3 py-1 bg-accent text-white rounded-full text-sm font-semibold mt-1 w-auto">{item.price}</span>
+                      </div>
+                    )}
+                  <div className="flex justify-center gap-4 mt-2">
+                    {item.bedrooms !== undefined && (
+                      <span className="flex items-center gap-1"><Bed className="w-4 h-4" />{item.bedrooms}</span>
+                    )}
+                    {item.bathrooms !== undefined && (
+                      <span className="flex items-center gap-1"><Bath className="w-4 h-4" />{item.bathrooms}</span>
+                    )}
+                    {item.carSpaces !== undefined && (
+                      <span className="flex items-center gap-1"><Car className="w-4 h-4" />{item.carSpaces}</span>
+                    )}
+                    {item.size && (
+                      <span className="flex items-center gap-1"><Home className="w-4 h-4" />{item.size}</span>
+                    )}
                   </div>
                 </div>
               </Link>
             </Card>
           ))}
         </div>
-
+          
+          <div className="text-center mt-20">
+          <Link href="/gallery">
+            <Button size="lg" className="bg-primary hover:bg-primary/90">
+              View Our Gallery
+            </Button>
+          </Link>
+        </div>
       </div>
     </section>
   );
