@@ -27,7 +27,7 @@ export default function Navigation() {
                 BYD B
               </span>
             </div>
-            <span className="font-bold text-xl text-foreground whitespace-nowrap">
+            <span className="font-bold text-base sm:text-xl text-foreground whitespace-nowrap">
               Build Your Dream Building
             </span>
           </Link>
@@ -48,14 +48,19 @@ export default function Navigation() {
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden">
+          <div className="md:hidden flex items-center justify-center">
             <Button
               variant="ghost"
-              size="sm"
+              size="icon"
               onClick={() => setIsOpen(!isOpen)}
-              className="text-foreground"
+              className="text-foreground flex items-center justify-center p-2 xs:p-2.5 sm:p-3 rounded-full transition-all"
+              aria-label="Open menu"
             >
-              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              {isOpen ? (
+                <X className="w-8 h-8 xs:w-10 xs:h-10 sm:w-12 sm:h-12" />
+              ) : (
+                <Menu className="w-8 h-8 xs:w-10 xs:h-10 sm:w-12 sm:h-12" />
+              )}
             </Button>
           </div>
         </div>
