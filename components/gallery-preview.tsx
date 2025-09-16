@@ -82,10 +82,7 @@ const galleryImages = [
     image: "/modern-home-office-with-built-in-storage.png",
     category: "Interior",
     price: "Start from $10,000",
-    bedrooms: 1,
-    bathrooms: 1,
-    carSpaces: 1,
-    size: "40m²"
+    
   },
   {
     id: 208,
@@ -93,10 +90,7 @@ const galleryImages = [
     image: "/elegant-dining-area-with-chandelier.png",
     category: "Interior",
     price: "Start from $10,000",
-    bedrooms: 1,
-    bathrooms: 1,
-    carSpaces: 0,
-    size: "30m²"
+    
   },
   {
     id: 209,
@@ -104,10 +98,7 @@ const galleryImages = [
     image: "/luxury-master-bedroom-with-ensuite.png",
     category: "Interior",
     price: "Start from $10,000",
-    bedrooms: 1,
-    bathrooms: 1,
-    carSpaces: 0,
-    size: "35m²"
+    
   },
   {
     id: 210,
@@ -115,10 +106,7 @@ const galleryImages = [
     image: "/modern-kitchen-island-lights.png",
     category: "Interior",
     price: "Start from $10,000",
-    bedrooms: 1,
-    bathrooms: 1,
-    carSpaces: 0,
-    size: "25m²"
+    
   },
   {
     id: 211,
@@ -126,10 +114,7 @@ const galleryImages = [
     image: "/walk-in-wardrobe-with-custom-storage.png",
     category: "Interior",
     price: "Start from $10,000",
-    bedrooms: 1,
-    bathrooms: 1,
-    carSpaces: 0,
-    size: "20m²"
+    
   },
   {
     id: 212,
@@ -137,10 +122,7 @@ const galleryImages = [
     image: "/designer-bathroom-with-marble-finishes.png",
     category: "Interior",
     price: "Start from $10,000",
-    bedrooms: 1,
-    bathrooms: 1,
-    carSpaces: 0,
-    size: "18m²"
+    
   }
   
   
