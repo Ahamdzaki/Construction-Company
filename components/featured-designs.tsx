@@ -5,85 +5,51 @@ import Image from "next/image"
 const designs = [
   {
     id: 1,
-    title: "The Modern Family",
-    description: "Contemporary 4-bedroom home with open-plan living",
     image: "/Image-1.jpg",
-    bedrooms: 4,
-    bathrooms: 3,
-    carSpaces: 2,
-    size: "280m²",
+   
   },
   {
     id: 2,
-    title: "The Executive",
-    description: "Luxury 5-bedroom home with premium finishes",
     image: "/Image-2.jpg",
-    bedrooms: 5,
-    bathrooms: 4,
-    carSpaces: 3,
-    size: "350m²",
+    
   },
   {
     id: 3,
-    title: "The Coastal",
-    description: "Beach-inspired design with natural materials",
     image: "/Image-3.jpg",
-    bedrooms: 3,
-    bathrooms: 2,
-    carSpaces: 2,
-    size: "220m²",
   },
   {
     id: 5,
-    title: "The Entertainer",
-    description: "Perfect for hosting with large outdoor areas",
     image: "/Image-4.jpg",
-    bedrooms: 4,
-    bathrooms: 3,
-    carSpaces: 2,
-    size: "320m²",
+   
   },
   
   {
     id: 8,
-    title: "The Minimalist",
-    description: "Clean lines and open spaces for modern living",
     image: "/Image-6.jpg",
-    bedrooms: 3,
-    bathrooms: 2,
-    carSpaces: 2,
-    size: "200m²",
+    
   },
   {
     id: 10,
-    title: "The Urban Retreat",
-    description: "City living with private outdoor sanctuary",
     image: "/Image-8.jpg",
-    bedrooms: 3,
-    bathrooms: 2,
-    carSpaces: 2,
-    siqWQW1Aze: "240m²",
   },
   {
     id: 11,
-    title: "The Family Haven",
-    description: "Perfect family home with kids' play areas",
     image: "/Image-9.jpg",
-    bedrooms: 4,
-    bathrooms: 3,
-    carSpaces: 2,
-    size: "300m²",
+    
   },
   {
     id: 12,
-    title: "The Eco Smart",
-    description: "Sustainable design with solar and rainwater systems",
     image: "/Image-10.jpg",
-    bedrooms: 4,
-    bathrooms: 2,
-    carSpaces: 2,
-    size: "270m²",
   },
+  {
+    id: 13,
+    image: "/Image-13.jpg",  
+  },
+  {
+    id: 14,
+    image: "/Image-12.jpeg",  
+  },
+  
 ]
 
 export default function FeaturedDesigns() {
@@ -103,7 +69,7 @@ export default function FeaturedDesigns() {
               <div className="relative overflow-hidden">
                 <Image
                   src={design.image || "/placeholder.svg"}
-                  alt={design.title}
+                  alt="Featured home design image"
                   width={400}
                   height={300}
                   className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
