@@ -63,7 +63,7 @@ export default function ContactInfo() {
         <div className="grid md:grid-cols-3 gap-8 mt-5">
           <div className="text-center">
             <a
-              href="https://www.facebook.com/profile.php?id=61579994384220"
+              href="https://www.facebook.com/profile.php?id=61580685163994"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-blue-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4"
@@ -75,7 +75,7 @@ export default function ContactInfo() {
           {/* Instagram */}
           <div className="text-center">
             <a
-              href="https://www.instagram.com/zaki__naibi/"
+              href="https://www.instagram.com/buildyourdreambuilding/"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-pink-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4"

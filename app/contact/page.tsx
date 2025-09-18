@@ -146,7 +146,7 @@ export default function ContactPage() {
                     </svg>
                   </div>
                   <div>
-                    <a href="https://www.facebook.com/zaki.naibi/" target="_blank" rel="noopener noreferrer" className="font-semibold text-foreground mb-1 block text-sm xs:text-xs">Facebook</a>
+                    <a href="https://www.facebook.com/profile.php?id=61580685163994" target="_blank" rel="noopener noreferrer" className="font-semibold text-foreground mb-1 block text-sm xs:text-xs">Facebook</a>
                   </div>
                 </div>
                 <div className="flex items-start space-x-3 xs:space-x-2">
@@ -156,7 +156,7 @@ export default function ContactPage() {
                     </svg>
                   </div>
                   <div>
-                    <a href="https://www.instagram.com/zaki__naibi/" target="_blank" rel="noopener noreferrer" className="font-semibold text-foreground mb-1 block text-sm xs:text-xs">Instagram</a>
+                    <a href="https://www.instagram.com/buildyourdreambuilding/" target="_blank" rel="noopener noreferrer" className="font-semibold text-foreground mb-1 block text-sm xs:text-xs">Instagram</a>
                   </div>
                 </div>
               </div>
