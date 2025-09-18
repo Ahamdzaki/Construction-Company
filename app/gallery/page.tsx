@@ -36,7 +36,7 @@ const projects = [
     bedrooms: 2,
     bathrooms: 2,
     carSpaces: 2,
-    size: "300m²",
+    size: "200m²",
     price: "Start from $299,999",
   },
   {
@@ -47,7 +47,7 @@ const projects = [
     bedrooms: 3,
     bathrooms: 2,
     carSpaces: 2,
-    size: "320m²",
+    size: "200m²",
     price: "Start from $299,999",
   },
   {
@@ -127,7 +127,7 @@ const projects = [
     bathrooms: 3,
     carSpaces: 2,
     size: "280m²",
-    price: "Start from $299,999",
+    price: "Start from $359,000",
   },
   {
     id: 14,
@@ -149,7 +149,7 @@ const projects = [
     bathrooms: 3,
     carSpaces: 3,
     size: "300m²",
-    price: "Start from $299,999",
+    price: "Start from $359,000",
   },
   {
     id: 16,

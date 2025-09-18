@@ -13,7 +13,7 @@ const galleryImages = [
     title: "Contemporary Exterior",
     image: "/exterior-1.jpg",
     category: "Exterior",
-    price: "Start from $299,999",
+    price: "Start from $359,000",
     bedrooms: 4,
     bathrooms: 3,
     carSpaces: 2,
@@ -25,9 +25,9 @@ const galleryImages = [
     image: "/exterior-2.jpg",
     category: "Exterior",
     price: "Start from $599,999",
-    bedrooms: 5,
-    bathrooms: 4,
-    carSpaces: 3,
+    bedrooms: 4,
+    bathrooms: 3,
+    carSpaces: 2,
     size: "350m²"
   },
   {
@@ -39,7 +39,7 @@ const galleryImages = [
     bedrooms: 3,
     bathrooms: 2,
     carSpaces: 2,
-    size: "210m²"
+    size: "220m²"
   },
   
   {
@@ -48,10 +48,10 @@ const galleryImages = [
     image: "/exterior-4.jpg",
     category: "Exterior",
     price: "Start from $299,999",
-    bedrooms: 4,
-    bathrooms: 3,
-    carSpaces: 2,
-    size: "320m²"
+    bedrooms: 3,
+    bathrooms: 2,
+    carSpaces: 1,
+    size: "180m²"
   },
   {
     id: 5,
