@@ -12,7 +12,7 @@ export default function Footer() {
               <span className="text-2xl font-bold">BYD B</span>
             </div>
             <p className="text-primary-foreground/80 mb-4">
-              Build Your Dream Building - Creating exceptional homes across Australia with 13 years of experience and
+              Build Your Dream Home - Creating exceptional homes across Australia with 13 years of experience and
               unmatched craftsmanship.
             </p>
             <div className="space-y-2">
@@ -95,7 +95,7 @@ export default function Footer() {
 
         <div className="border-t border-primary-foreground/20 mt-8 pt-8 text-center">
           <p className="text-primary-foreground/80">
-            © 2024 Build Your Dream Building. All rights reserved. | ABN: 12 345 678 901
+            © 2024 Build Your Dream Home. All rights reserved. | ABN: 12 345 678 901
           </p>
         </div>
       </div>

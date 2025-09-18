@@ -7,7 +7,7 @@ const testimonials = [
     id: 1,
     name: "Sarah & Michael Thompson",
     location: "Brisbane, QLD",
-  text: "Build Your Dream Building exceeded our expectations in every way. From the initial consultation to the final walkthrough, their attention to detail and commitment to quality was outstanding. Our dream home became a reality!",
+  text: "BYD B PTY LTD exceeded our expectations in every way. From the initial consultation to the final walkthrough, their attention to detail and commitment to quality was outstanding. Our dream home became a reality!",
     rating: 5,
     photo: "/professional-couple-sarah-and-michael-thompson-smi.png",
   },
@@ -15,7 +15,7 @@ const testimonials = [
     id: 2,
     name: "David Chen",
     location: "Sydney, NSW",
-  text: "The team at Build Your Dream Building made the building process seamless and stress-free. Their communication was excellent, and they delivered on time and within budget. Highly recommended!",
+  text: "The team at BYD B PTY LTD made the building process seamless and stress-free. Their communication was excellent, and they delivered on time and within budget. Highly recommended!",
     rating: 5,
     photo: "/professional-asian-man-david-chen-smiling.png",
   },
@@ -39,7 +39,7 @@ const testimonials = [
     id: 5,
     name: "Andrew & Sophie Taylor",
     location: "Adelaide, SA",
-  text: "Professional, reliable, and incredibly skilled. Build Your Dream Building delivered our project on schedule with exceptional attention to detail. We love our new home!",
+  text: "Professional, reliable, and incredibly skilled. BYD B PTY LTD delivered our project on schedule with exceptional attention to detail. We love our new home!",
     rating: 5,
     photo: "/professional-couple-andrew-and-sophie-taylor-smili.png",
   },
@@ -47,7 +47,7 @@ const testimonials = [
     id: 6,
     name: "Mark & Jennifer Brown",
     location: "Gold Coast, QLD",
-  text: "From design to completion, Build Your Dream Building provided excellent service. Their team was knowledgeable, friendly, and always available to answer our questions. Fantastic experience!",
+  text: "From design to completion, BYD B PTY LTD provided excellent service. Their team was knowledgeable, friendly, and always available to answer our questions. Fantastic experience!",
     rating: 5,
     photo: "/happy-couple-mark-and-jennifer-brown-smiling.png",
   },
@@ -61,7 +61,7 @@ export default function Testimonials() {
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">What Our Clients Say</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Don't just take our word for it. Here's what our satisfied homeowners have to say about their experience
-            with Build Your Dream Building.
+            with BYD B PTY LTD.
           </p>
         </div>
 

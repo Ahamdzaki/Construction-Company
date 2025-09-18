@@ -26,7 +26,7 @@ const projects = [
     bathrooms: 2,
     carSpaces: 2,
     size: "350m²",
-    price: "Start from $299,999",
+    price: "Start from $599,999",
   },
   {
     id: 3,
@@ -138,7 +138,7 @@ const projects = [
     bathrooms: 3,
     carSpaces: 2,
     size: "350m²",
-    price: "Start from $299,999",
+    price: "Start from $599,999",
   },
   {
     id: 15,
@@ -160,7 +160,7 @@ const projects = [
     bathrooms: 2,
     carSpaces: 2,
     size: "220m²",
-    price: "Start from $299,999",
+    price: "Start from $599,999",
   },
   {
     id: 17,
@@ -171,7 +171,7 @@ const projects = [
     bathrooms: 3,
     carSpaces: 3,
     size: "350m²",
-    price: "Start from $299,999",
+    price: "Start from $599,999",
   },
   {
     id: 18,
@@ -193,7 +193,7 @@ const projects = [
     bathrooms: 3,
     carSpaces: 3,
     size: "350m²",
-    price: "Start from $299,999",
+    price: "Start from $599,999",
   },
   {
     id: 20,
@@ -226,7 +226,7 @@ const projects = [
     bathrooms: 4,
     carSpaces: 3,
     size: "350m²",
-    price: "Start from $299,999",
+    price: "Start from $599,999",
   },
   {
     id: 23,

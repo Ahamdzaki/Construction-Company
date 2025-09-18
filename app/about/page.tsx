@@ -11,7 +11,7 @@ export default function AboutPage() {
       <section className="py-16 bg-muted/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">About Build Your Dream Building</h1>
+            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">About Build Your Dream Home</h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               For over 13 years, we've been building exceptional homes across Australia, combining traditional
               craftsmanship with modern innovation.
@@ -48,7 +48,7 @@ export default function AboutPage() {
             <div className="relative">
               <Image
                 src="/construction-team-working-on-building-site-with-mo.png"
-                alt="Build Your Dream Building construction team"
+                alt="Build Your Dream Home construction team"
                 width={600}
                 height={400}
                 className="rounded-lg shadow-lg"

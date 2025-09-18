@@ -28,7 +28,7 @@ export default function Navigation() {
               </span>
             </div>
             <span className="font-bold text-base sm:text-xl text-foreground whitespace-nowrap">
-              Build Your Dream Building
+              Build Your Dream Home
             </span>
           </Link>
 

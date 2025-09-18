@@ -24,7 +24,7 @@ const galleryImages = [
     title: "Luxury Pool Area",
     image: "/exterior-2.jpg",
     category: "Exterior",
-    price: "Start from $299,999",
+    price: "Start from $599,999",
     bedrooms: 5,
     bathrooms: 4,
     carSpaces: 3,
