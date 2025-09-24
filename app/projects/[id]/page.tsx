@@ -2,7 +2,8 @@
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import { Bed, Bath, Car, Home } from "lucide-react";
-
+import Navigation from "@/components/navigation";
+import Footer from "@/components/footer";
 export default function ProjectDetails({  }) {
   const searchParams = useSearchParams();
   const title = searchParams.get("title") || "";
@@ -17,7 +18,10 @@ export default function ProjectDetails({  }) {
   // Optionally, you can add more fields (bedrooms, bathrooms, carSpaces, size) if you add them to the galleryImages array and pass them in the query.
 
   return (
+    <div>
+    <Navigation />
     <main className="min-h-screen flex flex-col items-center justify-center bg-muted/30">
+      
       <div className="bg-white rounded-xs shadow-lg p-8 max-w-2xl w-full flex flex-col items-center">
         <div className="w-full flex justify-center mb-6">
           <Image
@@ -55,6 +59,8 @@ export default function ProjectDetails({  }) {
         </div>
       </div>
     </main>
+    <Footer />
+    </div>
   );
 }
 

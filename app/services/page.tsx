@@ -1,3 +1,7 @@
+export const metadata = {
+  title: "BYD:services",
+  description: "Discover the range of construction and design services offered by BYD B PTY LTD.",
+};
 import Navigation from "@/components/navigation"
 import { Card, CardContent } from "@/components/ui/card"
 import { Home, Wrench, Palette } from "lucide-react"

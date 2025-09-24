@@ -1,3 +1,7 @@
+export const metadata = {
+  title: "BYD:gallery",
+  description: "Explore our gallery of completed and ongoing projects by BYD B PTY LTD.",
+};
 import Navigation from "@/components/navigation";
 import Link from "next/link";
 import Image from "next/image";

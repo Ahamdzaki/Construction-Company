@@ -1,3 +1,41 @@
+"use client"
+
+import { motion } from "framer-motion"
+// Animation variants
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.18,
+      delayChildren: 0.12,
+    },
+  },
+}
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 60 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeInOut" as const } },
+}
+
+type AnimatedItemProps = {
+  children: React.ReactNode;
+  className?: string;
+  [key: string]: any;
+};
+function AnimatedItem({ children, className = "", ...props }: AnimatedItemProps) {
+  return (
+    <motion.div
+      variants={itemVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.15 }}
+      className={className}
+      {...props}
+    >
+      {children}
+    </motion.div>
+  );
+}
 import { Card, CardContent } from "@/components/ui/card"
 import { Bed, Bath, Car, Home } from "lucide-react"
 import Image from "next/image"
@@ -54,32 +92,40 @@ const designs = [
 
 export default function FeaturedDesigns() {
   return (
-    <section className="py-16 bg-muted/30" id="featured-designs">
+    <motion.section
+      className="py-16 bg-muted/30" id="featured-designs"
+      variants={containerVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.2 }}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
+        <AnimatedItem className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Homes Under Construction</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Discover our most popular home designs, each crafted with attention to detail and modern living in mind.
           </p>
-        </div>
+        </AnimatedItem>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
           {designs.map((design) => (
-            <div key={design.id} className="group hover:shadow-lg transition-shadow duration-300">
-              <div className="relative overflow-hidden">
-                <Image
-                  src={design.image || "/placeholder.svg"}
-                  alt="Featured home design image"
-                  width={400}
-                  height={300}
-                  className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
-                />
+            <AnimatedItem key={design.id}>
+              <div className="group hover:shadow-lg transition-shadow duration-300">
+                <div className="relative overflow-hidden">
+                  <Image
+                    src={design.image || "/placeholder.svg"}
+                    alt="Featured home design image"
+                    width={400}
+                    height={300}
+                    className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
               </div>
-            </div>
+            </AnimatedItem>
           ))}
         </div>
       </div>
-    </section>
+    </motion.section>
   )
 }
 

@@ -1,3 +1,40 @@
+"use client"
+
+import { motion } from "framer-motion"
+// Animation variants
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.08,
+    },
+  },
+}
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 60 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeInOut" as const } },
+}
+
+type AnimatedItemProps = {
+  children: React.ReactNode;
+  className?: string;
+  [key: string]: any;
+};
+function AnimatedItem({ children, className = "", ...props }: AnimatedItemProps) {
+  return (
+    <motion.div
+      variants={itemVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.15 }}
+      className={className}
+      {...props}
+    >
+      {children}
+    </motion.div>
+  );
+}
 import { Card, CardContent } from "@/components/ui/card"
 import { Home, Wrench, Palette, Building } from "lucide-react"
 
@@ -17,39 +54,47 @@ const services = [
     icon: Palette,
     title: "Custom Design",
     description:
-      "Work with our architects and designers to create a unique home that reflects your lifestyle and preferences.",
+      "Work with our architects and designers to create a unique home that reflects your lifestyle and preferences that reflects your lifestyle.",
   },
   {
     icon: Building,
     title: "Commercial Projects",
-    description: "Professional construction services for commercial properties, offices, and retail spaces.",
+    description: "Professional construction services for commercial properties, offices, and retail spaces, design, build, maintain, renovate, develop .",
   },
 ]
 
 export default function ServicesPreview() {
   return (
-    <section className="py-16 bg-background">
+    <motion.section
+      className="py-16 bg-background"
+      variants={containerVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.15 }}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
+        <AnimatedItem className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Our Services</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             With 13 years of experience, we offer comprehensive building services to bring your vision to life. From new
             home construction to renovations and custom designs, we deliver excellence in every project.
           </p>
-        </div>
+        </AnimatedItem>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {services.map((service, index) => (
-            <Card key={index} className="text-center hover:shadow-lg transition-shadow duration-300">
-              <CardContent className="p-6">
-                <service.icon className="w-12 h-12 text-accent mx-auto mb-4" />
-                <h3 className="text-xl font-semibold mb-3">{service.title}</h3>
-                <p className="text-muted-foreground">{service.description}</p>
-              </CardContent>
-            </Card>
+            <AnimatedItem key={index}>
+              <Card className="text-center hover:scale-105 transition-transform duration-300">
+                <CardContent className="p-6">
+                  <service.icon className="w-12 h-12 text-accent mx-auto mb-4" />
+                  <h3 className="text-xl font-semibold mb-3">{service.title}</h3>
+                  <p className="text-muted-foreground">{service.description}</p>
+                </CardContent>
+              </Card>
+            </AnimatedItem>
           ))}
         </div>
       </div>
-    </section>
+    </motion.section>
   )
 }

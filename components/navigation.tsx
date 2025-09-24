@@ -1,12 +1,37 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Menu, X } from "lucide-react"
+import { motion, useAnimation } from "framer-motion"
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
+  const [showNav, setShowNav] = useState(true)
+  const lastScrollY = useRef(0)
+  const controls = useAnimation()
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY < 10) {
+        setShowNav(true)
+        return
+      }
+      if (window.scrollY < lastScrollY.current) {
+        setShowNav(true)
+      } else {
+        setShowNav(false)
+      }
+      lastScrollY.current = window.scrollY
+    }
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
+  useEffect(() => {
+    controls.start(showNav ? { y: 0, opacity: 1 } : { y: -80, opacity: 0.7 })
+  }, [showNav, controls])
 
   const navItems = [
     { href: "/", label: "Home" },
@@ -17,7 +42,12 @@ export default function Navigation() {
   ]
 
   return (
-    <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border">
+    <motion.nav
+      className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border"
+      initial={{ y: -48, opacity: 0 }}
+      animate={controls}
+  transition={{ duration: 0.5, ease: "easeInOut" }}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
@@ -83,6 +113,6 @@ export default function Navigation() {
           </div>
         )}
       </div>
-    </nav>
+    </motion.nav>
   )
 }

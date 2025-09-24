@@ -5,6 +5,8 @@ import Image from "next/image"
 import Link from "next/link"
 import { Bed, Bath, Car, Home } from "lucide-react";
 import { Button } from "@/components/ui/button"
+import { motion } from "framer-motion"
+import type { Variants } from "framer-motion"
 const galleryImages = [
   
   // --- EXTERIOR IMAGES ---
@@ -128,6 +130,18 @@ const galleryImages = [
   
 ]
 
+const infoContainer: Variants = {
+  hidden: { opacity: 1 },
+  visible: {
+    opacity: 1,
+    transition: { when: "beforeChildren", staggerChildren: 0.1 }
+  }
+}
+
+const rise: Variants = {
+  hidden: { opacity: 0, y: 18 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.45, ease: "easeOut" } }
+}
 
 export default function GalleryPreview() {
   // Modal logic removed; images are now unclickable
@@ -172,29 +186,35 @@ export default function GalleryPreview() {
                   />
                 </div>
                 {/* Details bar below image */}
-                <div className="w-full px-3 py-2 bg-gray-100 text-gray-800 text-center rounded-b-lg min-h-[56px] flex flex-col justify-center">
-                  <h3 className="text-lg font-semibold mb-1">{item.title}</h3>
-                  <p className="text-sm">{item.category}</p>
+                <motion.div
+                  className="w-full px-3 py-2 bg-gray-100 text-gray-800 text-center rounded-b-lg min-h-[56px] flex flex-col justify-center"
+                  variants={infoContainer}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.2 }}
+                >
+                  <motion.h3 className="text-lg font-semibold mb-1" variants={rise}>{item.title}</motion.h3>
+                  <motion.p className="text-sm" variants={rise}>{item.category}</motion.p>
                     {item.price && (
-                      <div>
+                      <motion.div variants={rise}>
                         <span className="inline-block px-3 py-1 bg-accent text-white rounded-full text-sm font-semibold mt-1 w-auto">{item.price}</span>
-                      </div>
+                      </motion.div>
                     )}
                   <div className="flex justify-center gap-4 mt-2">
                     {item.bedrooms !== undefined && (
-                      <span className="flex items-center gap-1"><Bed className="w-4 h-4" />{item.bedrooms}</span>
+                      <motion.span className="flex items-center gap-1" variants={rise}><Bed className="w-4 h-4" />{item.bedrooms}</motion.span>
                     )}
                     {item.bathrooms !== undefined && (
-                      <span className="flex items-center gap-1"><Bath className="w-4 h-4" />{item.bathrooms}</span>
+                      <motion.span className="flex items-center gap-1" variants={rise}><Bath className="w-4 h-4" />{item.bathrooms}</motion.span>
                     )}
                     {item.carSpaces !== undefined && (
-                      <span className="flex items-center gap-1"><Car className="w-4 h-4" />{item.carSpaces}</span>
+                      <motion.span className="flex items-center gap-1" variants={rise}><Car className="w-4 h-4" />{item.carSpaces}</motion.span>
                     )}
                     {item.size && (
-                      <span className="flex items-center gap-1"><Home className="w-4 h-4" />{item.size}</span>
+                      <motion.span className="flex items-center gap-1" variants={rise}><Home className="w-4 h-4" />{item.size}</motion.span>
                     )}
                   </div>
-                </div>
+                </motion.div>
               </Link>
             </Card>
           ))}

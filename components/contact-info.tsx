@@ -1,5 +1,41 @@
 "use client"
 
+import { motion } from "framer-motion"
+// Animation variants
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.08,
+    },
+  },
+}
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 60 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeInOut" as const } },
+}
+
+type AnimatedItemProps = {
+  children: React.ReactNode;
+  className?: string;
+  [key: string]: any;
+};
+function AnimatedItem({ children, className = "", ...props }: AnimatedItemProps) {
+  return (
+    <motion.div
+      variants={itemVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.15 }}
+      className={className}
+      {...props}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
 import { Phone, Mail, MapPin } from "lucide-react"
 import { FaWhatsapp, FaFacebookF, FaInstagram } from "react-icons/fa";
 
@@ -16,26 +52,32 @@ export default function ContactInfo() {
   }
 
   return (
-    <section className="py-16 bg-gray-50">
+    <motion.section
+      className="py-16 bg-gray-50"
+      variants={containerVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.15 }}
+    >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
+        <AnimatedItem className="text-center mb-12">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">Get In Touch</h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
             Ready to start your dream home project? Contact us today for a consultation.
           </p>
-        </div>
+        </AnimatedItem>
 
         <div className="grid md:grid-cols-3 gap-8">
-          <div className="text-center">
-            <div className="bg-blue-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+          <AnimatedItem className="text-center">
+            <div className="bg-blue-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 hover:scale-110 transition-transform duration-300">
               <Phone className="h-8 w-8 text-white" />
             </div>
             <h3 className="text-xl font-semibold text-gray-900 mb-2">Call Us</h3>
             <a href="tel:+61410664649" className="text-blue-600 hover:text-blue-700 font-medium transition-colors block" style={{wordBreak:'break-all'}}>0410 664 649</a>
-          </div>
+          </AnimatedItem>
 
-          <div className="text-center">
-            <div className="bg-blue-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+          <AnimatedItem className="text-center">
+            <div className="bg-blue-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 hover:scale-110 transition-transform duration-300">
               <Mail className="h-8 w-8 text-white" />
             </div>
             <h3 className="text-xl font-semibold text-gray-900 mb-2">Email Us</h3>
@@ -45,10 +87,10 @@ export default function ContactInfo() {
               style={{wordBreak:'break-all'}}>
               buildyourdreamhome2@gmail.com
             </a>
-          </div>
+          </AnimatedItem>
 
-          <div className="text-center">
-            <div className="bg-blue-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+          <AnimatedItem className="text-center">
+            <div className="bg-blue-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 hover:scale-110 transition-transform duration-300">
               <MapPin className="h-8 w-8 text-white" />
             </div>
             <h3 className="text-xl font-semibold text-gray-900 mb-2">Visit Us</h3>
@@ -57,49 +99,47 @@ export default function ContactInfo() {
               <br />
               Mount Nasura WA 6112
             </p>
-          </div>
+          </AnimatedItem>
         </div>
 
         <div className="grid md:grid-cols-3 gap-8 mt-5">
-          <div className="text-center">
+          <AnimatedItem className="text-center">
             <a
               href="https://www.facebook.com/profile.php?id=61580685163994"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-blue-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4"
-              >
+              className="bg-blue-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 hover:scale-110 transition-transform duration-300"
+            >
               <FaFacebookF className="h-8 w-8 text-white" />
             </a>
             <h3 className="text-xl font-semibold text-gray-900 mb-2">Facebook</h3>
-          </div>
+          </AnimatedItem>
           {/* Instagram */}
-          <div className="text-center">
+          <AnimatedItem className="text-center">
             <a
               href="https://www.instagram.com/buildyourdreambuilding/"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-pink-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4"
+              className="bg-pink-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 hover:scale-110 transition-transform duration-300"
             >
               <FaInstagram className="h-8 w-8 text-white" />
             </a>
             <h3 className="text-xl font-semibold text-gray-900 mb-2">Instagram</h3>
-          </div>
-
+          </AnimatedItem>
           {/* WhatsApp */}
-          <div className="text-center">
+          <AnimatedItem className="text-center">
             <a
-             href="https://wa.me/61410664649"
-             target="_blank"
-             rel="noopener noreferrer"
-             className="bg-green-500 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4"
+              href="https://wa.me/61410664649"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-green-500 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 hover:scale-110 transition-transform duration-300"
             >
               <FaWhatsapp className="h-8 w-8 text-white" />
             </a>
             <h3 className="text-xl font-semibold text-gray-900 mb-2">WhatsApp</h3>
-          </div>
-         
+          </AnimatedItem>
         </div>
       </div>
-    </section>
-  )
+    </motion.section>
+  );
 }
