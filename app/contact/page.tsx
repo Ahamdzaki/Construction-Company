@@ -1,6 +1,6 @@
 
 "use client"
-
+import Footer from "@/components/footer"
 import type React from "react"
 
 import Navigation from "@/components/navigation"
@@ -168,6 +168,7 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
+      <Footer />
     </main>
   );
 }

@@ -3,6 +3,7 @@ export const metadata = {
   description: "Explore our gallery of completed and ongoing projects by BYD B PTY LTD.",
 };
 import Navigation from "@/components/navigation";
+import Footer from "@/components/footer"
 import Link from "next/link";
 import Image from "next/image";
 import { Bed, Bath, Car, Home } from "lucide-react";
@@ -339,6 +340,7 @@ export default function GalleryPage() {
       </div>
     </div>
   </section>
+  <Footer />
 </main>
 
 

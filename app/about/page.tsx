@@ -1,3 +1,4 @@
+import Footer from "@/components/footer"
 export const metadata = {
   title: "BYD:about",
   description: "Learn more about BYD B PTY LTD, our history, and our commitment to quality construction.",
@@ -11,6 +12,7 @@ export default function AboutPage() {
     <main>
       <Navigation />
       <AboutSections />
+      <Footer />
     </main>
   )
 }

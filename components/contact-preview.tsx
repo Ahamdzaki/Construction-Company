@@ -41,38 +41,46 @@ export default function ContactPreview() {
             <Card>
               <CardContent className="p-6">
                 <div className="flex items-center gap-4 mb-4">
-                  <Phone className="w-6 h-6 text-accent" />
+                  <div className="w-10 h-10 rounded-full bg-black flex items-center justify-center">
+                    <Phone className="w-6 h-6 text-white" />
+                  </div>
                   <div>
-                    <h4 className="font-semibold">Phone</h4>
-                    <a href="tel:+61410664649" className="text-muted-foreground hover:text-accent transition-colors">
+                    <h4 className="font-semibold text-black">Phone</h4>
+                    <a href="tel:+61410664649" className="text-black hover:text-black/80 transition-colors">
                       0410 664 649
                     </a>
                   </div>
                 </div>
                 <div className="flex items-center gap-4 mb-4">
-                  <Mail className="w-6 h-6 text-accent" />
+                  <div className="w-10 h-10 rounded-full bg-black flex items-center justify-center">
+                    <Mail className="w-6 h-6 text-white" />
+                  </div>
                   <div>
-                    <h4 className="font-semibold">Email</h4>
+                    <h4 className="font-semibold text-black">Email</h4>
                     <a
                       href="mailto:buildyourdreamhome2@gmail.com"
-                      className="text-muted-foreground hover:text-accent transition-colors"
+                      className="text-black hover:text-black/80 transition-colors"
                     >
                       buildyourdreamhome2@gmail.com
                     </a>
                   </div>
                 </div>
                 <div className="flex items-center gap-4 mb-4">
-                  <MapPin className="w-6 h-6 text-accent" />
+                  <div className="w-10 h-10 rounded-full bg-black flex items-center justify-center">
+                    <MapPin className="w-6 h-6 text-white" />
+                  </div>
                   <div>
-                    <h4 className="font-semibold">Address</h4>
-                    <p className="text-muted-foreground">8 Brian Street, Mount Nasura WA 6112</p>
+                    <h4 className="font-semibold text-black">Address</h4>
+                    <p className="text-black">8 Brian Street, Mount Nasura WA 6112</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
-                  <Clock className="w-6 h-6 text-accent" />
+                  <div className="w-10 h-10 rounded-full bg-black flex items-center justify-center">
+                    <Clock className="w-6 h-6 text-white" />
+                  </div>
                   <div>
-                    <h4 className="font-semibold">Business Hours</h4>
-                    <p className="text-muted-foreground">Mon-Fri: 8AM-6PM, Sat: 9AM-4PM</p>
+                    <h4 className="font-semibold text-black">Business Hours</h4>
+                    <p className="text-black">Mon-Fri: 8AM-6PM, Sat: 9AM-4PM</p>
                   </div>
                 </div>
               </CardContent>

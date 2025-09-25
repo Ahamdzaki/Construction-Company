@@ -11,6 +11,11 @@ export const metadata: Metadata = {
   description:
     "Australia's premier home construction company. Building dreams into reality with exceptional craftsmanship, custom designs, and quality service across Australia.",
   generator: "v0.app",
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
+  },
 }
 
 export default function RootLayout({

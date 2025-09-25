@@ -5,7 +5,7 @@ export const metadata = {
 import Navigation from "@/components/navigation"
 import { Card, CardContent } from "@/components/ui/card"
 import { Home, Wrench, Palette } from "lucide-react"
-
+import Footer from "@/components/footer"
 const services = [
   {
     icon: Home,
@@ -122,6 +122,7 @@ export default function ServicesPage() {
           </div>
         </div>
       </section>
+      <Footer />
     </main>
   )
 }
