@@ -69,28 +69,28 @@ export default function ContactInfo() {
 
         <div className="grid md:grid-cols-3 gap-8">
           <AnimatedItem className="text-center">
-            <div className="bg-black w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 hover:scale-110 transition-transform duration-300">
+            <div className="bg-blue-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 hover:scale-110 transition-transform duration-300">
               <Phone className="h-8 w-8 text-white" />
             </div>
             <h3 className="text-xl font-semibold text-gray-900 mb-2">Call Us</h3>
-            <a href="tel:+61410664649" className="text-gray-600 hover:text-black font-medium transition-colors block" style={{wordBreak:'break-all'}}>0410 664 649</a>
+            <a href="tel:+61410664649" className="text-blue-600 hover:text-blue-700 font-medium transition-colors block" style={{wordBreak:'break-all'}}>0410 664 649</a>
           </AnimatedItem>
 
           <AnimatedItem className="text-center">
-            <div className="bg-black w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 hover:scale-110 transition-transform duration-300">
+            <div className="bg-blue-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 hover:scale-110 transition-transform duration-300">
               <Mail className="h-8 w-8 text-white" />
             </div>
-            <h3 className="text-xl font-semibold text-black mb-2">Email Us</h3>
+            <h3 className="text-xl font-semibold text-gray-900 mb-2">Email Us</h3>
             <a
               href="mailto:buildyourdreamhome2@gmail.com"
-              className="text-gray-600 hover:text-gray-900 font-medium transition-colors block"
+              className="text-blue-600 hover:text-blue-700 font-medium transition-colors block"
               style={{wordBreak:'break-all'}}>
               buildyourdreamhome2@gmail.com
             </a>
           </AnimatedItem>
 
           <AnimatedItem className="text-center">
-            <div className="bg-black w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 hover:scale-110 transition-transform duration-300">
+            <div className="bg-blue-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 hover:scale-110 transition-transform duration-300">
               <MapPin className="h-8 w-8 text-white" />
             </div>
             <h3 className="text-xl font-semibold text-gray-900 mb-2">Visit Us</h3>
@@ -108,7 +108,7 @@ export default function ContactInfo() {
               href="https://www.facebook.com/profile.php?id=61580685163994"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-black w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 hover:scale-110 transition-transform duration-300"
+              className="bg-blue-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 hover:scale-110 transition-transform duration-300"
             >
               <FaFacebookF className="h-8 w-8 text-white" />
             </a>
@@ -120,7 +120,7 @@ export default function ContactInfo() {
               href="https://www.instagram.com/buildyourdreambuilding/"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-black w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 hover:scale-110 transition-transform duration-300"
+              className="bg-pink-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 hover:scale-110 transition-transform duration-300"
             >
               <FaInstagram className="h-8 w-8 text-white" />
             </a>
@@ -132,7 +132,7 @@ export default function ContactInfo() {
               href="https://wa.me/61410664649"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-black w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 hover:scale-110 transition-transform duration-300"
+              className="bg-green-500 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 hover:scale-110 transition-transform duration-300"
             >
               <FaWhatsapp className="h-8 w-8 text-white" />
             </a>
