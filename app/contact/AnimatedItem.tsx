@@ -1,21 +1,29 @@
-import { motion } from "framer-motion";
+"use client"
 
+import { motion } from "framer-motion"
+
+// Animation variants
 export const containerVariants = {
   hidden: {},
   visible: {
     transition: {
-      delayChildren: 0.18,
-      staggerChildren: 0.18,
+      staggerChildren: 0.08,
     },
   },
-};
+}
 
-export const itemVariants = {
+const itemVariants = {
   hidden: { opacity: 0, y: 60 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.9, ease: "easeInOut" as const } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeInOut" as const } },
+}
+
+type AnimatedItemProps = {
+  children: React.ReactNode;
+  className?: string;
+  [key: string]: any;
 };
 
-export function AnimatedItem({ children, className = "", ...props }: { children: React.ReactNode; className?: string; [key: string]: any }) {
+export function AnimatedItem({ children, className = "", ...props }: AnimatedItemProps) {
   return (
     <motion.div
       variants={itemVariants}
@@ -27,5 +35,6 @@ export function AnimatedItem({ children, className = "", ...props }: { children:
     >
       {children}
     </motion.div>
-  );
+  )
 }
+
