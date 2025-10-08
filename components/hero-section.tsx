@@ -27,7 +27,6 @@ const fadeVariants = {
 const imageSources = [
   "/main.png",
   "/modern-australian-home-exterior-with-clean-lines-a.png",
-  "/Exterior-5.jpg",
   "/exterior-1.jpg",
 ]
 
