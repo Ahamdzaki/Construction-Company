@@ -36,8 +36,16 @@ function AnimatedItem({ children, className = "", ...props }: AnimatedItemProps)
   );
 }
 
-import { Phone, Mail, MapPin } from "lucide-react"
-import { FaWhatsapp, FaFacebookF, FaInstagram } from "react-icons/fa";
+import dynamic from "next/dynamic"
+
+// Lazy load icons for better performance
+const Phone = dynamic(() => import("lucide-react").then(mod => ({ default: mod.Phone })), { ssr: false })
+const Mail = dynamic(() => import("lucide-react").then(mod => ({ default: mod.Mail })), { ssr: false })
+const MapPin = dynamic(() => import("lucide-react").then(mod => ({ default: mod.MapPin })), { ssr: false })
+
+const FaWhatsapp = dynamic(() => import("react-icons/fa").then(mod => ({ default: mod.FaWhatsapp })), { ssr: false })
+const FaFacebookF = dynamic(() => import("react-icons/fa").then(mod => ({ default: mod.FaFacebookF })), { ssr: false })
+const FaInstagram = dynamic(() => import("react-icons/fa").then(mod => ({ default: mod.FaInstagram })), { ssr: false })
 
 export default function ContactInfo() {
   const handleCall = () => {

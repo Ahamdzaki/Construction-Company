@@ -4,7 +4,11 @@ import * as React from "react"
 import useEmblaCarousel, {
   type UseEmblaCarouselType,
 } from "embla-carousel-react"
-import { ArrowLeft, ArrowRight } from "lucide-react"
+import dynamic from "next/dynamic"
+
+// Lazy load icons for better performance
+const ArrowLeft = dynamic(() => import("lucide-react").then(mod => ({ default: mod.ArrowLeft })), { ssr: false })
+const ArrowRight = dynamic(() => import("lucide-react").then(mod => ({ default: mod.ArrowRight })), { ssr: false })
 
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"

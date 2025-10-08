@@ -4,7 +4,12 @@ import type React from "react"
 
 import Navigation from "@/components/navigation"
 import { Button } from "@/components/ui/button"
-import { MapPin, Phone, Mail } from "lucide-react"
+import dynamic from "next/dynamic"
+
+// Lazy load icons for better performance
+const MapPin = dynamic(() => import("lucide-react").then(mod => ({ default: mod.MapPin })), { ssr: false })
+const Phone = dynamic(() => import("lucide-react").then(mod => ({ default: mod.Phone })), { ssr: false })
+const Mail = dynamic(() => import("lucide-react").then(mod => ({ default: mod.Mail })), { ssr: false })
 import { useState } from "react"
 import { motion } from "framer-motion"
 import Footer from "@/components/footer"

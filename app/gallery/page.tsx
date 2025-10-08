@@ -5,7 +5,8 @@ export const metadata = {
 import Navigation from "@/components/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import Footer from "@/components/footer"
+import dynamic from "next/dynamic"
+const Footer = dynamic(() => import("@/components/footer"), { ssr: true, loading: () => null })
 import { Bed, Bath, Car, Home } from "lucide-react";
 
 // Gallery projects array
@@ -308,6 +309,9 @@ export default function GalleryPage() {
                   alt={project.title}
                   fill
                   className="object-cover group-hover:scale-110 transition-transform duration-500"
+                  sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
+                  loading="lazy"
+                  quality={85}
                 />
               </div>
               {/* Details bar below image */}

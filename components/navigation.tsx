@@ -3,8 +3,12 @@
 import { useEffect, useRef, useState } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { Menu, X } from "lucide-react"
+import dynamic from "next/dynamic"
 import { motion, useAnimation } from "framer-motion"
+
+// Lazy load icons for better performance
+const Menu = dynamic(() => import("lucide-react").then(mod => ({ default: mod.Menu })), { ssr: false })
+const X = dynamic(() => import("lucide-react").then(mod => ({ default: mod.X })), { ssr: false })
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false)

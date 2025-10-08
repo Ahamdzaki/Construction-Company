@@ -2,7 +2,12 @@
 
 import React, { useEffect, useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Star, ChevronLeft, ChevronRight } from "lucide-react";
+import dynamic from "next/dynamic"
+
+// Lazy load icons for better performance
+const Star = dynamic(() => import("lucide-react").then(mod => ({ default: mod.Star })), { ssr: false })
+const ChevronLeft = dynamic(() => import("lucide-react").then(mod => ({ default: mod.ChevronLeft })), { ssr: false })
+const ChevronRight = dynamic(() => import("lucide-react").then(mod => ({ default: mod.ChevronRight })), { ssr: false })
 import { motion, AnimatePresence } from "framer-motion";
 
 const testimonials = [

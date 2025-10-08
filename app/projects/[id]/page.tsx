@@ -1,7 +1,13 @@
 "use client";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
-import { Bed, Bath, Car, Home } from "lucide-react";
+import dynamic from "next/dynamic"
+
+// Lazy load icons for better performance
+const Bed = dynamic(() => import("lucide-react").then(mod => ({ default: mod.Bed })), { ssr: false })
+const Bath = dynamic(() => import("lucide-react").then(mod => ({ default: mod.Bath })), { ssr: false })
+const Car = dynamic(() => import("lucide-react").then(mod => ({ default: mod.Car })), { ssr: false })
+const Home = dynamic(() => import("lucide-react").then(mod => ({ default: mod.Home })), { ssr: false })
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 export default function ProjectDetails({  }) {
@@ -30,6 +36,9 @@ export default function ProjectDetails({  }) {
             width={600}
             height={400}
             className="rounded-lg object-cover w-full h-[400px]"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
+            loading="lazy"
+            quality={85}
           />
         </div>
         <h1 className="text-3xl font-bold mb-2 text-center">{title}</h1>
