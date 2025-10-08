@@ -1,3 +1,5 @@
+"use client"
+
 export const metadata = {
   title: "BYD:gallery",
   description: "Explore our gallery of completed and ongoing projects by BYD B PTY LTD.",
