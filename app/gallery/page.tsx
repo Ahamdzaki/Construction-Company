@@ -8,6 +8,30 @@ import Image from "next/image";
 import dynamic from "next/dynamic"
 const Footer = dynamic(() => import("@/components/footer"), { ssr: true, loading: () => null })
 import { Bed, Bath, Car, Home } from "lucide-react";
+import { motion } from "framer-motion";
+
+// Animation variants for gallery cards
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.1,
+    },
+  },
+}
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 80 },
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    transition: { 
+      duration: 0.8, 
+      ease: "easeInOut" 
+    } 
+  },
+}
 
 // Gallery projects array
 const projects = [
@@ -281,11 +305,18 @@ export default function GalleryPage() {
   {/* Gallery Grid */}
   <section className="py-16">
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <motion.div 
+        className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.1 }}
+      >
         {projects.map((project) => (
-          <div
+          <motion.div
             key={project.id}
             className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
+            variants={itemVariants}
           >
             <Link
               href={{
@@ -339,9 +370,9 @@ export default function GalleryPage() {
                 </div>
               </div>
             </Link>
-          </div>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
     </div>
   </section>
   <Footer />
