@@ -25,8 +25,6 @@ const fadeVariants = {
 
 // Images for background slideshow
 const imageSources = [
-  
-  
   "/main.png",
   "/modern-australian-home-exterior-with-clean-lines-a.png",
   "/Exterior-5.jpg",
@@ -70,7 +68,7 @@ export default function HeroSection() {
   }, [])
 
   return (
-    <section className="relative min-h-[70vh] xs:min-h-[80vh] sm:min-h-[90vh] md:min-h-[95vh] lg:min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-[70vh] xs:min-h-[80vh] sm:min-h-[85vh] md:min-h-[90vh] lg:min-h-[95vh] xl:min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Slideshow */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <motion.div
@@ -94,12 +92,14 @@ export default function HeroSection() {
                 src={imageSources[index]}
                 alt="Modern Australian home"
                 fill
-                className="object-cover object-center"
+                className="object-cover object-center sm:object-[center_30%] md:object-[center_25%] lg:object-[center_20%] xl:object-center"
                 priority={index === 0}
-                sizes="(min-width: 1280px) 100vw, (min-width: 1024px) 100vw, (min-width: 768px) 100vw, 100vw"
-                quality={85}
+                sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 100vw, (max-width: 1280px) 100vw, 100vw"
+                quality={90}
+                placeholder="blur"
+                blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
               />
-              <div className="absolute inset-0 bg-primary/40"></div>
+              <div className="absolute inset-0 bg-primary/30 sm:bg-primary/35 md:bg-primary/40"></div>
             </motion.div>
           </AnimatePresence>
         </motion.div>
@@ -107,18 +107,18 @@ export default function HeroSection() {
 
       {/* Content */}
       <motion.div
-        className="relative z-10 text-center text-white max-w-4xl mx-auto px-4 xs:px-6 sm:px-8"
+        className="relative z-10 text-center text-white max-w-xs xs:max-w-sm sm:max-w-2xl md:max-w-3xl lg:max-w-4xl xl:max-w-5xl mx-auto px-3 xs:px-4 sm:px-6 md:px-8 lg:px-10"
         initial="hidden"
         animate="visible"
         variants={textVariants}
         transition={{ duration: 1.2, delay: 0.3 }}
       >
         {/* Typewriter <h1> */}
-        <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:6xl font-bold mb-4 xs:mb-5 sm:mb-6 text-balance whitespace-pre inline-block">
+        <h1 className="text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-3 xs:mb-4 sm:mb-5 md:mb-6 text-balance whitespace-pre inline-block leading-tight">
           {displayedText}
           <span className="blinking-cursor">|</span>
         </h1>
-        <p className="text-lg xs:text-xl sm:text-2xl mb-6 xs:mb-7 sm:mb-8 text-balance opacity-90">
+        <p className="text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl mb-4 xs:mb-5 sm:mb-6 md:mb-7 lg:mb-8 text-balance opacity-90 leading-relaxed">
           "Excellence is never an accident. It is always the result of high intention, sincere effort, and intelligent
           execution."
         </p>
