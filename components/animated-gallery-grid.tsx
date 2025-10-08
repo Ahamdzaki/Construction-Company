@@ -16,19 +16,41 @@ const containerVariants = {
   hidden: {},
   visible: {
     transition: {
-      staggerChildren: 0.15,
+      staggerChildren: 0.1,
+      delayChildren: 0.05,
+    },
+  },
+}
+
+const cardContentVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.08,
       delayChildren: 0.1,
     },
   },
 }
 
-const itemVariants = {
-  hidden: { opacity: 0, y: 80 },
+const cardVariants = {
+  hidden: { opacity: 0, y: 40 },
   visible: { 
     opacity: 1, 
     y: 0, 
     transition: { 
-      duration: 0.8, 
+      duration: 0.6, 
+      ease: "easeInOut" 
+    } 
+  },
+}
+
+const textVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    transition: { 
+      duration: 0.5, 
       ease: "easeInOut" 
     } 
   },
@@ -63,7 +85,7 @@ export default function AnimatedGalleryGrid({ projects }: AnimatedGalleryGridPro
         <motion.div
           key={project.id}
           className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
-          variants={itemVariants}
+          variants={cardVariants}
         >
           <Link
             href={{
@@ -93,15 +115,24 @@ export default function AnimatedGalleryGrid({ projects }: AnimatedGalleryGridPro
               />
             </div>
             {/* Details bar below image */}
-            <div className="w-full px-3 py-2 bg-gray-100 text-gray-800 text-center rounded-b-lg min-h-[56px] flex flex-col justify-center">
-              <h3 className="text-lg font-semibold mb-1">{project.title}</h3>
-              <p className="text-sm">{project.category}</p>
+            <motion.div 
+              className="w-full px-3 py-2 bg-gray-100 text-gray-800 text-center rounded-b-lg min-h-[56px] flex flex-col justify-center"
+              variants={cardContentVariants}
+              initial="hidden"
+              animate="visible"
+            >
+              <motion.h3 className="text-lg font-semibold mb-1" variants={textVariants}>
+                {project.title}
+              </motion.h3>
+              <motion.p className="text-sm" variants={textVariants}>
+                {project.category}
+              </motion.p>
               {project.price && (
-                <div>
+                <motion.div variants={textVariants}>
                   <span className="inline-block px-3 py-1 bg-accent text-white rounded-full text-sm font-semibold mt-1 w-auto">{project.price}</span>
-                </div>
+                </motion.div>
               )}
-              <div className="flex justify-center gap-4 mt-2">
+              <motion.div className="flex justify-center gap-4 mt-2" variants={textVariants}>
                 {project.bedrooms !== undefined && (
                   <span className="flex items-center gap-1"><Bed className="w-4 h-4" />{project.bedrooms}</span>
                 )}
@@ -114,8 +145,8 @@ export default function AnimatedGalleryGrid({ projects }: AnimatedGalleryGridPro
                 {project.size && (
                   <span className="flex items-center gap-1"><Home className="w-4 h-4" />{project.size}</span>
                 )}
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           </Link>
         </motion.div>
       ))}
