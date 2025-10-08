@@ -38,6 +38,7 @@ export default function Navigation() {
     { href: "/about", label: "About Us" },
     { href: "/services", label: "Services" },
     { href: "/gallery", label: "Gallery" },
+    { href: "/testimonials", label: "Testimonials" },
     { href: "/contact", label: "Contact" },
   ]
 
