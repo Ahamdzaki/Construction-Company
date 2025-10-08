@@ -25,10 +25,12 @@ const fadeVariants = {
 
 // Images for background slideshow
 const imageSources = [
-  "/modern-australian-home-exterior-with-clean-lines-a.png",
-  "/exterior-1.jpg",
-  "/Exterior-5.jpg",
+  
+  
   "/main.png",
+  "/modern-australian-home-exterior-with-clean-lines-a.png",
+  "/Exterior-5.jpg",
+  "/exterior-1.jpg",
 ]
 
 export default function HeroSection() {
