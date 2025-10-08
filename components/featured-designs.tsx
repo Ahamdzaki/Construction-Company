@@ -1,9 +1,6 @@
 "use client"
 
-import dynamic from "next/dynamic"
-
-// Lazy load framer-motion for better performance
-const motion = dynamic(() => import("framer-motion").then(mod => ({ default: mod.motion })), { ssr: false })
+import { motion } from "framer-motion"
 // Animation variants
 const containerVariants = {
   hidden: {},
