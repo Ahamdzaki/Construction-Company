@@ -5,7 +5,7 @@ export const metadata = {
 import Navigation from "@/components/navigation";
 import dynamic from "next/dynamic"
 const Footer = dynamic(() => import("@/components/footer"), { ssr: true, loading: () => null })
-import AnimatedGalleryGrid from "@/components/animated-gallery-grid"
+const AnimatedGalleryGrid = dynamic(() => import("@/components/animated-gallery-grid"), { ssr: true, loading: () => <div>Loading gallery...</div> })
 
 // Gallery projects array
 const projects = [

@@ -3,7 +3,13 @@
 import { motion } from "framer-motion"
 import Link from "next/link"
 import Image from "next/image"
-import { Bed, Bath, Car, Home } from "lucide-react"
+import dynamic from "next/dynamic"
+
+// Lazy load icons for better performance
+const Bed = dynamic(() => import("lucide-react").then(mod => ({ default: mod.Bed })), { ssr: false })
+const Bath = dynamic(() => import("lucide-react").then(mod => ({ default: mod.Bath })), { ssr: false })
+const Car = dynamic(() => import("lucide-react").then(mod => ({ default: mod.Car })), { ssr: false })
+const Home = dynamic(() => import("lucide-react").then(mod => ({ default: mod.Home })), { ssr: false })
 
 // Animation variants for gallery cards
 const containerVariants = {
