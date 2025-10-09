@@ -1,15 +1,15 @@
 "use client";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
-import dynamic from "next/dynamic"
-
-// Lazy load icons for better performance
-const Bed = dynamic(() => import("lucide-react").then(mod => ({ default: mod.Bed })), { ssr: false })
-const Bath = dynamic(() => import("lucide-react").then(mod => ({ default: mod.Bath })), { ssr: false })
-const Car = dynamic(() => import("lucide-react").then(mod => ({ default: mod.Car })), { ssr: false })
-const Home = dynamic(() => import("lucide-react").then(mod => ({ default: mod.Home })), { ssr: false })
+import dynamic from "next/dynamic";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
+
+// Lazy load icons for better performance
+const Bed = dynamic(() => import("lucide-react").then(mod => ({ default: mod.Bed })), { ssr: false });
+const Bath = dynamic(() => import("lucide-react").then(mod => ({ default: mod.Bath })), { ssr: false });
+const Car = dynamic(() => import("lucide-react").then(mod => ({ default: mod.Car })), { ssr: false });
+const Home = dynamic(() => import("lucide-react").then(mod => ({ default: mod.Home })), { ssr: false });
 export default function ProjectDetails({  }) {
   const searchParams = useSearchParams();
   const title = searchParams.get("title") || "";
