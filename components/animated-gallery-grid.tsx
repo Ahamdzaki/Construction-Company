@@ -26,8 +26,8 @@ const cardContentVariants = {
   hidden: {},
   visible: {
     transition: {
-      staggerChildren: 0.2,
-      delayChildren: 0.15,
+      staggerChildren: 0.08,
+      delayChildren: 0.1,
     },
   },
 }
@@ -39,19 +39,19 @@ const cardVariants = {
     y: 0, 
     transition: { 
       duration: 0.6, 
-      ease: "easeInOut" 
+      ease: "easeInOut" as const
     } 
   },
 }
 
 const textVariants = {
-  hidden: { opacity: 0, y: 60 },
+  hidden: { opacity: 0, y: 30 },
   visible: { 
     opacity: 1, 
     y: 0, 
     transition: { 
-      duration: 1.2, 
-      ease: "easeInOut" 
+      duration: 0.5, 
+      ease: "easeInOut" as const
     } 
   },
 }
@@ -132,26 +132,18 @@ export default function AnimatedGalleryGrid({ projects }: AnimatedGalleryGridPro
                   <span className="inline-block px-3 py-1 bg-accent text-white rounded-full text-sm font-semibold mt-1 w-auto">{project.price}</span>
                 </motion.div>
               )}
-              <motion.div className="flex justify-center gap-4 mt-2">
+              <motion.div className="flex justify-center gap-4 mt-2" variants={textVariants}>
                 {project.bedrooms !== undefined && (
-                  <motion.span className="flex items-center gap-1" variants={textVariants}>
-                    <Bed className="w-4 h-4" />{project.bedrooms}
-                  </motion.span>
+                  <span className="flex items-center gap-1"><Bed className="w-4 h-4" />{project.bedrooms}</span>
                 )}
                 {project.bathrooms !== undefined && (
-                  <motion.span className="flex items-center gap-1" variants={textVariants}>
-                    <Bath className="w-4 h-4" />{project.bathrooms}
-                  </motion.span>
+                  <span className="flex items-center gap-1"><Bath className="w-4 h-4" />{project.bathrooms}</span>
                 )}
                 {project.carSpaces !== undefined && (
-                  <motion.span className="flex items-center gap-1" variants={textVariants}>
-                    <Car className="w-4 h-4" />{project.carSpaces}
-                  </motion.span>
+                  <span className="flex items-center gap-1"><Car className="w-4 h-4" />{project.carSpaces}</span>
                 )}
                 {project.size && (
-                  <motion.span className="flex items-center gap-1" variants={textVariants}>
-                    <Home className="w-4 h-4" />{project.size}
-                  </motion.span>
+                  <span className="flex items-center gap-1"><Home className="w-4 h-4" />{project.size}</span>
                 )}
               </motion.div>
             </motion.div>
