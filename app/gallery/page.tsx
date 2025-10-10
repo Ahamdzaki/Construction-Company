@@ -275,6 +275,7 @@ export default function GalleryPage() {
       </div>
     </div>
   </section>
+  
 
   {/* Gallery Grid */}
   <section className="py-16">

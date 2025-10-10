@@ -1,13 +1,16 @@
 import Navigation from "@/components/navigation"
 import HeroSection from "@/components/hero-section"
-import FeaturedDesigns from "@/components/featured-designs"
-import AboutPreview from "@/components/about-preview"
-import ServicesPreview from "@/components/services-preview"
-import GalleryPreview from "@/components/gallery-preview"
-import Testimonials from "@/components/testimonials"
-import ContactInfo from "@/components/contact-info"
-import Footer from "@/components/footer"
-import FixedContactButton from "@/components/fixed-contact-button"
+import dynamic from "next/dynamic"
+
+// Lazily loaded, below-the-fold components
+const GalleryPreview = dynamic(() => import("@/components/gallery-preview"), { ssr: true, loading: () => null })
+const AboutPreview = dynamic(() => import("@/components/about-preview"), { ssr: true, loading: () => null })
+const ServicesPreview = dynamic(() => import("@/components/services-preview"), { ssr: true, loading: () => null })
+const FeaturedDesigns = dynamic(() => import("@/components/featured-designs"), { ssr: true, loading: () => null })
+const Testimonials = dynamic(() => import("@/components/testimonials"), { ssr: true, loading: () => null })
+const ContactInfo = dynamic(() => import("@/components/contact-info"), { ssr: true, loading: () => null })
+const Footer = dynamic(() => import("@/components/footer"), { ssr: true, loading: () => null })
+const FixedContactButton = dynamic(() => import("@/components/fixed-contact-button"), { ssr: true, loading: () => null })
 
 export default function HomePage() {
   return (

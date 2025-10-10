@@ -3,6 +3,8 @@
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Award, Users, Clock, Shield, Building, Phone, Mail, MapPin } from "lucide-react"
+import { Home } from "lucide-react"
+
 import Link from "next/link"
 import { motion } from "framer-motion"
 // Animation variants
@@ -120,6 +122,14 @@ export default function AboutPreview() {
                   <p className="text-muted-foreground">buildyourdreamhome2@gmail.com</p>
                 </div>
               </AnimatedItem>
+              <AnimatedItem className="flex items-start gap-3">
+                <Home className="w-5 h-5 text-accent mt-1 flex-shrink-0" />
+                <div>
+                  <p className="font-medium">Office Hours:</p>
+                  <p className="text-muted-foreground">Monday – Friday, 7:00 AM – 5:00 PM</p>
+                </div>
+              </AnimatedItem>
+              
             </div>
           </AnimatedItem>
         </div>

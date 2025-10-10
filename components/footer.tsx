@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 import { Building2, Mail, Phone, MapPin } from "lucide-react"
+import { Home } from "lucide-react"
 import { motion } from "framer-motion"
 
 const container = {
@@ -47,6 +48,7 @@ export default function Footer() {
                 unmatched craftsmanship.
               </motion.p>
               <motion.div className="space-y-2" variants={inner}>
+                
                 <motion.div className="flex items-center gap-2" variants={rise}>
                   <Phone className="w-4 h-4" />
                   <a href="tel:+61410664649" className="hover:text-primary-foreground/60 transition-colors">
@@ -65,6 +67,12 @@ export default function Footer() {
                 <motion.div className="flex items-center gap-2" variants={rise}>
                   <MapPin className="w-4 h-4" />
                   <span>8 Brian Street, Mount Nasura WA 6112</span>
+                </motion.div>
+                <motion.div className="flex items-center gap-2" variants={rise}>
+                  <Home className="w-4 h-4" />
+                  <p>
+                   Office Hours: Monday – Friday, 7:00 AM – 5:00 PM
+                  </p>
                 </motion.div>
               </motion.div>
             </motion.div>
@@ -100,6 +108,14 @@ export default function Footer() {
                   className="text-primary-foreground/80 hover:text-primary-foreground transition-colors"
                 >
                   Gallery
+                </Link>
+              </motion.li>
+              <motion.li variants={rise}>
+                <Link
+                  href="/testimonials"
+                  className="text-primary-foreground/80 hover:text-primary-foreground transition-colors"
+                >
+                  Testimonials
                 </Link>
               </motion.li>
               <motion.li variants={rise}>

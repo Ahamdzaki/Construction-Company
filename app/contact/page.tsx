@@ -112,9 +112,10 @@ export default function ContactPage() {
       <section className="py-10 xs:py-8 bg-muted/30">
         <div className="max-w-7xl mx-auto px-2 xs:px-3 sm:px-4 lg:px-8">
           <div className="text-center mb-8 xs:mb-6">
-            <h1 className="text-3xl xs:text-2xl md:text-5xl font-bold text-foreground mb-4 xs:mb-2">Contact Us</h1>
+            <h1 className="text-3xl xs:text-2xl md:text-5xl font-bold text-foreground mb-4 xs:mb-2">Office Hours </h1>
             <p className="text-base xs:text-sm text-muted-foreground max-w-xs xs:max-w-sm sm:max-w-3xl mx-auto">
-              Ready to start your building journey? Get in touch with our team for a consultation and quote.
+            We are available <b> Monday-Friday from 7:00 AM to 5:00 PM </b>.
+            Feel free to visit us during these hours or contact our team — we’d be happy to assist you
             </p>
           </div>
         </div>
@@ -125,9 +126,9 @@ export default function ContactPage() {
         <div className="max-w-7xl mx-auto px-2 xs:px-3 sm:px-4 lg:px-8">
           <div className="max-w-2xl mx-auto">
             <div className="text-center mb-8 xs:mb-6">
-              <h2 className="text-2xl xs:text-xl font-semibold text-foreground mb-4 xs:mb-2">Get in touch</h2>
+              <h2 className="text-3xl xs:text-xl font-semibold text-foreground mb-4 xs:mb-2">Contact Us</h2>
               <p className="text-sm xs:text-xs text-muted-foreground mb-6 xs:mb-4">
-                We'd love to hear about your project. Contact us today to schedule a consultation and discover how we can help bring your dream home to life.
+              Ready to start your building journey? Get in touch with our team for a consultation and quote.
               </p>
               <div className="relative inline-block w-full max-w-xs xs:max-w-sm">
                 <Button asChild size="sm" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground px-4 py-2 xs:px-2 xs:py-1">

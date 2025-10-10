@@ -1,27 +1,8 @@
 "use client"
 
 import Image from "next/image"
-import { motion, AnimatePresence } from "framer-motion"
-import { useEffect, useState } from "react"
-
-// Image motion variants
-const imageVariants = {
-  hidden: { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0 },
-}
-
-// Text fade-in variants
-const textVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0 },
-}
-
-// Fade variants for slideshow
-const fadeVariants = {
-  initial: { opacity: 0 },
-  animate: { opacity: 1 },
-  exit: { opacity: 0 },
-}
+import { motion } from "framer-motion"
+import { useEffect, useState, useRef } from "react"
 
 // Images for background slideshow
 const imageSources = [
@@ -30,33 +11,53 @@ const imageSources = [
   "/exterior-1.jpg",
 ]
 
+// slideshow timing (ms)
+const SLIDE_DURATION = 6000 // time each slide is visible (adjust as you like)
+const FADE_DURATION = 800 // fade length (ms)
+
 export default function HeroSection() {
   const [index, setIndex] = useState(0)
   const [displayedText, setDisplayedText] = useState("")
   const text = "Building Dreams Into Reality"
+  const mounted = useRef(false)
 
-  // Slideshow effect
+  // Preload images (best practice to avoid flicker)
   useEffect(() => {
+    imageSources.forEach((src) => {
+      const img = new window.Image()
+      img.src = src
+    })
+  }, [])
+
+  // Slideshow interval (uses a ref-safe pattern)
+  useEffect(() => {
+    mounted.current = true
     const id = setInterval(() => {
       setIndex((prev) => (prev + 1) % imageSources.length)
-    }, 10000) // 10 seconds per slide for slower slideshow
-    return () => clearInterval(id)
+    }, SLIDE_DURATION)
+    return () => {
+      mounted.current = false
+      clearInterval(id)
+    }
   }, [])
 
   // Typewriter effect for <h1>
   useEffect(() => {
     let currentIndex = 0
-    const typingSpeed = 200 // slower: 200ms per character
-    const pauseDuration = 2500 // longer pause at end of sentence
+    const typingSpeed = 120 // ms per char
+    const pauseDuration = 2200 // pause at end
+
+    let timeoutId: number | undefined
 
     const type = () => {
+      if (!mounted.current) return
       if (currentIndex <= text.length) {
         setDisplayedText(text.slice(0, currentIndex))
         currentIndex++
-        setTimeout(type, typingSpeed)
+        timeoutId = window.setTimeout(type, typingSpeed)
       } else {
-        // Wait before restarting
-        setTimeout(() => {
+        // Wait then restart
+        timeoutId = window.setTimeout(() => {
           currentIndex = 0
           type()
         }, pauseDuration)
@@ -64,55 +65,46 @@ export default function HeroSection() {
     }
 
     type()
+    return () => {
+      if (timeoutId) clearTimeout(timeoutId)
+    }
   }, [])
 
   return (
     <section className="relative min-h-[70vh] xs:min-h-[80vh] sm:min-h-[85vh] md:min-h-[90vh] lg:min-h-[95vh] xl:min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Slideshow */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={imageVariants}
-          transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }} // slower entrance
-          className="absolute inset-0"
-        >
-          <AnimatePresence mode="wait">
+      {/* Background wrapper with fallback background to prevent white flash */}
+      <div className="absolute inset-0 z-0 pointer-events-none bg-slate-900">
+        {/* All slides mounted — each positioned absolutely and crossfaded by opacity */}
+        {imageSources.map((src, i) => {
+          const isActive = i === index
+          return (
             <motion.div
-              key={index}
+              key={src + "-" + i}
+              aria-hidden={!isActive}
+              initial={false}
+              animate={{ opacity: isActive ? 1 : 0 }}
+              transition={{ duration: FADE_DURATION / 1000, ease: "easeInOut" }}
               className="absolute inset-0"
-              variants={fadeVariants}
-              initial="initial"
-              animate="animate"
-              exit="exit"
-              transition={{ duration: 3.0, ease: "easeInOut" }} // slower fade
+              style={{ willChange: "opacity" }}
             >
               <Image
-                src={imageSources[index]}
-                alt="Modern Australian home"
+                src={src}
+                alt={`Slide ${i + 1}`}
                 fill
-                className="object-cover object-center sm:object-[center_30%] md:object-[center_25%] lg:object-[center_20%] xl:object-center"
-                priority={index === 0}
-                sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 100vw, (max-width: 1280px) 100vw, 100vw"
-                quality={90}
-                placeholder="blur"
-                blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
+                priority={i === 0} // prioritize first slide; others are preloaded above
+                sizes="100vw"
+                style={{ objectFit: "cover", objectPosition: "center" }}
+                placeholder="empty" // avoid blur flash
               />
-              <div className="absolute inset-0 bg-primary/30 sm:bg-primary/35 md:bg-primary/40"></div>
+              {/* subtle overlay for consistent tone (optional) */}
+              <div className="absolute inset-0 bg-primary/30"></div>
             </motion.div>
-          </AnimatePresence>
-        </motion.div>
+          )
+        })}
       </div>
 
-      {/* Content */}
-      <motion.div
-        className="relative z-10 text-center text-white max-w-xs xs:max-w-sm sm:max-w-2xl md:max-w-3xl lg:max-w-4xl xl:max-w-5xl mx-auto px-3 xs:px-4 sm:px-6 md:px-8 lg:px-10"
-        initial="hidden"
-        animate="visible"
-        variants={textVariants}
-        transition={{ duration: 1.2, delay: 0.3 }}
-      >
-        {/* Typewriter <h1> */}
+      {/* Content (on top of slideshow) */}
+      <div className="relative z-10 text-center text-white max-w-xs xs:max-w-sm sm:max-w-2xl md:max-w-3xl lg:max-w-4xl xl:max-w-5xl mx-auto px-3 xs:px-4 sm:px-6 md:px-8 lg:px-10">
         <h1 className="text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-3 xs:mb-4 sm:mb-5 md:mb-6 text-balance whitespace-pre inline-block leading-tight">
           {displayedText}
           <span className="blinking-cursor">|</span>
@@ -121,7 +113,7 @@ export default function HeroSection() {
           "Excellence is never an accident. It is always the result of high intention, sincere effort, and intelligent
           execution."
         </p>
-      </motion.div>
+      </div>
 
       {/* Blinking cursor style */}
       <style jsx>{`
@@ -131,8 +123,12 @@ export default function HeroSection() {
           animation: blink 1s infinite;
         }
         @keyframes blink {
-          0%, 50% { opacity: 1; }
-          51%, 100% { opacity: 0; }
+          0%, 50% {
+            opacity: 1;
+          }
+          51%, 100% {
+            opacity: 0;
+          }
         }
       `}</style>
     </section>

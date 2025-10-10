@@ -3,9 +3,9 @@ export const metadata = {
   description: "Discover the range of construction and design services offered by BYD B PTY LTD.",
 };
 import Navigation from "@/components/navigation"
-import { Home, Wrench, Palette } from "lucide-react"
-import Footer from "@/components/footer"
-import ServicesSections from "@/components/services-sections"
+import dynamic from "next/dynamic"
+const Footer = dynamic(() => import("@/components/footer"), { ssr: true, loading: () => null })
+const ServicesSections = dynamic(() => import("@/components/services-sections"), { ssr: true, loading: () => null })
 const services = [
   {
     iconName: "Home",
