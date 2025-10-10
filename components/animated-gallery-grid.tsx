@@ -1,91 +1,83 @@
-"use client"
+// components/animated-gallery-grid.tsx
+"use client";
 
-import { motion } from "framer-motion"
-import Link from "next/link"
-import Image from "next/image"
-import dynamic from "next/dynamic"
+import { motion } from "framer-motion";
+import Link from "next/link";
+import Image from "next/image";
+import dynamic from "next/dynamic";
+import React from "react";
 
-// Lazy load icons for better performance
-const Bed = dynamic(() => import("lucide-react").then(mod => ({ default: mod.Bed })), { ssr: false })
-const Bath = dynamic(() => import("lucide-react").then(mod => ({ default: mod.Bath })), { ssr: false })
-const Car = dynamic(() => import("lucide-react").then(mod => ({ default: mod.Car })), { ssr: false })
-const Home = dynamic(() => import("lucide-react").then(mod => ({ default: mod.Home })), { ssr: false })
+const Bed = dynamic(() => import("lucide-react").then(m => ({ default: m.Bed })), { ssr: false });
+const Bath = dynamic(() => import("lucide-react").then(m => ({ default: m.Bath })), { ssr: false });
+const Car = dynamic(() => import("lucide-react").then(m => ({ default: m.Car })), { ssr: false });
+const Home = dynamic(() => import("lucide-react").then(m => ({ default: m.Home })), { ssr: false });
 
-// Animation variants for gallery cards
-const containerVariants = {
+/* --- Animation Variants --- */
+const detailsContainer = {
+  hidden: { opacity: 1 },
+  visible: {
+    opacity: 1,
+    transition: { when: "beforeChildren", staggerChildren: 0.12, delayChildren: 0.06 },
+  },
+};
+
+const statsContainer = {
   hidden: {},
   visible: {
-    transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.05,
-    },
+    transition: { when: "beforeChildren", staggerChildren: 0.15, delayChildren: 0.08 },
   },
-}
+};
 
-const cardContentVariants = {
-  hidden: {},
+const rise = {
+  hidden: { opacity: 0, y: 36 },
   visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.9, ease: "easeOut" as const },
+  },
+};
+
+// ✨ Enhanced: fade + scale + deep rise for icons
+const riseStat = {
+  hidden: { opacity: 0, y: 80, scale: 0.9 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
     transition: {
-      staggerChildren: 0.08,
-      delayChildren: 0.1,
+      duration: 1.1,
+      ease: "easeOut" as const,
     },
   },
-}
+};
 
-const cardVariants = {
-  hidden: { opacity: 0, y: 40 },
-  visible: { 
-    opacity: 1, 
-    y: 0, 
-    transition: { 
-      duration: 0.6, 
-      ease: "easeInOut" as const
-    } 
-  },
-}
+export type Project = {
+  id: number;
+  title: string;
+  category?: string;
+  image: string;
+  bedrooms?: number;
+  bathrooms?: number;
+  carSpaces?: number;
+  size?: string;
+  price?: string;
+};
 
-const textVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { 
-    opacity: 1, 
-    y: 0, 
-    transition: { 
-      duration: 0.5, 
-      ease: "easeInOut" as const
-    } 
-  },
-}
+export default function AnimatedGalleryGrid({ projects }: { projects: Project[] }) {
+  if (!projects) {
+    if (process.env.NODE_ENV === "development") {
+      throw new Error(
+        "AnimatedGalleryGrid: required prop `projects` is missing. Pass an array of projects to <AnimatedGalleryGrid projects={projects} />"
+      );
+    } else return null;
+  }
 
-interface Project {
-  id: number
-  title: string
-  category: string
-  image: string
-  bedrooms?: number
-  bathrooms?: number
-  carSpaces?: number
-  size?: string
-  price: string
-}
-
-interface AnimatedGalleryGridProps {
-  projects: Project[]
-}
-
-export default function AnimatedGalleryGrid({ projects }: AnimatedGalleryGridProps) {
   return (
-    <motion.div 
-      className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
-      variants={containerVariants}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.1 }}
-    >
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
       {projects.map((project) => (
-        <motion.div
+        <article
           key={project.id}
-          className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
-          variants={cardVariants}
+          className="group bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200"
         >
           <Link
             href={{
@@ -103,53 +95,77 @@ export default function AnimatedGalleryGrid({ projects }: AnimatedGalleryGridPro
             }}
             className="block"
           >
-            <div className="relative aspect-[4/3] overflow-hidden cursor-pointer">
+            {/* IMAGE */}
+            <div className="relative w-full aspect-[4/3] min-h-[160px] sm:min-h-[180px] md:min-h-[220px] overflow-hidden bg-gray-100">
               <Image
                 src={project.image || "/placeholder.svg"}
                 alt={project.title}
                 fill
-                className="object-cover group-hover:scale-110 transition-transform duration-500"
-                sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
+                className="object-cover w-full h-full block group-hover:scale-105 transition-transform duration-500"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 loading="lazy"
                 quality={85}
               />
             </div>
-            {/* Details bar below image */}
-            <motion.div 
-              className="w-full px-3 py-2 bg-gray-100 text-gray-800 text-center rounded-b-lg min-h-[56px] flex flex-col justify-center"
-              variants={cardContentVariants}
+
+            {/* DETAILS (fade up separately) */}
+            <motion.div
+              className="px-3 py-3 bg-gray-50 text-center"
+              variants={detailsContainer}
               initial="hidden"
-              animate="visible"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.28 }}
             >
-              <motion.h3 className="text-lg font-semibold mb-1" variants={textVariants}>
+              <motion.h3 className="text-sm font-semibold truncate" variants={rise}>
                 {project.title}
               </motion.h3>
-              <motion.p className="text-sm" variants={textVariants}>
+
+              <motion.p className="text-xs text-muted-foreground truncate mt-1" variants={rise}>
                 {project.category}
               </motion.p>
+
               {project.price && (
-                <motion.div variants={textVariants}>
-                  <span className="inline-block px-3 py-1 bg-accent text-white rounded-full text-sm font-semibold mt-1 w-auto">{project.price}</span>
+                <motion.div className="mt-2" variants={rise}>
+                  <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-accent text-white">
+                    {project.price}
+                  </span>
                 </motion.div>
               )}
-              <motion.div className="flex justify-center gap-4 mt-2" variants={textVariants}>
+
+              {/* Stats Icons */}
+              <motion.div
+                className="flex justify-center gap-3 mt-3 text-xs"
+                variants={statsContainer}
+              >
                 {project.bedrooms !== undefined && (
-                  <span className="flex items-center gap-1"><Bed className="w-4 h-4" />{project.bedrooms}</span>
+                  <motion.span className="flex items-center gap-1" variants={riseStat}>
+                    <Bed className="w-4 h-4" />
+                    {project.bedrooms}
+                  </motion.span>
                 )}
                 {project.bathrooms !== undefined && (
-                  <span className="flex items-center gap-1"><Bath className="w-4 h-4" />{project.bathrooms}</span>
+                  <motion.span className="flex items-center gap-1" variants={riseStat}>
+                    <Bath className="w-4 h-4" />
+                    {project.bathrooms}
+                  </motion.span>
                 )}
                 {project.carSpaces !== undefined && (
-                  <span className="flex items-center gap-1"><Car className="w-4 h-4" />{project.carSpaces}</span>
+                  <motion.span className="flex items-center gap-1" variants={riseStat}>
+                    <Car className="w-4 h-4" />
+                    {project.carSpaces}
+                  </motion.span>
                 )}
                 {project.size && (
-                  <span className="flex items-center gap-1"><Home className="w-4 h-4" />{project.size}</span>
+                  <motion.span className="flex items-center gap-1" variants={riseStat}>
+                    <Home className="w-4 h-4" />
+                    {project.size}
+                  </motion.span>
                 )}
               </motion.div>
             </motion.div>
           </Link>
-        </motion.div>
+        </article>
       ))}
-    </motion.div>
-  )
+    </div>
+  );
 }

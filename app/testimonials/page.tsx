@@ -4,7 +4,7 @@ const Footer = dynamic(() => import("@/components/footer"), { ssr: true, loading
 const TestimonialsForm = dynamic(() => import("./TestimonialsForm"), { ssr: true, loading: () => null })
 
 export const metadata = {
-  title: "BYD: Testimonials",
+  title: "Testimonials",
   description: "Explore our testimonials of completed and ongoing projects by BYD B PTY LTD.",
 }
 

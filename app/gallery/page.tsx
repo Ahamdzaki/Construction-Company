@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "BYD:gallery",
+  title: "Gallery",
   description: "Explore our gallery of completed and ongoing projects by BYD B PTY LTD.",
 };
 import Navigation from "@/components/navigation";
@@ -275,7 +275,6 @@ export default function GalleryPage() {
       </div>
     </div>
   </section>
-  
 
   {/* Gallery Grid */}
   <section className="py-16">

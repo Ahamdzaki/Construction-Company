@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "BYD:services",
+  title: "Services",
   description: "Discover the range of construction and design services offered by BYD B PTY LTD.",
 };
 import Navigation from "@/components/navigation"
