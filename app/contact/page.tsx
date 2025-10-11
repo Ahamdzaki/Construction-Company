@@ -46,7 +46,7 @@ export default function ContactPage() {
       title: "Address",
       subtitle: (
         <>
-          8 Brian Street<br />Mount Nasura, WA 6112<br />Australia
+          22 Olga Road, Maddington WA 6109
         </>
       ),
       href: undefined,

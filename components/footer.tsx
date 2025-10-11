@@ -66,7 +66,7 @@ export default function Footer() {
                 </motion.div>
                 <motion.div className="flex items-center gap-2" variants={rise}>
                   <MapPin className="w-4 h-4" />
-                  <span>8 Brian Street, Mount Nasura WA 6112</span>
+                  <span>22 Olga Road, Maddington WA 6109</span>
                 </motion.div>
                 <motion.div className="flex items-center gap-2" variants={rise}>
                   <Home className="w-4 h-4" />

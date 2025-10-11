@@ -65,7 +65,7 @@ export default function AboutSections() {
               </p>
               <p className="text-muted-foreground mb-4 text-justify">
                 Our company holds ACN: 678 883 488, ABN: 66678883488, and is fully licensed with Builder License:
-                BP106072. We are registered with the Building Commission and maintain comprehensive insurance coverage
+                BC106152. We are registered with the Building Commission and maintain comprehensive insurance coverage
                 for all our projects.
               </p>
               <p className="text-muted-foreground text-justify tracking-[0.99px]">

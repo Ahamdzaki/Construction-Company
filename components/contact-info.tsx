@@ -115,9 +115,9 @@ export default function ContactInfo() {
         </div>
         <h3 className="text-xl font-semibold text-gray-900 mb-2">Visit Us</h3>
         <p className="text-gray-600">
-          8 Brian Street
+        22 Olga Road 
           <br />
-          Mount Nasura WA 6112
+          Maddington WA 6109
         </p>
       </AnimatedItem>
     </div>

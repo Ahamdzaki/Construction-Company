@@ -85,7 +85,7 @@ export default function AboutPreview() {
                 <Award className="w-5 h-5 text-accent mt-1 flex-shrink-0" />
                 <div>
                   <p className="font-medium">License Number:</p>
-                  <p className="text-muted-foreground">BP106072</p>
+                  <p className="text-muted-foreground">BC106152</p>
                 </div>
               </AnimatedItem>
               <AnimatedItem className="flex items-start gap-3">
@@ -105,7 +105,7 @@ export default function AboutPreview() {
                 <MapPin className="w-5 h-5 text-accent mt-1 flex-shrink-0" />
                 <div>
                   <p className="font-medium">Office Address:</p>
-                  <p className="text-muted-foreground">Perth, WA 6000, Australia</p>
+                  <p className="text-muted-foreground">22 Olga Road, Maddington WA 6109</p>
                 </div>
               </AnimatedItem>
               <AnimatedItem className="flex items-start gap-3">
@@ -141,7 +141,7 @@ export default function AboutPreview() {
                 <Award className="w-12 h-12 text-accent mx-auto mb-4" />
                 <h3 className="text-xl font-semibold mb-2">Licensed & Registered</h3>
                 <p className="text-muted-foreground">Fully licensed with</p>
-                <p >BP106072</p>
+                <p >BC106152</p>
               </CardContent>
             </Card>
           </AnimatedItem>
