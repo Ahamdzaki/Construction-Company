@@ -35,7 +35,7 @@ export default function AboutSections() {
             className="text-center mb-12"
           >
             <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-              About Build Your Dream Home
+              About BYD B
             </h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               For over 13 years, we've been building exceptional homes across Australia, combining traditional
@@ -89,7 +89,7 @@ export default function AboutSections() {
             >
               <Image
                 src="/construction-team-working-on-building-site-with-mo.png"
-                alt="Build Your Dream Home construction team"
+                alt="BYD B construction team"
                 width={600}
                 height={400}
                 className="rounded-lg shadow-lg"

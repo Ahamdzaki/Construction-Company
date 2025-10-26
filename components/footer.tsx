@@ -40,11 +40,11 @@ export default function Footer() {
           <motion.div className="md:col-span-2" variants={rise}>
             <motion.div variants={inner}>
               <motion.div className="flex items-center gap-2 mb-4" variants={rise}>
-                <Building2 className="w-8 h-8" />
+                
                 <span className="text-2xl font-bold">BYD B</span>
               </motion.div>
               <motion.p className="text-primary-foreground/80 mb-4" variants={rise}>
-                Build Your Dream Home - Creating exceptional homes across Australia with 13 years of experience and
+                BYD B - Creating exceptional homes across Australia with 13 years of experience and
                 unmatched craftsmanship.
               </motion.p>
               <motion.div className="space-y-2" variants={inner}>
@@ -149,7 +149,7 @@ export default function Footer() {
           viewport={{ once: true, amount: 0.2 }}
         >
           <motion.p className="text-primary-foreground/80" variants={rise}>
-            © 2024 Build Your Dream Home. All rights reserved. | ABN: 12 345 678 901
+            © 2024 BYD B. All rights reserved. | ABN: 12 345 678 901
           </motion.p>
         </motion.div>
       </div>

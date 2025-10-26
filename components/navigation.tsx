@@ -2,9 +2,9 @@
 
 import { useEffect, useRef, useState } from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import dynamic from "next/dynamic"
-import { motion, useAnimation } from "framer-motion"
 
 // Lazy load icons for better performance
 const Menu = dynamic(() => import("lucide-react").then(mod => ({ default: mod.Menu })), { ssr: false })
@@ -12,30 +12,67 @@ const X = dynamic(() => import("lucide-react").then(mod => ({ default: mod.X }))
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
-  const [showNav, setShowNav] = useState(true)
+  const [isVisible, setIsVisible] = useState(true) // Start visible at top
   const lastScrollY = useRef(0)
-  const controls = useAnimation()
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null)
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY < 10) {
-        setShowNav(true)
+      const currentScrollY = window.scrollY
+      
+      // Always visible at the top
+      if (currentScrollY < 10) {
+        setIsVisible(true)
+        if (timeoutRef.current) {
+          clearTimeout(timeoutRef.current)
+        }
+        lastScrollY.current = currentScrollY
         return
       }
-      if (window.scrollY < lastScrollY.current) {
-        setShowNav(true)
+      
+      if (currentScrollY < lastScrollY.current) {
+        // Scrolling up - show navbar briefly
+        setIsVisible(true)
+        
+        // Clear existing timeout
+        if (timeoutRef.current) {
+          clearTimeout(timeoutRef.current)
+        }
+        
+        // Hide navbar after 3 seconds if no cursor movement
+        timeoutRef.current = setTimeout(() => {
+          setIsVisible(false)
+        }, 3000)
       } else {
-        setShowNav(false)
+        // Scrolling down - hide navbar
+        setIsVisible(false)
       }
-      lastScrollY.current = window.scrollY
+      
+      lastScrollY.current = currentScrollY
     }
+
     window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
+    return () => {
+      window.removeEventListener("scroll", handleScroll)
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current)
+      }
+    }
   }, [])
 
-  useEffect(() => {
-    controls.start(showNav ? { y: 0, opacity: 1 } : { y: -80, opacity: 0.7 })
-  }, [showNav, controls])
+  const handleMouseEnter = () => {
+    setIsVisible(true)
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current)
+    }
+  }
+
+  const handleMouseLeave = () => {
+    // Only hide if scrolled past top
+    if (window.scrollY > 10) {
+      setIsVisible(false)
+    }
+  }
 
   const navItems = [
     { href: "/", label: "Home" },
@@ -47,24 +84,24 @@ export default function Navigation() {
   ]
 
   return (
-    <motion.nav
-      className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border"
-      initial={{ y: -48, opacity: 0 }}
-      animate={controls}
-  transition={{ duration: 0.5, ease: "easeInOut" }}
+    <nav
+      className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-border shadow-sm transition-transform duration-300"
+      style={{ transform: isVisible ? 'translateY(0)' : 'translateY(-100%)' }}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2">
-            <div className="w-20 h-8 bg-primary rounded-md flex items-center justify-center">
-              <span className="text-primary-foreground font-bold text-xs sm:text-base md:text-lg lg:text-xl whitespace-nowrap">
-                BYD B
-              </span>
-            </div>
-            <span className="font-bold text-base sm:text-xl text-foreground whitespace-nowrap">
-              Build Your Dream Home
-            </span>
+          <Link href="/" className="flex items-center">
+            <Image 
+              src="/logos.png" 
+              alt="BYD B Logo" 
+              width={180} 
+              height={80}
+              className="h-10 sm:h-12 md:h-14 lg:h-16 xl:h-16 w-auto object-contain transition-all duration-300"
+              priority
+            />
           </Link>
 
           {/* Desktop Navigation */}
@@ -118,6 +155,6 @@ export default function Navigation() {
           </div>
         )}
       </div>
-    </motion.nav>
+    </nav>
   )
 }

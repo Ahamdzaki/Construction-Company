@@ -47,19 +47,17 @@ const services = [
   {
     icon: Wrench,
     title: "Home Renovations",
-    description:
-      "Transform your existing space with our comprehensive renovation services, from kitchens to full home makeovers.",
+    description: "Transform your existing space with our comprehensive renovation services, from kitchens to full home makeovers.",
   },
   {
     icon: Palette,
     title: "Custom Design",
-    description:
-      "Work with our architects and designers to create a unique home that reflects your lifestyle and preferences that reflects your lifestyle.",
+    description: "Work with our architects and designers to create a unique home that reflects your lifestyle and preferences.",
   },
   {
     icon: Building,
     title: "Commercial Projects",
-    description: "Professional construction services for commercial properties, offices, and retail spaces, design, build, maintain, renovate, develop .",
+    description: "Professional construction services for commercial properties, offices, and retail spaces.",
   },
 ]
 
@@ -81,14 +79,16 @@ export default function ServicesPreview() {
           </p>
         </AnimatedItem>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {services.map((service, index) => (
             <AnimatedItem key={index}>
-              <Card className="text-center hover:scale-105 transition-transform duration-300">
-                <CardContent className="p-6">
-                  <service.icon className="w-12 h-12 text-accent mx-auto mb-4" />
-                  <h3 className="text-xl font-semibold mb-3">{service.title}</h3>
-                  <p className="text-muted-foreground">{service.description}</p>
+              <Card className="text-center hover:scale-105 transition-transform duration-300 h-full">
+                <CardContent className="p-6 flex flex-col justify-between h-full">
+                  <div>
+                    <service.icon className="w-12 h-12 text-accent mx-auto mb-4" />
+                    <h3 className="text-lg font-semibold mb-3">{service.title}</h3>
+                    <p className="text-muted-foreground text-sm">{service.description}</p>
+                  </div>
                 </CardContent>
               </Card>
             </AnimatedItem>

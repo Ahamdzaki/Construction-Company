@@ -14,7 +14,7 @@ const FixedContactButton = dynamic(() => import("@/components/fixed-contact-butt
 
 export default function HomePage() {
   return (
-    <main>
+    <main className="pt-16">
       <Navigation />
       <HeroSection />
       <GalleryPreview />

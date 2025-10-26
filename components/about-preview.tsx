@@ -6,9 +6,10 @@ import { Award, Users, Clock, Shield, Building, Phone, Mail, MapPin } from "luci
 import { Home } from "lucide-react"
 
 import Link from "next/link"
-import { motion } from "framer-motion"
+import { motion, Variants } from "framer-motion"
+
 // Animation variants
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: {},
   visible: {
     transition: {
@@ -17,12 +18,18 @@ const containerVariants = {
   },
 }
 
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: { opacity: 0, y: 60 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
 }
 
-function AnimatedItem({ children, className = "", ...props }) {
+type AnimatedItemProps = {
+  children: React.ReactNode;
+  className?: string;
+  [key: string]: any;
+};
+
+function AnimatedItem({ children, className = "", ...props }: AnimatedItemProps) {
   return (
     <motion.div
       variants={itemVariants}
@@ -49,9 +56,9 @@ export default function AboutPreview() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <AnimatedItem className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">About Build Your Dream Home</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">About BYD B</h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-8">
-            Build Your Dream Home (BYD B PTY LTD) is a trusted construction company specializing in building
+            BYD B (BYD B PTY LTD) is a trusted construction company specializing in building
             high-quality residential houses, including single and double storey homes.
           </p>
         </AnimatedItem>
@@ -134,41 +141,48 @@ export default function AboutPreview() {
           </AnimatedItem>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
           <AnimatedItem>
-            <Card className="text-center hover:scale-105 transition-transform duration-300">
-              <CardContent className="p-6">
-                <Award className="w-12 h-12 text-accent mx-auto mb-4" />
-                <h3 className="text-xl font-semibold mb-2">Licensed & Registered</h3>
-                <p className="text-muted-foreground">Fully licensed with</p>
-                <p >BC106152</p>
+            <Card className="text-center hover:scale-105 transition-transform duration-300 h-full">
+              <CardContent className="p-6 flex flex-col justify-between h-full">
+                <div>
+                  <Award className="w-12 h-12 text-accent mx-auto mb-4" />
+                  <h3 className="text-lg font-semibold mb-3">Licensed & Registered</h3>
+                  <p className="text-muted-foreground text-sm">Fully licensed with BC106152</p>
+                </div>
               </CardContent>
             </Card>
           </AnimatedItem>
           <AnimatedItem>
-            <Card className="text-center hover:scale-105 transition-transform duration-300">
-              <CardContent className="p-6">
-                <Users className="w-12 h-12 text-accent mx-auto mb-4" />
-                <h3 className="text-xl font-semibold mb-2">Expert Team</h3>
-                <p className="text-muted-foreground">13+ years of construction expertise</p>
+            <Card className="text-center hover:scale-105 transition-transform duration-300 h-full">
+              <CardContent className="p-6 flex flex-col justify-between h-full">
+                <div>
+                  <Users className="w-12 h-12 text-accent mx-auto mb-4" />
+                  <h3 className="text-lg font-semibold mb-3">Expert Team</h3>
+                  <p className="text-muted-foreground text-sm">13+ years of construction expertise</p>
+                </div>
               </CardContent>
             </Card>
           </AnimatedItem>
           <AnimatedItem>
-            <Card className="text-center hover:scale-105 transition-transform duration-300">
-              <CardContent className="p-6">
-                <Building className="w-12 h-12 text-accent mx-auto mb-4" />
-                <h3 className="text-xl font-semibold mb-2">Quality Homes</h3>
-                <p className="text-muted-foreground">Single & double storey specialists</p>
+            <Card className="text-center hover:scale-105 transition-transform duration-300 h-full">
+              <CardContent className="p-6 flex flex-col justify-between h-full">
+                <div>
+                  <Building className="w-12 h-12 text-accent mx-auto mb-4" />
+                  <h3 className="text-lg font-semibold mb-3">Quality Homes</h3>
+                  <p className="text-muted-foreground text-sm">Single & double storey specialists</p>
+                </div>
               </CardContent>
             </Card>
           </AnimatedItem>
           <AnimatedItem>
-            <Card className="text-center hover:scale-105 transition-transform duration-300">
-              <CardContent className="p-6">
-                <Shield className="w-12 h-12 text-accent mx-auto mb-4" />
-                <h3 className="text-xl font-semibold mb-2">Trusted Service</h3>
-                <p className="text-muted-foreground">Comprehensive warranty on all work</p>
+            <Card className="text-center hover:scale-105 transition-transform duration-300 h-full">
+              <CardContent className="p-6 flex flex-col justify-between h-full">
+                <div>
+                  <Shield className="w-12 h-12 text-accent mx-auto mb-4" />
+                  <h3 className="text-lg font-semibold mb-3">Trusted Service</h3>
+                  <p className="text-muted-foreground text-sm">Comprehensive warranty on all work</p>
+                </div>
               </CardContent>
             </Card>
           </AnimatedItem>
