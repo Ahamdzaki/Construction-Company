@@ -82,7 +82,7 @@ export default function ContactPage() {
       id: "facebook",
       title: "Facebook",
       subtitle: null,
-      href: "https://www.facebook.com/profile.php?id=61580685163994",
+      href: "https://www.facebook.com/profile.php?id=61582903377561",
       external: true,
       icon: (
         <svg className="w-5 h-5 xs:w-4 xs:h-4 text-white" fill="currentColor" viewBox="0 0 24 24" aria-hidden>
@@ -94,7 +94,7 @@ export default function ContactPage() {
       id: "instagram",
       title: "Instagram",
       subtitle: null,
-      href: "https://www.instagram.com/buildyourdreambuilding/",
+      href: "https://www.instagram.com/bydbau/",
       external: true,
       icon: (
         <svg className="w-5 h-5 xs:w-4 xs:h-4 text-white" fill="currentColor" viewBox="0 0 24 24" aria-hidden>
