@@ -48,7 +48,7 @@ export default function FixedContactButton() {
           className="rounded-full shadow-lg hover:shadow-xl transition-all duration-300 bg-primary hover:bg-primary/90"
           asChild
         >
-          <a href="mailto:buildyourdreamhome2@gmail.com" className="flex items-center gap-2">
+          <a href="mailto:bpanahi@bydb.com.au" className="flex items-center gap-2">
             <Mail className="w-5 h-5" />
             <span className="hidden sm:inline">Email Us</span>
           </a>

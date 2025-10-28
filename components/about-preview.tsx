@@ -126,7 +126,7 @@ export default function AboutPreview() {
                 <Mail className="w-5 h-5 text-accent mt-1 flex-shrink-0" />
                 <div>
                   <p className="font-medium">Email:</p>
-                  <p className="text-muted-foreground">buildyourdreamhome2@gmail.com</p>
+                  <p className="text-muted-foreground">bpanahi@bydb.com.au</p>
                 </div>
               </AnimatedItem>
               <AnimatedItem className="flex items-start gap-3">

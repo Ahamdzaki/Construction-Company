@@ -94,7 +94,7 @@ export default function ContactInfo() {
       {/* Email Us */}
       <AnimatedItem className="text-center">
         <a
-          href="mailto:buildyourdreamhome2@gmail.com"
+          href="mailto:bpanahi@bydb.com.au"
           className="bg-gray-900 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 hover:scale-110 transition-transform duration-300"
         >
           <Mail className="h-8 w-8 text-white" />
@@ -104,7 +104,7 @@ export default function ContactInfo() {
           className="text-gray-600 font-medium"
           style={{ wordBreak: "break-all" }}
         >
-          buildyourdreamhome2@gmail.com
+          bpanahi@bydb.com.au
         </p>
       </AnimatedItem>
 

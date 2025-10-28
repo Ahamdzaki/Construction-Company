@@ -58,10 +58,10 @@ export default function Footer() {
                 <motion.div className="flex items-center gap-2" variants={rise}>
                   <Mail className="w-4 h-4" />
                   <a
-                    href="mailto:buildyourdreamhome2@gmail.com"
+                    href="mailto:bpanahi@bydb.com.au"
                     className="hover:text-primary-foreground/60 transition-colors"
                   >
-                    buildyourdreamhome2@gmail.com
+                    bpanahi@bydb.com.au
                   </a>
                 </motion.div>
                 <motion.div className="flex items-center gap-2" variants={rise}>

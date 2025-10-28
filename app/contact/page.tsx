@@ -62,8 +62,8 @@ export default function ContactPage() {
     {
       id: "email",
       title: "Email",
-      subtitle: "buildyourdreamhome2@gmail.com",
-      href: "mailto:buildyourdreamhome2@gmail.com",
+      subtitle: "bpanahi@bydb.com.au",
+      href: "mailto:bpanahi@bydb.com.au",
       icon: <Mail className="w-5 h-5 xs:w-4 xs:h-4 text-primary-foreground" aria-hidden />,
     },
     {
