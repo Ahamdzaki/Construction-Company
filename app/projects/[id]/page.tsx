@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import dynamic from "next/dynamic";
-import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 
 // Lazy load icons for better performance
@@ -25,9 +24,8 @@ export default function ProjectDetails() {
   const size = searchParams.get("size") || "";
 
   return (
-    <div>
-      <Navigation />
-      <main className="min-h-screen flex flex-col items-center justify-center bg-muted/30">
+    <>
+      <section className="min-h-screen flex flex-col items-center justify-center bg-muted/30 py-12">
         <div className="bg-white rounded-xs shadow-lg p-8 max-w-2xl w-full flex flex-col items-center">
           <div className="w-full flex justify-center mb-6">
             <Image
@@ -74,9 +72,9 @@ export default function ProjectDetails() {
             )}
           </div>
         </div>
-      </main>
+      </section>
       <Footer />
-    </div>
+    </>
   );
 }
 

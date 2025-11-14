@@ -2,7 +2,6 @@ export const metadata = {
   title: "Gallery",
   description: "Explore our gallery of completed and ongoing projects by BYD B PTY LTD.",
 };
-import Navigation from "@/components/navigation";
 import dynamic from "next/dynamic"
 const Footer = dynamic(() => import("@/components/footer"), { ssr: true, loading: () => null })
 const AnimatedGalleryGrid = dynamic(() => import("@/components/animated-gallery-grid"), { ssr: true, loading: () => <div>Loading gallery...</div> })
@@ -258,33 +257,29 @@ const projects = [
 
 export default function GalleryPage() {
   return (
-    <main>
-  <Navigation />
+    <>
+      {/* Hero Section */}
+      <section className="py-16 bg-muted/30">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+              Our Portfolio
+            </h1>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              Explore our collection of completed projects, showcasing the quality
+              and craftsmanship that defines YourBrand Homes.
+            </p>
+          </div>
+        </div>
+      </section>
 
-  {/* Hero Section */}
-  <section className="py-16 bg-muted/30">
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="text-center mb-12">
-        <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-          Our Portfolio
-        </h1>
-        <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-          Explore our collection of completed projects, showcasing the quality
-          and craftsmanship that defines YourBrand Homes.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  {/* Gallery Grid */}
-  <section className="py-16">
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <AnimatedGalleryGrid projects={projects} />
-    </div>
-  </section>
-  <Footer />
-</main>
-
-
+      {/* Gallery Grid */}
+      <section className="py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <AnimatedGalleryGrid projects={projects} />
+        </div>
+      </section>
+      <Footer />
+    </>
   );
 }

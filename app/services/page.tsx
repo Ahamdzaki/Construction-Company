@@ -2,7 +2,6 @@ export const metadata = {
   title: "Services",
   description: "Discover the range of construction and design services offered by BYD B PTY LTD.",
 };
-import Navigation from "@/components/navigation"
 import dynamic from "next/dynamic"
 const Footer = dynamic(() => import("@/components/footer"), { ssr: true, loading: () => null })
 const ServicesSections = dynamic(() => import("@/components/services-sections"), { ssr: true, loading: () => null })
@@ -57,8 +56,7 @@ const steps = [
 
 export default function ServicesPage() {
   return (
-    <main>
-      <Navigation />
+    <>
 
       {/* Hero Section */}
       <section className="py-16 bg-muted/30">
@@ -75,6 +73,6 @@ export default function ServicesPage() {
 
       <ServicesSections services={services} steps={steps} />
       <Footer />
-    </main>
+    </>
   )
 }

@@ -1,4 +1,3 @@
-import Navigation from "@/components/navigation"
 import dynamic from "next/dynamic"
 const Footer = dynamic(() => import("@/components/footer"), { ssr: true, loading: () => null })
 const TestimonialsForm = dynamic(() => import("./TestimonialsForm"), { ssr: true, loading: () => null })
@@ -10,10 +9,9 @@ export const metadata = {
 
 export default function TestimonialsPage() {
   return (
-    <main>
-      <Navigation />
+    <>
       <TestimonialsForm /> {/* client logic goes here */}
       <Footer />
-    </main>
+    </>
   )
 }

@@ -1,4 +1,3 @@
-import Navigation from "@/components/navigation"
 import HeroSection from "@/components/hero-section"
 import dynamic from "next/dynamic"
 
@@ -14,8 +13,7 @@ const FixedContactButton = dynamic(() => import("@/components/fixed-contact-butt
 
 export default function HomePage() {
   return (
-    <main className="pt-16">
-      <Navigation />
+    <>
       <HeroSection />
       <GalleryPreview />
       <AboutPreview />
@@ -25,6 +23,6 @@ export default function HomePage() {
       <ContactInfo />
       <Footer />
       <FixedContactButton />
-    </main>
+    </>
   )
 }

@@ -5,6 +5,7 @@ import { GeistMono } from "geist/font/mono"
 import { Analytics } from "@vercel/analytics/next"
 import { Suspense } from "react"
 import "./globals.css"
+import Navigation from "@/components/navigation"
 
 export const metadata: Metadata = {
   title: "Home",
@@ -47,7 +48,10 @@ export default function RootLayout({
         <meta name="theme-color" content="#ffffff" />
       </head>
       <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable}`}>
-        <Suspense fallback={null}>{children}</Suspense>
+        <Navigation />
+        <Suspense fallback={null}>
+          <main className="pt-24 sm:pt-28">{children}</main>
+        </Suspense>
         <Analytics />
       </body>
     </html>
