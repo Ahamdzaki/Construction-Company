@@ -7,7 +7,8 @@ import { useEffect, useState, useRef } from "react"
 // Images for background slideshow
 const imageSources = [
   "/main.png",
-  "/modern-australian-home-exterior-with-clean-lines-a.png",
+  "/exterior-4.jpg",
+ "/exterior-5.jpg",
   "/exterior-1.jpg",
 ]
 
@@ -109,10 +110,6 @@ export default function HeroSection() {
           {displayedText}
           <span className="blinking-cursor">|</span>
         </h1>
-        <p className="text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl mb-4 xs:mb-5 sm:mb-6 md:mb-7 lg:mb-8 text-balance opacity-90 leading-relaxed">
-          "Excellence is never an accident. It is always the result of high intention, sincere effort, and intelligent
-          execution."
-        </p>
       </div>
 
       {/* Blinking cursor style */}
