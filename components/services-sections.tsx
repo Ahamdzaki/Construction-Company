@@ -35,7 +35,7 @@ const inner = {
 
 const rise = {
   hidden: { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.9, ease: "easeOut" } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.9, ease: "easeOut" as const } },
 }
 
 const iconMap = {

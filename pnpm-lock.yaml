@@ -120,8 +120,8 @@ importers:
         specifier: 8.5.1
         version: 8.5.1(react@18.3.1)
       framer-motion:
-        specifier: ^12.23.18
-        version: 12.23.19(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        specifier: ^12.34.0
+        version: 12.34.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       geist:
         specifier: latest
         version: 1.4.2(next@16.1.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
@@ -129,8 +129,8 @@ importers:
         specifier: 1.4.1
         version: 1.4.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       lucide-react:
-        specifier: ^0.454.0
-        version: 0.454.0(react@18.3.1)
+        specifier: ^0.563.0
+        version: 0.563.0(react@18.3.1)
       next:
         specifier: 16.1.6
         version: 16.1.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -2189,8 +2189,8 @@ packages:
   fraction.js@4.3.7:
     resolution: {integrity: sha512-ZsDfxO51wGAXREY55a7la9LScWpwv9RxIrYABrlvOFBlH/ShPnrtsXeuUIfXKKOVicNxQ+o8JTbJvjS4M89yew==}
 
-  framer-motion@12.23.19:
-    resolution: {integrity: sha512-AaWAohgTs2+wUoDdpJaaqMgV6vkm1uzzDlZUItem45linLrFiFqi4iw7bryhcVqu4loaaSLtSjAojfCAB3qczw==}
+  framer-motion@12.34.0:
+    resolution: {integrity: sha512-+/H49owhzkzQyxtn7nZeF4kdH++I2FWrESQ184Zbcw5cEqNHYkE5yxWxcTLSj5lNx3NWdbIRy5FHqUvetD8FWg==}
     peerDependencies:
       '@emotion/is-prop-valid': '*'
       react: ^18.0.0 || ^19.0.0
@@ -2318,10 +2318,10 @@ packages:
     resolution: {integrity: sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==}
     hasBin: true
 
-  lucide-react@0.454.0:
-    resolution: {integrity: sha512-hw7zMDwykCLnEzgncEEjHeA6+45aeEzRYuKHuyRSOPkhko+J3ySGjGIzu+mmMfDFG1vazHepMaYFYHbTFAZAAQ==}
+  lucide-react@0.563.0:
+    resolution: {integrity: sha512-8dXPB2GI4dI8jV4MgUDGBeLdGk8ekfqVZ0BdLcrRzocGgG75ltNEmWS+gE7uokKF/0oSUuczNDT+g9hFJ23FkA==}
     peerDependencies:
-      react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0-rc
+      react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
 
   magic-string@0.30.18:
     resolution: {integrity: sha512-yi8swmWbO17qHhwIBNeeZxTceJMeBvWJaId6dyvTSOwTipqeHhMhOrz6513r1sOKnpvQ7zkhlG8tPrpilwTxHQ==}
@@ -2342,11 +2342,11 @@ packages:
     engines: {node: '>=10'}
     hasBin: true
 
-  motion-dom@12.23.19:
-    resolution: {integrity: sha512-ivUCJ0zVZt7S++D8+ONeefkJj/8JlpCRYzGegLdXr8Z9aWg64KyljdaCGVa54Vv0K8hNE7vRQSaQve7V5l3rMw==}
+  motion-dom@12.34.0:
+    resolution: {integrity: sha512-Lql3NuEcScRDxTAO6GgUsRHBZOWI/3fnMlkMcH5NftzcN37zJta+bpbMAV9px4Nj057TuvRooMK7QrzMCgtz6Q==}
 
-  motion-utils@12.23.6:
-    resolution: {integrity: sha512-eAWoPgr4eFEOFfg2WjIsMoqJTW6Z8MTUCgn/GZ3VRpClWBdnbjryiA3ZSNLyxCTmCQx4RmYX6jX1iWHbenUPNQ==}
+  motion-utils@12.29.2:
+    resolution: {integrity: sha512-G3kc34H2cX2gI63RqU+cZq+zWRRPSsNIOjpdl9TN4AQwC4sgwYPl/Q/Obf/d53nOm569T0fYK+tcoSV50BWx8A==}
 
   mri@1.2.0:
     resolution: {integrity: sha512-tzzskb3bG8LvYGFF/mDTpq3jpI6Q9wc3LEmBaghu+DdCssd1FakN7Bc0hVNmEyGq1bq3RgfkCb3cmQLpNPOroA==}
@@ -4912,10 +4912,10 @@ snapshots:
 
   fraction.js@4.3.7: {}
 
-  framer-motion@12.23.19(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+  framer-motion@12.34.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
-      motion-dom: 12.23.19
-      motion-utils: 12.23.6
+      motion-dom: 12.34.0
+      motion-utils: 12.29.2
       tslib: 2.8.1
     optionalDependencies:
       react: 18.3.1
@@ -5002,7 +5002,7 @@ snapshots:
     dependencies:
       js-tokens: 4.0.0
 
-  lucide-react@0.454.0(react@18.3.1):
+  lucide-react@0.563.0(react@18.3.1):
     dependencies:
       react: 18.3.1
 
@@ -5022,11 +5022,11 @@ snapshots:
 
   mkdirp@3.0.1: {}
 
-  motion-dom@12.23.19:
+  motion-dom@12.34.0:
     dependencies:
-      motion-utils: 12.23.6
+      motion-utils: 12.29.2
 
-  motion-utils@12.23.6: {}
+  motion-utils@12.29.2: {}
 
   mri@1.2.0: {}
 
