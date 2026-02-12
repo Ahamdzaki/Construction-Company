@@ -8,7 +8,7 @@ import "./globals.css"
 import Navigation from "@/components/navigation"
 
 export const metadata: Metadata = {
-  title: "Home",
+  title: "BYDB - Building Dreams",
   description:
     "Australia's premier home construction company. Building dreams into reality with exceptional craftsmanship, custom designs, and quality service across Australia.",
   generator: "v0.app",

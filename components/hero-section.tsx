@@ -7,7 +7,6 @@ import { useEffect, useState, useRef } from "react"
 // Images for background slideshow
 const imageSources = [
   "/main.png",
-  "/exterior-4.jpg",
  "/exterior-5.jpg",
   "/exterior-1.jpg",
 ]
