@@ -50,7 +50,7 @@ export default function RootLayout({
       <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable}`}>
         <Navigation />
         <Suspense fallback={null}>
-          <main className="pt-24 sm:pt-28">{children}</main>
+          <main className="pt-16">{children}</main>
         </Suspense>
         <Analytics />
       </body>

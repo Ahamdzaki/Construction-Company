@@ -189,6 +189,7 @@ export default function GalleryPreview() {
                     width={400}
                     height={300}
                     className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                    loading="lazy"
                   />
                 </div>
                 {/* Details bar below image */}

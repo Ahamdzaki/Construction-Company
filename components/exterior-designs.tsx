@@ -25,6 +25,7 @@ export default function ExteriorDesigns() {
                   width={400}
                   height={300}
                   className="w-full h-64 object-cover hover:scale-105 transition-transform duration-300 cursor-pointer"
+                  loading="lazy"
                 />
               </Link>
               <div className="p-4 text-center text-base font-semibold text-foreground">{img.title}</div>

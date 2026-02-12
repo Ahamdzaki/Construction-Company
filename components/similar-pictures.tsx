@@ -40,10 +40,10 @@ export default function SimilarPictures({ id, category }: { id: number; category
 
   return (
     <section className="py-12">
-      <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 max-w-4xl mx-auto">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4 max-w-7xl mx-auto">
         {similar.map(img => (
           <div key={img.id} className="rounded-lg overflow-hidden shadow">
-            <Image src={img.image} alt={img.title} width={400} height={300} className="object-cover w-full h-48" />
+            <Image src={img.image} alt={img.title} width={400} height={300} className="object-cover w-full h-48" loading="lazy" />
             <div className="p-2 text-center text-sm font-medium">{img.title}</div>
           </div>
         ))}

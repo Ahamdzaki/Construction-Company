@@ -73,6 +73,7 @@ export default function GalleryGrid({ projects }: { projects: Project[] }) {
                 alt={project.title}
                 fill
                 className="object-cover group-hover:scale-110 transition-transform duration-500"
+                loading="lazy"
               />
             </div>
             <motion.div

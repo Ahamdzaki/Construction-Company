@@ -118,6 +118,7 @@ export default function FeaturedDesigns() {
                     width={400}
                     height={300}
                     className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
+                    loading="lazy"
                   />
                 </div>
               </div>

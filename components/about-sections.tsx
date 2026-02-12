@@ -93,6 +93,7 @@ export default function AboutSections() {
                 width={600}
                 height={400}
                 className="rounded-lg shadow-lg"
+                loading="lazy"
               />
             </motion.div>
           </div>
