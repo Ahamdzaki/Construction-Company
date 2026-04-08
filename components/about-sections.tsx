@@ -47,31 +47,31 @@ export default function AboutSections() {
 
       {/* Company History */}
       <section className="py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-40 items-stretch">
             {/* Text */}
             <motion.div
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              variants={leftToRight} // text slides from left → right
+              variants={leftToRight}
               transition={{ duration: 0.8 }}
             >
-              <h2 className="text-3xl font-bold text-foreground mb-6">Company Overview</h2>
-              <p className="text-muted-foreground mb-4 text-justify">
+              <h2 className="text-4xl font-bold text-foreground mb-10">Company Overview</h2>
+              <p className="text-lg text-muted-foreground mb-4 text-justify">
                 BYD B PTY LTD was established/registered on 10/JUL/2024, but brings 13 years of experience in the
                 construction industry. We specialize in building high-quality residential houses and have built a
                 reputation for quality, reliability, and innovation.
               </p>
-              <p className="text-muted-foreground mb-4 text-justify">
+              <p className="text-lg text-muted-foreground mb-4 text-justify">
                 Our company holds ACN: 678 883 488, ABN: 66678883488, and is fully licensed with Builder License:
                 BC106152. We are registered with the Building Commission and maintain comprehensive insurance coverage
                 for all our projects.
               </p>
-              <p className="text-muted-foreground text-justify tracking-[0.99px]">
+              <p className="text-lg text-muted-foreground text-justify tracking-[0.99px]">
                 This is to certify that BYD B PTY LTD Australian Company Number
               </p>
-              <p className="text-muted-foreground text-justify">
+              <p className="text-lg text-muted-foreground text-justify">
                 678 883 488 is a proprietary company. The company is limited by shares. The company is registered under
                 the Corporations Act 2001 and is taken to be registered in Western Australia and the date of commencement
                 of registration is the fifth day of July, 2024
@@ -83,16 +83,15 @@ export default function AboutSections() {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              variants={rightToLeft} // image slides from right → left
+              variants={rightToLeft}
               transition={{ duration: 0.8 }}
-              className="relative"
+              className="relative w-full"
             >
               <Image
                 src="/construction-team-working-on-building-site-with-mo.png"
                 alt="BYD B construction team"
-                width={600}
-                height={400}
-                className="rounded-lg shadow-lg"
+                fill
+                className="rounded-lg shadow-lg object-cover"
                 loading="lazy"
               />
             </motion.div>

@@ -93,7 +93,7 @@ export default function HeroSection() {
                 fill
                 priority={i === 0} // prioritize first slide; others are preloaded above
                 sizes="100vw"
-                style={{ objectFit: "cover", objectPosition: "center" }}
+                style={{ objectFit: "cover", objectPosition: "center 35%" }}
                 placeholder="empty" // avoid blur flash
               />
               {/* subtle overlay for consistent tone (optional) */}
