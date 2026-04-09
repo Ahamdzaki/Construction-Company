@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion"
 import { Card, CardContent } from "@/components/ui/card"
-import { Home, Wrench, Palette } from "lucide-react"
+import { Home, Wrench, Palette, Building2 } from "lucide-react"
 
 type Service = {
   iconName: string
@@ -42,6 +42,7 @@ const iconMap = {
   Home,
   Wrench,
   Palette,
+  Building2,
 }
 
 export default function ServicesSections({ services, steps }: { services: Service[]; steps: Step[] }) {
@@ -51,7 +52,7 @@ export default function ServicesSections({ services, steps }: { services: Servic
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            className="grid lg:grid-cols-3 gap-8"
+            className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8"
             variants={container}
             initial="hidden"
             whileInView="visible"

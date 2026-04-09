@@ -1,97 +1,111 @@
 "use client"
 
-import { motion } from "framer-motion"
-import { Card, CardContent } from "@/components/ui/card"
 import Image from "next/image"
+import { Check, Award, Shield, Zap } from "lucide-react"
+import { motion } from "framer-motion"
+import { slideInLeft, slideInRight, fadeInUp, staggerContainer } from "@/lib/animations"
 
-// Variants
-const bottomToTop = {
-  hidden: { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0 },
-}
+const values = [
+  {
+    icon: Award,
+    iconBg: "bg-blue-50",
+    iconColor: "text-primary-600",
+    title: "Built to last",
+    heading: "Quality First",
+    description:
+      "Every home we build is backed by our BC106152 builder's licence and a comprehensive structural warranty. We use premium materials from trusted Australian suppliers and conduct rigorous quality checks at every stage.",
+  },
+  {
+    icon: Shield,
+    iconBg: "bg-amber-50",
+    iconColor: "text-amber-600",
+    title: "No surprises",
+    heading: "Trust & Transparency",
+    description:
+      "We offer fixed-price contracts so you know exactly what you're paying from day one. Our clients receive regular progress updates with photos, and our team is always a phone call away.",
+  },
+  {
+    icon: Zap,
+    iconBg: "bg-violet-50",
+    iconColor: "text-violet-600",
+    title: "Modern living, built smart",
+    heading: "Innovation & Excellence",
+    description:
+      "We incorporate energy-efficient designs, smart home readiness, and sustainable building practices into every project — delivering homes that are as efficient as they are beautiful.",
+  },
+]
 
-const leftToRight = {
-  hidden: { opacity: 0, x: -50 },
-  visible: { opacity: 1, x: 0 },
-}
-
-const rightToLeft = {
-  hidden: { opacity: 0, x: 50 },
-  visible: { opacity: 1, x: 0 },
-}
+const credentials = [
+  { label: "ABN", value: "66 678 883 488" },
+  { label: "ACN", value: "678 883 488" },
+  { label: "Builder's Licence", value: "BC106152" },
+  { label: "Registered in", value: "Western Australia" },
+]
 
 export default function AboutSections() {
   return (
     <>
-      {/* Hero Section */}
-      <section className="py-16 bg-muted/30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={bottomToTop}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-12"
-          >
-            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-              About BYD B
-            </h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              For over 13 years, we've been building exceptional homes across Australia, combining traditional
-              craftsmanship with modern innovation.
-            </p>
-          </motion.div>
+      {/* Hero */}
+      <section className="pt-24 pb-12 bg-neutral-900 relative overflow-hidden">
+        <div
+          className="absolute inset-0 opacity-10"
+          style={{
+            backgroundImage: "repeating-linear-gradient(45deg,#fff 0,#fff 1px,transparent 0,transparent 50%)",
+            backgroundSize: "16px 16px",
+          }}
+        />
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <p className="text-xs uppercase tracking-[0.15em] font-medium text-amber-400 mb-3">Our Story</p>
+          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">About BYD B</h1>
+          <p className="text-base md:text-lg text-white/60 max-w-2xl mx-auto">
+            Building exceptional homes across Western Australia for over 13 years.
+          </p>
         </div>
       </section>
 
-      {/* Company History */}
-      <section className="py-16">
-        <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-40 items-stretch">
-            {/* Text */}
+      {/* Company story */}
+      <section className="py-16 md:py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <motion.div
+              variants={slideInLeft}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true }}
-              variants={leftToRight}
-              transition={{ duration: 0.8 }}
+              viewport={{ once: true, amount: 0.3 }}
             >
-              <h2 className="text-4xl font-bold text-foreground mb-10">Company Overview</h2>
-              <p className="text-lg text-muted-foreground mb-4 text-justify">
-                BYD B PTY LTD was established/registered on 10/JUL/2024, but brings 13 years of experience in the
-                construction industry. We specialize in building high-quality residential houses and have built a
-                reputation for quality, reliability, and innovation.
+              <p className="text-xs uppercase tracking-[0.15em] font-medium text-amber-500 mb-3">Our Story</p>
+              <h2 className="text-2xl md:text-3xl font-semibold text-neutral-900 mb-4">
+                13+ years of craftsmanship
+              </h2>
+              <p className="text-base text-neutral-600 leading-relaxed mb-4">
+                BYD B PTY LTD brings over 13 years of experience in the construction industry. We specialise in building high-quality residential homes — single and double storey — and have built a reputation for quality, reliability, and innovation across Western Australia.
               </p>
-              <p className="text-lg text-muted-foreground mb-4 text-justify">
-                Our company holds ACN: 678 883 488, ABN: 66678883488, and is fully licensed with Builder License:
-                BC106152. We are registered with the Building Commission and maintain comprehensive insurance coverage
-                for all our projects.
+              <p className="text-base text-neutral-600 leading-relaxed mb-6">
+                Our company is fully registered, licenced, and insured. Every project we take on is backed by our builder's licence BC106152 and comprehensive warranty coverage. We believe great homes start with great relationships — which is why we work closely with every client from first consultation to final handover.
               </p>
-              <p className="text-lg text-muted-foreground text-justify tracking-[0.99px]">
-                This is to certify that BYD B PTY LTD Australian Company Number
-              </p>
-              <p className="text-lg text-muted-foreground text-justify">
-                678 883 488 is a proprietary company. The company is limited by shares. The company is registered under
-                the Corporations Act 2001 and is taken to be registered in Western Australia and the date of commencement
-                of registration is the fifth day of July, 2024
-              </p>
+              <div className="flex flex-col gap-2">
+                {["Fully licensed and insured", "Fixed-price contracts — no hidden costs", "Weekly progress updates with photos", "Comprehensive structural warranty"].map((point) => (
+                  <div key={point} className="flex items-center gap-2">
+                    <Check className="w-4 h-4 text-primary-600 flex-shrink-0" />
+                    <span className="text-sm text-neutral-700">{point}</span>
+                  </div>
+                ))}
+              </div>
             </motion.div>
 
-            {/* Image */}
             <motion.div
+              variants={slideInRight}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true }}
-              variants={rightToLeft}
-              transition={{ duration: 0.8 }}
-              className="relative w-full"
+              viewport={{ once: true, amount: 0.3 }}
+              className="relative aspect-[4/3] rounded-xl overflow-hidden"
             >
               <Image
                 src="/construction-team-working-on-building-site-with-mo.png"
                 alt="BYD B construction team"
                 fill
-                className="rounded-lg shadow-lg object-cover"
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 50vw"
                 loading="lazy"
               />
             </motion.div>
@@ -100,59 +114,66 @@ export default function AboutSections() {
       </section>
 
       {/* Mission & Values */}
-      <section className="py-16 bg-muted/30">
+      <section className="py-16 md:py-24 bg-neutral-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <p className="text-xs uppercase tracking-[0.15em] font-medium text-amber-500 mb-2">Our Principles</p>
+            <h2 className="text-2xl md:text-3xl font-semibold text-neutral-900">Mission & values</h2>
+          </div>
+
           <motion.div
+            className="grid grid-cols-1 md:grid-cols-3 gap-6"
+            variants={staggerContainer}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
-            variants={bottomToTop}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-12"
+            viewport={{ once: true, amount: 0.2 }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Our Mission & Values</h2>
-          </motion.div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                icon: "🏗️",
-                title: "Quality First",
-                text: "We never compromise on quality. Every home we build meets the highest standards of craftsmanship and durability, backed by our 13 years of experience.",
-              },
-              {
-                icon: "🤝",
-                title: "Trust & Transparency",
-                text: "Open communication and honest pricing ensure our clients are informed and confident throughout the building process. We maintain full licensing and insurance.",
-              },
-              {
-                icon: "🌱",
-                title: "Innovation & Excellence",
-                text: "We combine traditional building techniques with modern technology and sustainable practices to deliver homes that are both beautiful and environmentally responsible.",
-              },
-            ].map((item, i) => (
+            {values.map((v) => (
               <motion.div
-                key={i}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={bottomToTop}
-                transition={{ duration: 0.8, delay: i * 0.2 }}
+                key={v.title}
+                variants={fadeInUp}
+                className="bg-white rounded-xl border border-neutral-100 p-6 shadow-sm"
               >
-                <Card>
-                  <CardContent className="p-8 text-center">
-                    <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
-                      <span className="text-2xl text-primary-foreground">{item.icon}</span>
-                    </div>
-                    <h3 className="text-xl font-semibold text-foreground mb-4">{item.title}</h3>
-                    <p className="text-muted-foreground">{item.text}</p>
-                  </CardContent>
-                </Card>
+                <div className={`w-10 h-10 rounded-lg ${v.iconBg} flex items-center justify-center mb-4`}>
+                  <v.icon className={`w-5 h-5 ${v.iconColor}`} />
+                </div>
+                <p className="text-xs uppercase tracking-wider text-neutral-500 mb-1">{v.heading}</p>
+                <h3 className="text-base font-semibold text-neutral-900 mb-3">{v.title}</h3>
+                <p className="text-sm text-neutral-600 leading-relaxed">{v.description}</p>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
+
+      {/* Credentials */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-10">
+            <p className="text-xs uppercase tracking-[0.15em] font-medium text-amber-500 mb-2">Licencing</p>
+            <h2 className="text-2xl md:text-3xl font-semibold text-neutral-900">Our credentials</h2>
+          </div>
+          <motion.div
+            className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto"
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+          >
+            {credentials.map((c) => (
+              <motion.div
+                key={c.label}
+                variants={fadeInUp}
+                className="text-center bg-neutral-50 border border-neutral-100 rounded-xl p-5"
+              >
+                <p className="text-xs text-neutral-500 mb-1">{c.label}</p>
+                <p className="text-sm font-semibold text-neutral-900">{c.value}</p>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
     </>
   )
 }

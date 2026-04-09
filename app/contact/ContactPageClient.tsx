@@ -1,222 +1,296 @@
 "use client"
 
-import type React from "react"
-
-import { Button } from "@/components/ui/button"
-import dynamic from "next/dynamic"
 import { useState } from "react"
-import { motion } from "framer-motion"
-
+import { z } from "zod"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
+import { Phone, Mail, MapPin, Clock, Facebook, Instagram, MessageCircle } from "lucide-react"
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
+import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
+import { Button } from "@/components/ui/button"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Alert, AlertDescription } from "@/components/ui/alert"
 import Footer from "@/components/footer"
 
-// Lazy load icons for better performance
-const MapPin = dynamic(() => import("lucide-react").then(mod => ({ default: mod.MapPin })), { ssr: false })
-const Phone = dynamic(() => import("lucide-react").then(mod => ({ default: mod.Phone })), { ssr: false })
-const Mail = dynamic(() => import("lucide-react").then(mod => ({ default: mod.Mail })), { ssr: false })
+const formSchema = z.object({
+  name: z.string().trim().min(1, "Full name is required"),
+  email: z.string().trim().email("Enter a valid email address"),
+  phone: z.string().trim().min(8, "Phone number is required"),
+  projectType: z.string().min(1, "Please select a project type"),
+  suburb: z.string().optional(),
+  budget: z.string().optional(),
+  message: z.string().trim().min(20, "Message must be at least 20 characters"),
+})
+
+type FormValues = z.infer<typeof formSchema>
 
 export default function ContactPageClient() {
-  const [showCopied, setShowCopied] = useState(false)
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle")
+  const [errorMsg, setErrorMsg] = useState("")
 
-  const handleCallClick = (e: React.MouseEvent) => {
-    // Check if user is on mobile device
-    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-      navigator.userAgent
-    )
+  const form = useForm<FormValues>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: "", email: "", phone: "", projectType: "", suburb: "", budget: "", message: "",
+    },
+  })
 
-    if (!isMobile) {
-      e.preventDefault()
-      // Copy phone number to clipboard on desktop
-      navigator.clipboard
-        .writeText("0410 664 649")
-        .then(() => {
-          setShowCopied(true)
-          setTimeout(() => setShowCopied(false), 2000)
-        })
-        .catch(() => {
-          // Fallback if clipboard API fails
-          alert("Phone: 0410 664 649")
-        })
+  const onSubmit = async (values: FormValues) => {
+    try {
+      setStatus("loading")
+      const res = await fetch("/api/reviews/email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...values, date: new Date().toISOString() }),
+      })
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}))
+        throw new Error(data?.error || "Submission failed")
+      }
+      setStatus("success")
+      form.reset()
+    } catch (err: any) {
+      setStatus("error")
+      setErrorMsg(err?.message || "Something went wrong. Please try again.")
     }
-    // On mobile, let the tel: link work normally
   }
 
-  // Define contact items as data (best practice: easier to maintain + map)
-  const contacts = [
+  const contactCards = [
     {
-      id: "address",
-      title: "Address",
-      subtitle: (
-        <>
-          22 Olga Road, Maddington WA 6109
-        </>
-      ),
+      icon: MapPin,
+      label: "Office Address",
+      value: "22 Olga Road, Maddington WA 6109",
       href: undefined,
-      icon: <MapPin className="w-5 h-5 xs:w-4 xs:h-4 text-primary-foreground" aria-hidden />,
     },
     {
-      id: "phone",
-      title: "Phone",
-      subtitle: "0410 664 649",
+      icon: Phone,
+      label: "Phone",
+      value: "0410 664 649",
       href: "tel:+61410664649",
-      icon: <Phone className="w-5 h-5 xs:w-4 xs:h-4 text-primary-foreground" aria-hidden />,
     },
     {
-      id: "email",
-      title: "Email",
-      subtitle: "bpanahi@bydb.com.au",
+      icon: Mail,
+      label: "Email",
+      value: "bpanahi@bydb.com.au",
       href: "mailto:bpanahi@bydb.com.au",
-      icon: <Mail className="w-5 h-5 xs:w-4 xs:h-4 text-primary-foreground" aria-hidden />,
     },
     {
-      id: "whatsapp",
-      title: "WhatsApp",
-      subtitle: null,
-      href: "https://wa.me/61410664649",
-      external: true,
-      icon: (
-        <svg className="w-5 h-5 xs:w-4 xs:h-4 text-white" fill="currentColor" viewBox="0 0 24 24" aria-hidden>
-          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488" />
-        </svg>
-      ),
+      icon: Clock,
+      label: "Office Hours",
+      value: "Monday–Friday, 7:00 AM–5:00 PM",
+      href: undefined,
     },
-    {
-      id: "facebook",
-      title: "Facebook",
-      subtitle: null,
-      href: "https://www.facebook.com/profile.php?id=61582903377561",
-      external: true,
-      icon: (
-        <svg className="w-5 h-5 xs:w-4 xs:h-4 text-white" fill="currentColor" viewBox="0 0 24 24" aria-hidden>
-          <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-        </svg>
-      ),
-    },
-    {
-      id: "instagram",
-      title: "Instagram",
-      subtitle: null,
-      href: "https://www.instagram.com/bydbau/",
-      external: true,
-      icon: (
-        <svg className="w-5 h-5 xs:w-4 xs:h-4 text-white" fill="currentColor" viewBox="0 0 24 24" aria-hidden>
-          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
-        </svg>
-      ),
-    },
+  ]
+
+  const socials = [
+    { href: "https://www.facebook.com/profile.php?id=61582903377561", Icon: Facebook, label: "Facebook" },
+    { href: "https://www.instagram.com/bydbau/", Icon: Instagram, label: "Instagram" },
+    { href: "https://wa.me/61410664649", Icon: MessageCircle, label: "WhatsApp" },
   ]
 
   return (
     <>
-
-      {/* Hero Section */}
-      <section className="py-10 xs:py-8 bg-muted/30">
-        <div className="max-w-7xl mx-auto px-2 xs:px-3 sm:px-4 lg:px-8">
-          <div className="text-center mb-8 xs:mb-6">
-            <h1 className="text-3xl xs:text-2xl md:text-5xl font-bold text-foreground mb-4 xs:mb-2">Office Hours </h1>
-            <p className="text-base xs:text-sm text-muted-foreground max-w-xs xs:max-w-sm sm:max-w-3xl mx-auto">
-            We are available <b> Monday-Friday from 7:00 AM to 5:00 PM </b>.
-            Feel free to visit us during these hours or contact our team — we’d be happy to assist you
-            </p>
-          </div>
+      {/* Hero */}
+      <section className="pt-24 pb-12 bg-neutral-900 relative overflow-hidden">
+        <div
+          className="absolute inset-0 opacity-10"
+          style={{
+            backgroundImage: "repeating-linear-gradient(45deg,#fff 0,#fff 1px,transparent 0,transparent 50%)",
+            backgroundSize: "16px 16px",
+          }}
+        />
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <p className="text-xs uppercase tracking-[0.15em] font-medium text-amber-400 mb-3">Free Consultation</p>
+          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">Get in touch</h1>
+          <p className="text-base md:text-lg text-white/60 max-w-xl mx-auto">
+            Ready to start your project? Send us a message and we&apos;ll be in touch within one business day.
+          </p>
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section className="py-10 xs:py-8">
-        <div className="max-w-7xl mx-auto px-2 xs:px-3 sm:px-4 lg:px-8">
-          <div className="max-w-2xl mx-auto">
-            <div className="text-center mb-8 xs:mb-6">
-              <h2 className="text-3xl xs:text-xl font-semibold text-foreground mb-4 xs:mb-2">Contact Us</h2>
-              <p className="text-sm xs:text-xs text-muted-foreground mb-6 xs:mb-4">
-              Ready to start your building journey? Get in touch with our team for a consultation and quote.
-              </p>
-              <div className="relative inline-block w-full max-w-xs xs:max-w-sm">
-                <Button asChild size="sm" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground px-4 py-2 xs:px-2 xs:py-1">
-                  <a href="tel:+61410664649" className="inline-flex items-center justify-center w-full h-full space-x-2 text-sm xs:text-xs" onClick={handleCallClick}>
-                    <Phone className="w-4 h-4 xs:w-3 xs:h-3" />
-                    <span>Call Now</span>
+      {/* Two-column layout */}
+      <section className="py-16 md:py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
+
+            {/* LEFT: Form (60%) */}
+            <div className="lg:col-span-3">
+              <h2 className="text-xl font-semibold text-neutral-900 mb-6">Send an enquiry</h2>
+
+              {status === "success" && (
+                <Alert className="mb-6 bg-green-50 border-green-200">
+                  <AlertDescription className="text-green-800">
+                    Thank you! Your message has been sent. We&apos;ll get back to you within one business day.
+                  </AlertDescription>
+                </Alert>
+              )}
+              {status === "error" && (
+                <Alert className="mb-6 bg-red-50 border-red-200">
+                  <AlertDescription className="text-red-800">{errorMsg}</AlertDescription>
+                </Alert>
+              )}
+
+              <Form {...form}>
+                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    <FormField control={form.control} name="name" render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Full Name *</FormLabel>
+                        <FormControl><Input placeholder="John Smith" {...field} /></FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )} />
+                    <FormField control={form.control} name="email" render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Email *</FormLabel>
+                        <FormControl><Input type="email" placeholder="john@example.com" {...field} /></FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )} />
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    <FormField control={form.control} name="phone" render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Phone *</FormLabel>
+                        <FormControl><Input type="tel" placeholder="04XX XXX XXX" {...field} /></FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )} />
+                    <FormField control={form.control} name="projectType" render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Project Type *</FormLabel>
+                        <Select onValueChange={field.onChange} value={field.value}>
+                          <FormControl>
+                            <SelectTrigger><SelectValue placeholder="Select type" /></SelectTrigger>
+                          </FormControl>
+                          <SelectContent>
+                            <SelectItem value="New Home">New Home</SelectItem>
+                            <SelectItem value="Renovation">Renovation</SelectItem>
+                            <SelectItem value="Extension">Extension</SelectItem>
+                            <SelectItem value="Commercial">Commercial</SelectItem>
+                            <SelectItem value="Other">Other</SelectItem>
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )} />
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    <FormField control={form.control} name="suburb" render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Suburb / Location</FormLabel>
+                        <FormControl><Input placeholder="Maddington, WA" {...field} /></FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )} />
+                    <FormField control={form.control} name="budget" render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Budget Range</FormLabel>
+                        <Select onValueChange={field.onChange} value={field.value}>
+                          <FormControl>
+                            <SelectTrigger><SelectValue placeholder="Select range" /></SelectTrigger>
+                          </FormControl>
+                          <SelectContent>
+                            <SelectItem value="Under $300k">Under $300k</SelectItem>
+                            <SelectItem value="$300–500k">$300–500k</SelectItem>
+                            <SelectItem value="$500–700k">$500–700k</SelectItem>
+                            <SelectItem value="$700k+">$700k+</SelectItem>
+                            <SelectItem value="Not sure">Not sure</SelectItem>
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )} />
+                  </div>
+
+                  <FormField control={form.control} name="message" render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Message *</FormLabel>
+                      <FormControl>
+                        <Textarea
+                          rows={5}
+                          placeholder="Tell us about your project — size, style, timeline, any special requirements…"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )} />
+
+                  <Button
+                    type="submit"
+                    disabled={status === "loading"}
+                    className="bg-amber-500 hover:bg-amber-400 text-neutral-900 font-semibold px-8 py-3 w-full sm:w-auto"
+                  >
+                    {status === "loading" ? "Sending…" : "Send Enquiry"}
+                  </Button>
+                </form>
+              </Form>
+            </div>
+
+            {/* RIGHT: Contact info (40%) */}
+            <div className="lg:col-span-2 space-y-4">
+              <h2 className="text-xl font-semibold text-neutral-900 mb-6">Contact information</h2>
+
+              {contactCards.map((card) => {
+                const Inner = (
+                  <div className="flex items-start gap-3 p-4 bg-neutral-50 rounded-xl border border-neutral-100">
+                    <div className="w-8 h-8 rounded-lg bg-primary-700 flex items-center justify-center flex-shrink-0">
+                      <card.icon className="w-4 h-4 text-white" />
+                    </div>
+                    <div>
+                      <p className="text-xs text-neutral-500 mb-0.5">{card.label}</p>
+                      <p className="text-sm font-medium text-neutral-900">{card.value}</p>
+                    </div>
+                  </div>
+                )
+                return card.href ? (
+                  <a key={card.label} href={card.href} className="block hover:opacity-80 transition-opacity">
+                    {Inner}
                   </a>
-                </Button>
-                {showCopied && (
-                  <div className="absolute top-full mt-2 left-1/2 transform -translate-x-1/2 bg-green-600 text-white px-2 py-1 rounded text-xs whitespace-nowrap">
-                    Phone number copied to clipboard!
-                  </div>
-                )}
-              </div>
-            </div>
+                ) : (
+                  <div key={card.label}>{Inner}</div>
+                )
+              })}
 
-            <div className="flex flex-col xs:flex-col sm:flex-row gap-4 xs:gap-3 sm:gap-8">
-              <div className="space-y-4 xs:space-y-3 sm:space-y-8 w-full">
-                {/* Map over contacts and make each row clickable (full-row anchors) */}
-                {contacts.map((c, i) => {
-                  const isClickable = !!c.href
-                  const Element: any = isClickable ? motion.a : motion.div
-
-                  return (
-                    <Element
-                      key={c.id}
-                      href={c.href}
-                      target={c.external ? "_blank" : undefined}
-                      rel={c.external ? "noopener noreferrer" : undefined}
-                      className={`group ${isClickable ? "hover:bg-muted/50 rounded-lg transition-colors" : ""} flex items-start space-x-3 xs:space-x-2 p-2`}
-                      initial={{ opacity: 0, y: 40 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.45, delay: i * 0.08 }}
-                      onClick={c.id === "phone" ? undefined : undefined}
-                    >
-                      <div className="w-9 h-9 xs:w-8 xs:h-8 bg-primary rounded-lg flex items-center justify-center flex-shrink-0">
-                        {c.icon}
-                      </div>
-                      <div>
-                        <h3 className="font-semibold text-foreground mb-1 text-base xs:text-sm">{c.title}</h3>
-                        <p className="text-muted-foreground text-sm xs:text-xs">
-                          {c.subtitle}
-                        </p>
-                      </div>
-                    </Element>
-                  )
-                })}
-
-                {/* Bank account (not clickable) */}
-                <motion.div
-                  initial={{ opacity: 0, y: 40 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.45, delay: contacts.length * 0.08 }}
-                  className="group flex items-start space-x-3 xs:space-x-2 p-2 rounded-lg"
-                >
-                  <div className="w-9 h-9 xs:w-8 xs:h-8 bg-primary rounded-lg flex items-center justify-center flex-shrink-0">
-                    <svg
-                      className="w-5 h-5 xs:w-4 xs:h-4 text-primary-foreground"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                      aria-hidden
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"
-                      />
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-foreground mb-1 text-base xs:text-sm">Bank Account</h3>
-                    <p className="text-muted-foreground text-sm xs:text-xs">BYD B PTY LTD</p>
-                  </div>
-                </motion.div>
-
+              {/* Map embed */}
+              <div className="rounded-xl overflow-hidden border border-neutral-100 h-44">
+                <iframe
+                  title="BYD B Office Location"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3384.0!2d115.97!3d-32.05!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2s22+Olga+Road+Maddington+WA+6109!5e0!3m2!1sen!2sau!4v1"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
               </div>
 
-              <div className="flex flex-col items-end space-y-10">
-                {/* intentionally left blank for layout symmetry */}
+              {/* Socials */}
+              <div className="flex gap-3 pt-1">
+                {socials.map(({ href, Icon, label }) => (
+                  <a
+                    key={label}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={label}
+                    className="w-9 h-9 rounded-full bg-neutral-100 hover:bg-amber-500 flex items-center justify-center transition-colors"
+                  >
+                    <Icon className="w-4 h-4 text-neutral-700 group-hover:text-white" />
+                  </a>
+                ))}
               </div>
             </div>
           </div>
         </div>
       </section>
+
       <Footer />
     </>
   )
 }
-
