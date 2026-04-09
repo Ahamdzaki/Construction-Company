@@ -92,7 +92,7 @@ export default function GalleryPreview() {
           ))}
         </motion.div>
 
-        <div className="text-center mt-10">
+        <div className="text-center mt-10 mb-6">
           <Link
             href="/gallery"
             className="inline-block px-7 py-3 border border-[#00A5E0] text-[#00A5E0] text-sm font-medium tracking-wide hover:bg-[#00A5E0] hover:text-white transition-colors duration-200 rounded-sm"

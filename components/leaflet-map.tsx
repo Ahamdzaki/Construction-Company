@@ -4,40 +4,20 @@ import { useEffect, useRef } from "react"
 import L from "leaflet"
 import "leaflet/dist/leaflet.css"
 
-const locations = [
-  { name: "Perth", lat: -31.9505, lng: 115.8605 },
-  { name: "Joondalup", lat: -31.7452, lng: 115.7661 },
-  { name: "Fremantle", lat: -32.0569, lng: 115.7439 },
-  { name: "Rockingham", lat: -32.2774, lng: 115.7296 },
-  { name: "Mandurah", lat: -32.5270, lng: 115.7215 },
-  { name: "Armadale", lat: -32.1500, lng: 116.0131 },
-  { name: "Midland", lat: -31.8901, lng: 116.0080 },
-  { name: "Maddington", lat: -32.0489, lng: 115.9939 },
-  { name: "Bunbury", lat: -33.3271, lng: 115.6414 },
-  { name: "Geraldton", lat: -28.7774, lng: 114.6152 },
-  { name: "Kalgoorlie", lat: -30.7333, lng: 121.4667 },
-  { name: "Albany", lat: -35.0269, lng: 117.8837 },
-]
 
-function pillIcon(name: string) {
-  return L.divIcon({
-    className: "",
-    html: `<div style="
-      background:white;
-      border:1.5px solid #00A5E0;
-      color:#00A5E0;
-      font-size:11px;
-      font-weight:700;
-      font-family:sans-serif;
-      padding:4px 10px;
-      border-radius:999px;
-      white-space:nowrap;
-      box-shadow:0 1px 4px rgba(0,0,0,0.15);
-      letter-spacing:0.03em;
-    ">${name}, WA</div>`,
-    iconAnchor: [0, 10],
-  })
-}
+const locationIcon = L.divIcon({
+  className: "",
+  html: `<div style="position:relative;width:0;height:0;">
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="40"
+      viewBox="0 0 32 40"
+      style="position:absolute;left:-16px;bottom:0;drop-shadow:0 3px 6px rgba(0,0,0,0.3);filter:drop-shadow(0 3px 6px rgba(0,0,0,0.35))">
+      <path d="M16 0C7.163 0 0 7.163 0 16c0 10.5 16 24 16 24S32 26.5 32 16C32 7.163 24.837 0 16 0z" fill="#1d4ed8"/>
+      <circle cx="16" cy="16" r="6" fill="white"/>
+    </svg>
+  </div>`,
+  iconSize: [0, 0],
+  iconAnchor: [0, 0],
+})
 
 export default function LeafletMap() {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -45,22 +25,25 @@ export default function LeafletMap() {
 
   useEffect(() => {
     if (!containerRef.current) return
-    if (mapRef.current) return // already initialized
+    if (mapRef.current) return
 
     const map = L.map(containerRef.current, {
-      center: [-28.0, 122.0],
+      center: [-30.5, 118.0],
       zoom: 5,
       scrollWheelZoom: false,
-      zoomControl: true,
+      zoomControl: false,
+      attributionControl: false,
     })
 
-    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-    }).addTo(map)
+    L.control.zoom({ position: "bottomright" }).addTo(map)
 
-    locations.forEach((loc) => {
-      L.marker([loc.lat, loc.lng], { icon: pillIcon(loc.name) }).addTo(map)
-    })
+    L.tileLayer(
+      "https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}",
+      { maxZoom: 18 }
+    ).addTo(map)
+
+    // Maddington WA location pin
+    L.marker([-32.0489, 115.9939], { icon: locationIcon }).addTo(map)
 
     mapRef.current = map
 
@@ -70,5 +53,15 @@ export default function LeafletMap() {
     }
   }, [])
 
-  return <div ref={containerRef} style={{ width: "100%", height: "520px" }} />
+  return (
+    <div style={{ position: "relative", width: "100%", height: "950px" }}>
+      {/* Match unloaded-tile background to the map's ocean teal; boost tile greenness */}
+      <style>{`
+        .leaflet-container { background: #b8d4d8 !important; }
+        .leaflet-tile-pane { filter: saturate(2.2) hue-rotate(25deg) brightness(1.02); }
+      `}</style>
+      <div ref={containerRef} style={{ width: "100%", height: "100%" }} />
+
+    </div>
+  )
 }
