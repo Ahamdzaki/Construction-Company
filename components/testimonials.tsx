@@ -67,10 +67,10 @@ export default function Testimonials() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-2">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-2">
             What Our Clients Say
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-sm md:text-base text-muted-foreground max-w-2xl mx-auto">
             Don't just take our word for it. Here's what our satisfied homeowners
             have to say about their experience with BYD B PTY LTD.
           </p>

@@ -3,7 +3,7 @@
 import Link from "next/link"
 import Image from "next/image"
 import { motion } from "framer-motion"
-import { BedDouble, Bath, Car } from "lucide-react"
+import { BedDouble, Bath, Car, Maximize } from "lucide-react"
 import { staggerContainer, fadeInUp } from "@/lib/animations"
 import { projects } from "@/lib/data/projects"
 import { sections } from "@/lib/data/content"
@@ -20,8 +20,8 @@ export default function GalleryPreview() {
     <section className="py-16 md:py-24 bg-neutral-50">
       <div className="w-full px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h2 className="text-2xl md:text-3xl font-semibold text-neutral-900 mb-3">{sections.gallery.heading}</h2>
-          <p className="text-base text-neutral-500 max-w-xl mx-auto">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-neutral-900 mb-3">Featured <span className="text-[#00A5E0]">Projects</span></h2>
+          <p className="text-sm md:text-base text-neutral-500 max-w-xl mx-auto">
             {sections.gallery.description}
           </p>
         </div>
@@ -61,7 +61,7 @@ export default function GalleryPreview() {
                   {project.price && (
                     <p className="text-xs text-amber-400 font-medium mb-2">{project.price}</p>
                   )}
-                  {(project.bedrooms || project.bathrooms || project.carSpaces) && (
+                  {(project.bedrooms || project.bathrooms || project.carSpaces || project.size) && (
                     <div className="flex flex-wrap gap-x-4 gap-y-1">
                       {project.bedrooms && (
                         <span className="flex items-center gap-1 text-[10px] text-white/60">
@@ -76,6 +76,11 @@ export default function GalleryPreview() {
                       {project.carSpaces && (
                         <span className="flex items-center gap-1 text-[10px] text-white/60">
                           <Car className="w-3 h-3" />{project.carSpaces} Car
+                        </span>
+                      )}
+                      {project.size && (
+                        <span className="flex items-center gap-1 text-[10px] text-white/60">
+                          <Maximize className="w-3 h-3" />{project.size}
                         </span>
                       )}
                     </div>

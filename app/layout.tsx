@@ -2,12 +2,19 @@ import type React from "react"
 import type { Metadata } from "next"
 import { GeistSans } from "geist/font/sans"
 import { GeistMono } from "geist/font/mono"
+import { Montserrat } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { Suspense } from "react"
 import "./globals.css"
 import Navigation from "@/components/navigation"
 import FixedContactButton from "@/components/fixed-contact-button"
 import { company, contact } from "@/lib/data/content"
+
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  variable: "--font-montserrat",
+  display: "swap",
+})
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://bydb.com.au"),
@@ -77,10 +84,10 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable}`}>
+      <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable} ${montserrat.variable}`}>
         <Navigation />
         <Suspense fallback={null}>
-          <main className="pt-16">{children}</main>
+          <main className="pt-[84px]">{children}</main>
         </Suspense>
         <FixedContactButton />
         <Analytics />

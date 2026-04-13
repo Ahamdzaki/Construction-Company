@@ -1,19 +1,11 @@
 "use client"
 
 import { useState } from "react"
+import Image from "next/image"
 import { Star, ChevronLeft, ChevronRight, Quote } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 import ReviewButton from "@/app/testimonials/ReviewButton"
 import { testimonials } from "@/lib/data/testimonials"
-
-function getInitials(name: string): string {
-  const parts = name.replace(/&.*/, "").trim().split(" ")
-  return parts
-    .filter(Boolean)
-    .slice(0, 2)
-    .map((p) => p[0].toUpperCase())
-    .join("")
-}
 
 const VISIBLE = 3
 
@@ -26,24 +18,14 @@ export default function TestimonialFeatured() {
   const visible = Array.from({ length: VISIBLE }, (_, i) => testimonials[(start + i) % testimonials.length])
 
   return (
-    <section id="testimonials" className="py-20 md:py-32 bg-neutral-50 w-full relative overflow-hidden">
+    <section id="testimonials" className="py-20 md:py-32 bg-white w-full">
 
-      {/* Background accent */}
-      <div className="absolute inset-0 opacity-[0.03]"
-        style={{
-          backgroundImage: "repeating-linear-gradient(45deg,#00A5E0 0,#00A5E0 1px,transparent 0,transparent 50%)",
-          backgroundSize: "24px 24px",
-        }}
-      />
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[1px] bg-gradient-to-r from-transparent via-[#00A5E0]/30 to-transparent" />
-
-      <div className="relative w-full px-4 sm:px-6 lg:px-8">
+      <div className="w-full px-4 sm:px-6 lg:px-8">
 
         {/* Header */}
         <div className="text-center mb-16">
-          <p className="text-xs uppercase tracking-[0.2em] font-medium text-[#00A5E0] mb-3">Testimonials</p>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-neutral-900 mb-4">What our clients say</h2>
-          <p className="text-base text-neutral-500 max-w-xl mx-auto">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-neutral-900 mb-4">What our clients <span className="text-[#00A5E0]">say</span></h2>
+          <p className="text-sm md:text-base text-neutral-500 max-w-xl mx-auto">
             Real stories from homeowners across Western Australia.
           </p>
         </div>
@@ -76,8 +58,8 @@ export default function TestimonialFeatured() {
                 <div className="h-px bg-neutral-100" />
 
                 <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-full bg-[#e6f7fd] border border-[#00A5E0]/30 flex items-center justify-center flex-shrink-0">
-                    <span className="text-xs font-semibold text-[#00A5E0]">{getInitials(t.name)}</span>
+                  <div className="relative w-10 h-10 rounded-full overflow-hidden flex-shrink-0 border border-neutral-200">
+                    <Image src={t.image} alt={t.name} fill className="object-cover" />
                   </div>
                   <div>
                     <p className="text-sm font-semibold text-neutral-900">{t.name}</p>

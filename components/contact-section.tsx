@@ -4,7 +4,8 @@ import { useState } from "react"
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
-import { Phone, Mail, MapPin, Clock, Facebook, Instagram, MessageCircle } from "lucide-react"
+import { Phone, Mail, MapPin, Clock } from "lucide-react"
+import { FaFacebook, FaInstagram, FaWhatsapp } from "react-icons/fa"
 import type { ElementType } from "react"
 import { contact, socials, sections } from "@/lib/data/content"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
@@ -32,7 +33,17 @@ const contactCards = [
   { icon: Clock,  label: "Office Hours",   value: contact.hours,   href: undefined },
 ]
 
-const socialIcons: Record<string, ElementType> = { Facebook, Instagram, WhatsApp: MessageCircle }
+const socialIcons: Record<string, ElementType> = {
+  Facebook: FaFacebook,
+  Instagram: FaInstagram,
+  WhatsApp: FaWhatsapp,
+}
+
+const socialColorClass: Record<string, string> = {
+  Facebook: "text-[#1877F2]",
+  Instagram: "text-[#E1306C]",
+  WhatsApp: "text-[#25D366]",
+}
 
 export default function ContactSection() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle")
@@ -68,9 +79,8 @@ export default function ContactSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <div className="text-center mb-12">
-          <p className="text-xs uppercase tracking-[0.15em] font-medium text-[#00A5E0] mb-2">{sections.contact.eyebrow}</p>
-          <h2 className="text-2xl md:text-3xl font-semibold text-neutral-900 mb-3">{sections.contact.heading}</h2>
-          <p className="text-base text-neutral-500 max-w-xl mx-auto">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-neutral-900 mb-3">Contact <span className="text-[#00A5E0]">Us</span></h2>
+          <p className="text-sm md:text-base text-neutral-500 max-w-xl mx-auto">
             {sections.contact.description}
           </p>
         </div>
@@ -215,20 +225,6 @@ export default function ContactSection() {
               )
             })}
 
-            {/* Map */}
-            <div className="overflow-hidden border border-neutral-100 h-44">
-              <iframe
-                title="BYD B Office Location"
-                src={contact.mapsEmbed}
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              />
-            </div>
-
             {/* Socials */}
             <div className="flex gap-3 pt-1">
               {socials.map(({ href, label }) => {
@@ -240,9 +236,9 @@ export default function ContactSection() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={label}
-                    className="w-9 h-9 bg-neutral-100 hover:bg-[#00A5E0] flex items-center justify-center transition-colors group"
+                    className="w-9 h-9 bg-neutral-100 hover:bg-neutral-200 flex items-center justify-center transition-colors"
                   >
-                    <Icon className="w-4 h-4 text-neutral-700 group-hover:text-white" />
+                    <Icon className={`w-4 h-4 ${socialColorClass[label]}`} />
                   </a>
                 )
               })}

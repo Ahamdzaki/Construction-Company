@@ -79,7 +79,7 @@ export default function LeafletMap() {
   }, [])
 
   return (
-    <div style={{ position: "relative", width: "100%", height: "950px" }}>
+    <div style={{ position: "relative", width: "100%", height: "720px" }}>
       {/* Match unloaded-tile background to the map's ocean teal; boost tile greenness */}
       <style>{`
         .leaflet-container { background: #b8d4d8 !important; }

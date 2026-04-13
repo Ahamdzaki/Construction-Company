@@ -1,16 +1,23 @@
 "use client"
 
+import React from "react"
 import Link from "next/link"
 import Image from "next/image"
-import { Phone, Mail, MapPin, Clock, Facebook, Instagram, MessageCircle } from "lucide-react"
-import type { ElementType } from "react"
+import { Phone, Mail, MapPin, Clock } from "lucide-react"
+import { FaFacebook, FaInstagram, FaWhatsapp } from "react-icons/fa"
 import { motion } from "framer-motion"
 import { company, contact, socials, footerLinks, footerServices } from "@/lib/data/content"
 
-const socialIcons: Record<string, ElementType> = {
-  Facebook,
-  Instagram,
-  WhatsApp: MessageCircle,
+const socialIcons: Record<string, React.ElementType> = {
+  Facebook: FaFacebook,
+  Instagram: FaInstagram,
+  WhatsApp: FaWhatsapp,
+}
+
+const socialColorClass: Record<string, string> = {
+  Facebook: "text-[#1877F2]",
+  Instagram: "text-[#E1306C]",
+  WhatsApp: "text-[#25D366]",
 }
 
 const rise = {
@@ -58,9 +65,9 @@ export default function Footer() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={label}
-                    className="w-9 h-9 rounded-full bg-neutral-800 hover:bg-[#00A5E0] flex items-center justify-center transition-colors"
+                    className="w-9 h-9 rounded-full bg-neutral-800 hover:bg-neutral-700 flex items-center justify-center transition-colors"
                   >
-                    <Icon className="w-4 h-4 text-white" />
+                    <Icon className={`w-4 h-4 ${socialColorClass[label]}`} />
                   </a>
                 )
               })}

@@ -63,7 +63,7 @@ export default function HeroSection() {
   }, [])
 
   return (
-    <section className="relative min-h-[480px] h-[85vh] sm:h-[88vh] md:h-[90vh] lg:h-[92vh] flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-[480px] h-[calc(85vh-20px)] sm:h-[calc(88vh-20px)] md:h-[calc(90vh-20px)] lg:h-[calc(92vh-20px)] flex items-center justify-center overflow-hidden">
       {/* Background slideshow */}
       <div className="absolute inset-0 z-0 pointer-events-none bg-slate-900">
         {imageSources.map((slide, i) => {
@@ -108,7 +108,7 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.5 }}
-          className="text-base sm:text-lg md:text-xl text-white/75 max-w-2xl mx-auto mt-4"
+          className="text-sm md:text-base text-white/75 max-w-2xl mx-auto mt-4"
         >
           {hero.subtitle}
         </motion.p>

@@ -10,13 +10,13 @@ import { services, sections } from "@/lib/data/content"
 const iconMap: Record<string, LucideIcon> = { Home, Wrench, Palette, Building2 }
 
 export default function ServicesPreview() {
-  const { heading, description } = sections.services
+  const { description } = sections.services
   return (
     <section className="py-20 md:py-32 bg-white">
       <div className="w-full px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16 md:mb-20">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-neutral-900 mb-4">{heading}</h2>
-          <p className="text-lg text-neutral-500 max-w-2xl mx-auto">{description}</p>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-neutral-900 mb-4">Our <span className="text-[#00A5E0]">Services</span></h2>
+          <p className="text-sm md:text-base text-neutral-500 max-w-2xl mx-auto">{description}</p>
         </div>
       </div>
 

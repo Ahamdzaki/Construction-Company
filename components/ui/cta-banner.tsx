@@ -9,10 +9,10 @@ export default function CtaBanner() {
         <p className="text-xs uppercase tracking-[0.15em] font-medium text-[#00A5E0] mb-3">
           {ctaBanner.eyebrow}
         </p>
-        <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-neutral-900 mb-4">
+        <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-neutral-900 mb-4">
           {ctaBanner.heading}
         </h2>
-        <p className="text-base text-neutral-500 max-w-xl mx-auto mb-10">
+        <p className="text-sm md:text-base text-neutral-500 max-w-xl mx-auto mb-10">
           {ctaBanner.description}
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">

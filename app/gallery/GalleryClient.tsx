@@ -4,7 +4,7 @@ import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { motion, AnimatePresence } from "framer-motion"
-import { BedDouble, Bath, Car } from "lucide-react"
+import { BedDouble, Bath, Car, Maximize } from "lucide-react"
 import { projects } from "@/lib/data/projects"
 
 const categories = ["All", "Exterior", "Interior", "New Construction", "Custom Design"] as const
@@ -117,7 +117,9 @@ export default function GalleryClient() {
                         </span>
                       )}
                       {project.size && (
-                        <span className="text-[10px] text-white/60">{project.size}</span>
+                        <span className="flex items-center gap-1 text-[10px] text-white/60">
+                          <Maximize className="w-3 h-3" />{project.size}
+                        </span>
                       )}
                     </div>
                   )}

@@ -31,13 +31,13 @@ export default function AboutSections() {
             className="flex flex-col justify-center px-8 sm:px-14 lg:px-20 py-20"
           >
             <p className="text-xs uppercase tracking-[0.18em] font-medium text-[#00A5E0] mb-4">Who We Are</p>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-neutral-900 mb-6 leading-tight">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-neutral-900 mb-6 leading-tight">
               Company Overview
             </h2>
-            <p className="text-base md:text-lg text-neutral-600 leading-relaxed mb-5">
+            <p className="text-sm md:text-base text-neutral-600 leading-relaxed mb-5">
               {overview.paragraph1}
             </p>
-            <p className="text-base md:text-lg text-neutral-600 leading-relaxed mb-8">
+            <p className="text-sm md:text-base text-neutral-600 leading-relaxed mb-8">
               {overview.paragraph2}
             </p>
 
@@ -75,8 +75,8 @@ export default function AboutSections() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
             <p className="text-xs uppercase tracking-[0.18em] font-medium text-[#00A5E0] mb-3">Our Principles</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-neutral-900 mb-4">Mission &amp; values</h2>
-            <p className="text-base md:text-lg text-neutral-500 max-w-2xl mx-auto">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-neutral-900 mb-4">Mission &amp; values</h2>
+            <p className="text-sm md:text-base text-neutral-500 max-w-2xl mx-auto">
               Every home we build is guided by three core principles that define who we are.
             </p>
           </div>

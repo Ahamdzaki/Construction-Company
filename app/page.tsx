@@ -2,10 +2,10 @@ import HeroSection from "@/components/hero-section"
 import StatCards from "@/components/stat-cards"
 import ServicesPreview from "@/components/services-preview"
 import GalleryPreview from "@/components/gallery-preview"
-import LocationsMosaic from "@/components/locations-mosaic"
 import TestimonialFeatured from "@/components/testimonial-featured"
-import MapSection from "@/components/map-section"
+import LocationsMosaic from "@/components/locations-mosaic"
 import ContactSection from "@/components/contact-section"
+import MapSection from "@/components/map-section"
 import Footer from "@/components/footer"
 
 export default function HomePage() {
@@ -15,10 +15,10 @@ export default function HomePage() {
       <StatCards />
       <ServicesPreview />
       <GalleryPreview />
-      <LocationsMosaic />
       <TestimonialFeatured />
-      <MapSection />
+      <LocationsMosaic />
       <ContactSection />
+      <MapSection />
       <Footer />
     </>
   )

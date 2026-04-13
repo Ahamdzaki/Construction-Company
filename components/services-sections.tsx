@@ -39,7 +39,7 @@ export default function ServicesSections({ services, steps }: { services: Servic
         <div className="w-full px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <p className="text-xs uppercase tracking-[0.15em] font-medium text-[#00A5E0] mb-2">What We Build</p>
-            <h2 className="text-2xl md:text-3xl font-semibold text-neutral-900">Services built around you</h2>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-neutral-900">Services built around you</h2>
           </div>
 
           <motion.div
@@ -83,7 +83,7 @@ export default function ServicesSections({ services, steps }: { services: Servic
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <p className="text-xs uppercase tracking-[0.15em] font-medium text-[#00A5E0] mb-2">How It Works</p>
-            <h2 className="text-2xl md:text-3xl font-semibold text-neutral-900">Our building process</h2>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-neutral-900">Our building process</h2>
           </div>
 
           <motion.div
