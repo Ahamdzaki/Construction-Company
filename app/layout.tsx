@@ -7,6 +7,7 @@ import { Suspense } from "react"
 import "./globals.css"
 import Navigation from "@/components/navigation"
 import FixedContactButton from "@/components/fixed-contact-button"
+import { company, contact } from "@/lib/data/content"
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://bydb.com.au"),
@@ -40,11 +41,11 @@ export const metadata: Metadata = {
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "HomeAndConstructionBusiness",
-  name: "BYD B PTY LTD",
-  image: "https://bydb.com.au/logos.png",
-  url: "https://bydb.com.au",
-  telephone: "+61410664649",
-  email: "bpanahi@bydb.com.au",
+  name: company.name,
+  image: `${company.domain}${company.logo}`,
+  url: company.domain,
+  telephone: contact.phoneHref.replace("tel:", ""),
+  email: contact.email,
   address: {
     "@type": "PostalAddress",
     streetAddress: "22 Olga Road",
@@ -55,9 +56,9 @@ const jsonLd = {
   },
   openingHours: "Mo-Fr 07:00-17:00",
   priceRange: "$$-$$$$",
-  areaServed: "Western Australia",
+  areaServed: company.state,
   description:
-    "Licensed home builders in Western Australia with 13+ years experience. New homes, renovations, and custom designs. Builder Licence BC106152.",
+    `Licensed home builders in ${company.state} with ${company.yearsExperience} years experience. New homes, renovations, and custom designs. Builder Licence ${company.license}.`,
 }
 
 export default function RootLayout({

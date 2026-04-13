@@ -1,54 +1,19 @@
 "use client"
 
 import { useState } from "react"
-import Link from "next/link"
-import { Star, ChevronLeft, ChevronRight } from "lucide-react"
-import { Card, CardContent } from "@/components/ui/card"
+import { Star, ChevronLeft, ChevronRight, Quote } from "lucide-react"
+import { motion, AnimatePresence } from "framer-motion"
+import ReviewButton from "@/app/testimonials/ReviewButton"
+import { testimonials } from "@/lib/data/testimonials"
 
-const testimonials = [
-  {
-    id: 1,
-    name: "Sarah & Michael Thompson",
-    location: "Perth, WA",
-    text: "BYD B PTY LTD exceeded our expectations in every way. From the initial consultation to the final walkthrough, their attention to detail and commitment to quality was outstanding. Our dream home became a reality!",
-    rating: 5,
-  },
-  {
-    id: 2,
-    name: "David Chen",
-    location: "Sydney, NSW",
-    text: "The team at BYD B PTY LTD made the building process seamless and stress-free. Their communication was excellent, and they delivered on time and within budget. Highly recommended!",
-    rating: 5,
-  },
-  {
-    id: 3,
-    name: "Emma & James Wilson",
-    location: "Melbourne, VIC",
-    text: "We couldn't be happier with our new home. The craftsmanship is exceptional, and the team was professional throughout the entire process. Thank you for making our vision come to life!",
-    rating: 5,
-  },
-  {
-    id: 4,
-    name: "Robert & Lisa Martinez",
-    location: "Perth, WA",
-    text: "Outstanding service from start to finish. The quality of workmanship is second to none, and they really listened to our needs. Our custom home is everything we dreamed of and more.",
-    rating: 5,
-  },
-  {
-    id: 5,
-    name: "Andrew & Sophie Taylor",
-    location: "Adelaide, SA",
-    text: "Professional, reliable, and incredibly skilled. BYD B PTY LTD delivered our project on schedule with exceptional attention to detail. We love our new home!",
-    rating: 5,
-  },
-  {
-    id: 6,
-    name: "Mark & Jennifer Brown",
-    location: "Gold Coast, QLD",
-    text: "From design to completion, BYD B PTY LTD provided excellent service. Their team was knowledgeable, friendly, and always available to answer our questions. Fantastic experience!",
-    rating: 5,
-  },
-]
+function getInitials(name: string): string {
+  const parts = name.replace(/&.*/, "").trim().split(" ")
+  return parts
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((p) => p[0].toUpperCase())
+    .join("")
+}
 
 const VISIBLE = 3
 
@@ -61,64 +26,104 @@ export default function TestimonialFeatured() {
   const visible = Array.from({ length: VISIBLE }, (_, i) => testimonials[(start + i) % testimonials.length])
 
   return (
-    <section className="py-16 md:py-24 bg-white w-full">
-      <div className="w-full">
-        <div className="text-center mb-10 px-4 sm:px-6 lg:px-8">
-          <p className="text-xs uppercase tracking-[0.15em] font-medium text-[#00A5E0] mb-2">Testimonials</p>
-          <h2 className="text-2xl md:text-3xl font-semibold text-neutral-900">What our clients say</h2>
+    <section id="testimonials" className="py-20 md:py-32 bg-neutral-50 w-full relative overflow-hidden">
+
+      {/* Background accent */}
+      <div className="absolute inset-0 opacity-[0.03]"
+        style={{
+          backgroundImage: "repeating-linear-gradient(45deg,#00A5E0 0,#00A5E0 1px,transparent 0,transparent 50%)",
+          backgroundSize: "24px 24px",
+        }}
+      />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[1px] bg-gradient-to-r from-transparent via-[#00A5E0]/30 to-transparent" />
+
+      <div className="relative w-full px-4 sm:px-6 lg:px-8">
+
+        {/* Header */}
+        <div className="text-center mb-16">
+          <p className="text-xs uppercase tracking-[0.2em] font-medium text-[#00A5E0] mb-3">Testimonials</p>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-neutral-900 mb-4">What our clients say</h2>
+          <p className="text-base text-neutral-500 max-w-xl mx-auto">
+            Real stories from homeowners across Western Australia.
+          </p>
         </div>
 
-        {/* Carousel */}
-        <div className="flex items-stretch gap-4 px-4 sm:px-6 lg:px-8">
-          {/* Left button */}
-          <button
-            onClick={prev}
-            aria-label="Previous testimonials"
-            className="shrink-0 self-center p-2 rounded-full bg-white border border-neutral-200 shadow-sm hover:shadow-md transition-all duration-200"
+        {/* Cards */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={start}
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -16 }}
+            transition={{ duration: 0.4 }}
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10"
           >
-            <ChevronLeft className="w-5 h-5 text-neutral-700" />
-          </button>
-
-          {/* 3 cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 flex-1">
             {visible.map((t, i) => (
-              <Card key={`${t.id}-${i}`} className="bg-neutral-50 border-0 shadow-none">
-                <CardContent className="p-6 md:p-8 flex flex-col gap-4 h-full">
-                  <div className="flex gap-1">
-                    {Array.from({ length: t.rating }).map((_, j) => (
-                      <Star key={j} className="w-4 h-4 fill-amber-400 text-amber-400" />
-                    ))}
+              <div
+                key={`${t.id}-${i}`}
+                className="relative bg-white border border-neutral-200 p-8 flex flex-col gap-5 hover:border-[#00A5E0]/40 hover:shadow-md transition-all duration-300"
+              >
+                <Quote className="w-8 h-8 text-[#00A5E0]/30 flex-shrink-0" />
+
+                <div className="flex gap-1">
+                  {Array.from({ length: t.rating }).map((_, j) => (
+                    <Star key={j} className="w-4 h-4 fill-amber-400 text-amber-400" />
+                  ))}
+                </div>
+
+                <p className="text-sm text-neutral-600 leading-relaxed flex-1">{t.text}</p>
+
+                <div className="h-px bg-neutral-100" />
+
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-full bg-[#e6f7fd] border border-[#00A5E0]/30 flex items-center justify-center flex-shrink-0">
+                    <span className="text-xs font-semibold text-[#00A5E0]">{getInitials(t.name)}</span>
                   </div>
-                  <p className="text-sm text-neutral-700 italic leading-relaxed flex-1">
-                    "{t.text}"
-                  </p>
                   <div>
-                    <p className="font-semibold text-neutral-900 text-sm">{t.name}</p>
-                    <p className="text-xs text-neutral-500">{t.location}</p>
+                    <p className="text-sm font-semibold text-neutral-900">{t.name}</p>
+                    <p className="text-xs text-neutral-400">{t.location}</p>
                   </div>
-                </CardContent>
-              </Card>
+                </div>
+              </div>
             ))}
+          </motion.div>
+        </AnimatePresence>
+
+        {/* Controls */}
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
+
+          <ReviewButton />
+
+          <div className="flex items-center gap-4">
+            <button
+              onClick={prev}
+              aria-label="Previous"
+              className="w-10 h-10 flex items-center justify-center border border-neutral-300 text-neutral-500 hover:border-[#00A5E0] hover:text-[#00A5E0] transition-all duration-200"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+
+            <div className="flex gap-1.5">
+              {testimonials.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setStart(i)}
+                  className={`h-1 transition-all duration-300 ${i === start % testimonials.length ? "w-6 bg-[#00A5E0]" : "w-2 bg-neutral-300 hover:bg-neutral-400"}`}
+                  aria-label={`Go to testimonial ${i + 1}`}
+                />
+              ))}
+            </div>
+
+            <button
+              onClick={next}
+              aria-label="Next"
+              className="w-10 h-10 flex items-center justify-center border border-neutral-300 text-neutral-500 hover:border-[#00A5E0] hover:text-[#00A5E0] transition-all duration-200"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
           </div>
-
-          {/* Right button */}
-          <button
-            onClick={next}
-            aria-label="Next testimonials"
-            className="shrink-0 self-center p-2 rounded-full bg-white border border-neutral-200 shadow-sm hover:shadow-md transition-all duration-200"
-          >
-            <ChevronRight className="w-5 h-5 text-neutral-700" />
-          </button>
         </div>
 
-        <div className="text-center mt-10 px-4 sm:px-6 lg:px-8">
-          <Link
-            href="/testimonials"
-            className="inline-block px-7 py-3 border border-[#00A5E0] text-[#00A5E0] text-sm font-medium tracking-wide hover:bg-[#00A5E0] hover:text-white transition-colors duration-200 rounded-sm"
-          >
-            Read more reviews
-          </Link>
-        </div>
       </div>
     </section>
   )

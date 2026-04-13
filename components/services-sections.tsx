@@ -1,8 +1,8 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Card, CardContent } from "@/components/ui/card"
-import { Home, Wrench, Palette, Building2 } from "lucide-react"
+import { Check, Home, Wrench, Palette, Building2 } from "lucide-react"
+import { fadeInUp, staggerContainer } from "@/lib/animations"
 
 type Service = {
   iconName: string
@@ -17,27 +17,6 @@ type Step = {
   description: string
 }
 
-const container = {
-  hidden: { opacity: 1 },
-  visible: {
-    opacity: 1,
-    transition: { when: "beforeChildren", staggerChildren: 0.2, delayChildren: 0.1 },
-  },
-}
-
-const inner = {
-  hidden: { opacity: 1 },
-  visible: {
-    opacity: 1,
-    transition: { when: "beforeChildren", staggerChildren: 0.12, delayChildren: 0.08 },
-  },
-}
-
-const rise = {
-  hidden: { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.9, ease: "easeOut" as const } },
-}
-
 const iconMap = {
   Home,
   Wrench,
@@ -45,41 +24,54 @@ const iconMap = {
   Building2,
 }
 
+const iconColors: Record<string, { bg: string; text: string }> = {
+  Home:      { bg: "bg-[#e6f7fd]", text: "text-[#00A5E0]" },
+  Wrench:    { bg: "bg-[#e6f7fd]", text: "text-[#00A5E0]" },
+  Palette:   { bg: "bg-[#e6f7fd]", text: "text-[#00A5E0]" },
+  Building2: { bg: "bg-[#e6f7fd]", text: "text-[#00A5E0]" },
+}
+
 export default function ServicesSections({ services, steps }: { services: Service[]; steps: Step[] }) {
   return (
     <>
       {/* Services Grid */}
-      <section className="py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-16 md:py-24 bg-white">
+        <div className="w-full px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <p className="text-xs uppercase tracking-[0.15em] font-medium text-[#00A5E0] mb-2">What We Build</p>
+            <h2 className="text-2xl md:text-3xl font-semibold text-neutral-900">Services built around you</h2>
+          </div>
+
           <motion.div
-            className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8"
-            variants={container}
+            className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6"
+            variants={staggerContainer}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
+            viewport={{ once: true, amount: 0.15 }}
           >
-            {services.map((service, index) => {
+            {services.map((service) => {
               const IconComponent = iconMap[service.iconName as keyof typeof iconMap]
+              const colors = iconColors[service.iconName] ?? { bg: "bg-neutral-100", text: "text-neutral-600" }
               return (
-                <motion.article key={index} variants={rise}>
-                  <Card className="h-full">
-                    <CardContent className="p-8">
-                      <motion.div className="w-16 h-16 bg-primary rounded-lg flex items-center justify-center mb-6" variants={rise}>
-                        <IconComponent className="w-8 h-8 text-primary-foreground" />
-                      </motion.div>
-                    <motion.h3 className="text-2xl font-semibold text-foreground mb-4" variants={rise}>{service.title}</motion.h3>
-                    <motion.p className="text-muted-foreground mb-6" variants={rise}>{service.description}</motion.p>
-                    <motion.ul className="space-y-2" variants={inner}>
-                      {service.features.map((feature, featureIndex) => (
-                        <motion.li key={featureIndex} className="flex items-center text-muted-foreground" variants={rise}>
-                          <span className="w-2 h-2 bg-accent rounded-full mr-3"></span>
-                          {feature}
-                        </motion.li>
-                      ))}
-                    </motion.ul>
-                    </CardContent>
-                  </Card>
-                </motion.article>
+                <motion.div
+                  key={service.title}
+                  variants={fadeInUp}
+                  className="bg-white border border-neutral-100 rounded-xl p-7 shadow-sm hover:shadow-md transition-shadow"
+                >
+                  <div className={`w-11 h-11 rounded-lg ${colors.bg} flex items-center justify-center mb-5`}>
+                    <IconComponent className={`w-5 h-5 ${colors.text}`} />
+                  </div>
+                  <h3 className="text-lg font-semibold text-neutral-900 mb-3">{service.title}</h3>
+                  <p className="text-sm text-neutral-600 leading-relaxed mb-5">{service.description}</p>
+                  <ul className="space-y-2">
+                    {service.features.map((feature) => (
+                      <li key={feature} className="flex items-center gap-2">
+                        <Check className="w-4 h-4 text-[#00A5E0] flex-shrink-0" />
+                        <span className="text-sm text-neutral-700">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </motion.div>
               )
             })}
           </motion.div>
@@ -87,27 +79,32 @@ export default function ServicesSections({ services, steps }: { services: Servic
       </section>
 
       {/* Process Section */}
-      <section className="py-16 bg-muted/30">
+      <section className="py-16 md:py-20 bg-neutral-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div className="text-center mb-12" variants={container} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }}>
-            <motion.h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4" variants={rise}>Our Building Process</motion.h2>
-          </motion.div>
+          <div className="text-center mb-12">
+            <p className="text-xs uppercase tracking-[0.15em] font-medium text-[#00A5E0] mb-2">How It Works</p>
+            <h2 className="text-2xl md:text-3xl font-semibold text-neutral-900">Our building process</h2>
+          </div>
 
           <motion.div
-            className="grid md:grid-cols-2 lg:grid-cols-4 gap-8"
-            variants={container}
+            className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
+            variants={staggerContainer}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.2 }}
           >
-            {steps.map((item, index) => (
-              <motion.article key={index} className="text-center" variants={rise}>
-                <motion.div className="w-16 h-16 bg-accent rounded-full flex items-center justify-center mx-auto mb-4" variants={rise}>
-                  <span className="text-xl font-bold text-accent-foreground">{item.step}</span>
-                </motion.div>
-                <motion.h3 className="text-xl font-semibold text-foreground mb-2" variants={rise}>{item.title}</motion.h3>
-                <motion.p className="text-muted-foreground" variants={rise}>{item.description}</motion.p>
-              </motion.article>
+            {steps.map((item) => (
+              <motion.div
+                key={item.step}
+                variants={fadeInUp}
+                className="text-center bg-white border border-neutral-100 rounded-xl p-6 shadow-sm"
+              >
+                <div className="w-12 h-12 bg-[#00A5E0] rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-sm font-bold text-white">{item.step}</span>
+                </div>
+                <h3 className="text-base font-semibold text-neutral-900 mb-2">{item.title}</h3>
+                <p className="text-sm text-neutral-600 leading-relaxed">{item.description}</p>
+              </motion.div>
             ))}
           </motion.div>
         </div>

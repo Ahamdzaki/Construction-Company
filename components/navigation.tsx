@@ -7,15 +7,7 @@ import { usePathname } from "next/navigation"
 import { Menu, X, Phone } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
-
-const navItems = [
-  { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
-  { href: "/services", label: "Services" },
-  { href: "/gallery", label: "Gallery" },
-  { href: "/testimonials", label: "Testimonials" },
-  { href: "/contact", label: "Contact" },
-]
+import { navItems, company, contact } from "@/lib/data/content"
 
 export default function Navigation() {
   const [mobileOpen, setMobileOpen] = useState(false)
@@ -29,8 +21,8 @@ export default function Navigation() {
           {/* Logo */}
           <Link href="/" className="flex items-center flex-shrink-0">
             <Image
-              src="/logos.png"
-              alt="BYD B Logo"
+              src={company.logo}
+              alt={`${company.name} Logo`}
               width={180}
               height={80}
               className="h-10 sm:h-12 w-auto object-contain"
@@ -66,7 +58,7 @@ export default function Navigation() {
             <Button
               asChild
               size="sm"
-              className="bg-amber-500 hover:bg-amber-600 text-neutral-900 font-semibold rounded-lg px-4 py-2 text-sm"
+              className="bg-amber-500 hover:bg-amber-600 text-neutral-900 font-semibold px-4 py-2 text-sm rounded-none"
             >
               <Link href="/contact">Get a Free Quote</Link>
             </Button>
@@ -86,7 +78,7 @@ export default function Navigation() {
             </SheetTrigger>
             <SheetContent side="right" className="w-72 p-0">
               <div className="flex items-center justify-between px-6 py-4 border-b">
-                <Image src="/logos.png" alt="BYD B" width={120} height={50} className="h-8 w-auto" />
+                <Image src={company.logo} alt={company.name} width={120} height={50} className="h-8 w-auto" />
                 <Button variant="ghost" size="icon" onClick={() => setMobileOpen(false)}>
                   <X className="w-5 h-5" />
                 </Button>
@@ -99,7 +91,7 @@ export default function Navigation() {
                       key={item.href}
                       href={item.href}
                       onClick={() => setMobileOpen(false)}
-                      className={`px-3 py-3 rounded-lg text-base font-medium transition-colors ${
+                      className={`px-3 py-3 text-base font-medium transition-colors ${
                         active
                           ? "bg-[#e6f7fd] text-[#007aa8]"
                           : "text-neutral-700 hover:bg-neutral-50 hover:text-[#00A5E0]"
@@ -111,15 +103,15 @@ export default function Navigation() {
                 })}
               </nav>
               <div className="px-6 pt-2 pb-6 flex flex-col gap-3 border-t mt-2">
-                <Button asChild className="bg-amber-500 hover:bg-amber-600 text-neutral-900 font-semibold w-full">
+                <Button asChild className="bg-amber-500 hover:bg-amber-600 text-neutral-900 font-semibold w-full rounded-none">
                   <Link href="/contact" onClick={() => setMobileOpen(false)}>
                     Get a Free Quote
                   </Link>
                 </Button>
-                <Button asChild variant="outline" size="sm" className="w-full">
-                  <a href="tel:+61410664649" className="flex items-center justify-center gap-2">
+                <Button asChild variant="outline" size="sm" className="w-full rounded-none">
+                  <a href={contact.phoneHref} className="flex items-center justify-center gap-2">
                     <Phone className="w-4 h-4" />
-                    0410 664 649
+                    {contact.phone}
                   </a>
                 </Button>
               </div>

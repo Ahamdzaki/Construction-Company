@@ -56,9 +56,9 @@ export default async function ProjectPage({
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Breadcrumb */}
           <nav className="flex items-center gap-1 text-xs text-neutral-500 mb-6">
-            <Link href="/" className="hover:text-primary-600 transition-colors">Home</Link>
+            <Link href="/" className="hover:text-[#00A5E0] transition-colors">Home</Link>
             <ChevronRight className="w-3 h-3" />
-            <Link href="/gallery" className="hover:text-primary-600 transition-colors">Gallery</Link>
+            <Link href="/gallery" className="hover:text-[#00A5E0] transition-colors">Gallery</Link>
             <ChevronRight className="w-3 h-3" />
             <span className="text-neutral-900">{project.title}</span>
           </nav>
@@ -67,7 +67,7 @@ export default async function ProjectPage({
             <span className="text-xs uppercase tracking-wider font-medium text-amber-500 bg-amber-50 px-2 py-1 rounded-full">
               {project.category}
             </span>
-            <span className="text-sm font-semibold text-primary-600">{project.price}</span>
+            <span className="text-sm font-semibold text-[#00A5E0]">{project.price}</span>
           </div>
 
           <h1 className="text-3xl md:text-4xl font-bold text-neutral-900 mb-4">{project.title}</h1>
@@ -77,25 +77,25 @@ export default async function ProjectPage({
             <div className="flex flex-wrap gap-4 mb-6 text-sm text-neutral-600">
               {project.bedrooms && (
                 <div className="flex items-center gap-1.5">
-                  <Bed className="w-4 h-4 text-primary-600" />
+                  <Bed className="w-4 h-4 text-[#00A5E0]" />
                   {project.bedrooms} Bedrooms
                 </div>
               )}
               {project.bathrooms && (
                 <div className="flex items-center gap-1.5">
-                  <Bath className="w-4 h-4 text-primary-600" />
+                  <Bath className="w-4 h-4 text-[#00A5E0]" />
                   {project.bathrooms} Bathrooms
                 </div>
               )}
               {project.carSpaces && (
                 <div className="flex items-center gap-1.5">
-                  <Car className="w-4 h-4 text-primary-600" />
+                  <Car className="w-4 h-4 text-[#00A5E0]" />
                   {project.carSpaces} Car spaces
                 </div>
               )}
               {project.size && (
                 <div className="flex items-center gap-1.5">
-                  <Maximize className="w-4 h-4 text-primary-600" />
+                  <Maximize className="w-4 h-4 text-[#00A5E0]" />
                   {project.size}
                 </div>
               )}

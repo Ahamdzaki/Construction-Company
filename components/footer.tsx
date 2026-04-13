@@ -3,7 +3,15 @@
 import Link from "next/link"
 import Image from "next/image"
 import { Phone, Mail, MapPin, Clock, Facebook, Instagram, MessageCircle } from "lucide-react"
+import type { ElementType } from "react"
 import { motion } from "framer-motion"
+import { company, contact, socials, footerLinks, footerServices } from "@/lib/data/content"
+
+const socialIcons: Record<string, ElementType> = {
+  Facebook,
+  Instagram,
+  WhatsApp: MessageCircle,
+}
 
 const rise = {
   hidden: { opacity: 0, y: 24 },
@@ -28,44 +36,34 @@ export default function Footer() {
         >
           {/* Col 1: Logo + tagline + socials */}
           <motion.div variants={rise} className="sm:col-span-2 lg:col-span-1">
-            <Image
-              src="/logos.png"
-              alt="BYD B"
-              width={140}
-              height={60}
-              className="h-10 w-auto brightness-0 invert mb-4"
-            />
+            <div className="bg-white rounded px-2 py-1 inline-block mb-4">
+              <Image
+                src={company.logo}
+                alt={company.name}
+                width={140}
+                height={60}
+                className="h-10 w-auto"
+              />
+            </div>
             <p className="text-sm text-neutral-400 leading-relaxed mb-5">
-              Building exceptional homes across Western Australia with 13+ years of experience and unmatched craftsmanship.
+              {company.tagline}
             </p>
             <div className="flex items-center gap-3">
-              <a
-                href="https://www.facebook.com/profile.php?id=61582903377561"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Facebook"
-                className="w-9 h-9 rounded-full bg-neutral-800 hover:bg-[#00A5E0] flex items-center justify-center transition-colors"
-              >
-                <Facebook className="w-4 h-4 text-white" />
-              </a>
-              <a
-                href="https://www.instagram.com/bydbau/"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Instagram"
-                className="w-9 h-9 rounded-full bg-neutral-800 hover:bg-[#00A5E0] flex items-center justify-center transition-colors"
-              >
-                <Instagram className="w-4 h-4 text-white" />
-              </a>
-              <a
-                href="https://wa.me/61410664649"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="WhatsApp"
-                className="w-9 h-9 rounded-full bg-neutral-800 hover:bg-[#00A5E0] flex items-center justify-center transition-colors"
-              >
-                <MessageCircle className="w-4 h-4 text-white" />
-              </a>
+              {socials.map(({ label, href }) => {
+                const Icon = socialIcons[label]
+                return (
+                  <a
+                    key={label}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={label}
+                    className="w-9 h-9 rounded-full bg-neutral-800 hover:bg-[#00A5E0] flex items-center justify-center transition-colors"
+                  >
+                    <Icon className="w-4 h-4 text-white" />
+                  </a>
+                )
+              })}
             </div>
           </motion.div>
 
@@ -73,14 +71,7 @@ export default function Footer() {
           <motion.div variants={rise}>
             <h3 className="text-white font-semibold text-sm uppercase tracking-wider mb-4">Quick Links</h3>
             <ul className="space-y-2">
-              {[
-                { href: "/", label: "Home" },
-                { href: "/about", label: "About Us" },
-                { href: "/services", label: "Services" },
-                { href: "/gallery", label: "Gallery" },
-                { href: "/testimonials", label: "Testimonials" },
-                { href: "/contact", label: "Contact" },
-              ].map((item) => (
+              {footerLinks.map((item) => (
                 <li key={item.href}>
                   <Link
                     href={item.href}
@@ -97,11 +88,9 @@ export default function Footer() {
           <motion.div variants={rise}>
             <h3 className="text-white font-semibold text-sm uppercase tracking-wider mb-4">Services</h3>
             <ul className="space-y-2 text-sm text-neutral-400">
-              <li>Custom Home Building</li>
-              <li>Home Renovations</li>
-              <li>Kitchen & Bathroom</li>
-              <li>Extensions & Additions</li>
-              <li>Custom Design</li>
+              {footerServices.map((s) => (
+                <li key={s}>{s}</li>
+              ))}
             </ul>
           </motion.div>
 
@@ -111,25 +100,25 @@ export default function Footer() {
             <div className="space-y-3 text-sm">
               <div className="flex items-start gap-2 text-neutral-400">
                 <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0 text-[#00A5E0]" />
-                <span>22 Olga Road, Maddington WA 6109</span>
+                <span>{contact.address}</span>
               </div>
               <a
-                href="tel:+61410664649"
+                href={contact.phoneHref}
                 className="flex items-center gap-2 text-neutral-400 hover:text-[#00A5E0] transition-colors"
               >
                 <Phone className="w-4 h-4 flex-shrink-0 text-[#00A5E0]" />
-                0410 664 649
+                {contact.phone}
               </a>
               <a
-                href="mailto:bpanahi@bydb.com.au"
+                href={contact.emailHref}
                 className="flex items-center gap-2 text-neutral-400 hover:text-[#00A5E0] transition-colors"
               >
                 <Mail className="w-4 h-4 flex-shrink-0 text-[#00A5E0]" />
-                bpanahi@bydb.com.au
+                {contact.email}
               </a>
               <div className="flex items-start gap-2 text-neutral-400">
                 <Clock className="w-4 h-4 mt-0.5 flex-shrink-0 text-[#00A5E0]" />
-                <span>Mon–Fri, 7:00 AM – 5:00 PM</span>
+                <span>{contact.hoursShort}</span>
               </div>
             </div>
           </motion.div>
@@ -137,8 +126,8 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="border-t border-neutral-800 mt-12 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-neutral-500">
-          <p>© {new Date().getFullYear()} BYD B PTY LTD. All rights reserved.</p>
-          <p>ABN: 66 678 883 488 | ACN: 678 883 488 | License: BC106152</p>
+          <p>© {new Date().getFullYear()} {company.name}. All rights reserved.</p>
+          <p>ABN: {company.abn} | ACN: {company.acn} | License: {company.license}</p>
         </div>
       </div>
     </footer>

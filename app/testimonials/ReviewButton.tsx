@@ -8,7 +8,6 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Checkbox } from "@/components/ui/checkbox"
-import { Button } from "@/components/ui/button"
 import { FaStar } from "react-icons/fa"
 
 const formSchema = z.object({
@@ -31,7 +30,7 @@ export default function ReviewButton() {
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
-    defaultValues: { name: "", email: "", title: "", rating: undefined as any, review: "", human: false, website: "" },
+    defaultValues: { name: "", email: "", title: "", rating: 0, review: "", human: false, website: "" },
   })
 
   const onSubmit = async (values: FormValues) => {
@@ -49,8 +48,9 @@ export default function ReviewButton() {
       setMessage({ type: "success", text: "Thanks — we received your review. It will post shortly." })
       form.reset()
       setShowForm(false)
-    } catch (err: any) {
-      setMessage({ type: "error", text: err?.message || "Submission failed. Please try again." })
+    } catch (err) {
+      const message = err instanceof Error ? err.message : "Submission failed. Please try again."
+      setMessage({ type: "error", text: message })
     } finally {
       setLoading(false)
       setHoveredStar(0)
@@ -67,87 +67,100 @@ export default function ReviewButton() {
       )}
 
       {!showForm ? (
-        <Button
+        <button
           onClick={() => { setShowForm(true); setMessage(null) }}
-          className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white hover:opacity-95"
+          className="inline-block px-7 py-3 border border-[#00A5E0] text-[#00A5E0] text-sm font-medium tracking-wide hover:bg-[#00A5E0] hover:text-white transition-colors duration-200 whitespace-nowrap"
         >
           Leave a review
-        </Button>
+        </button>
       ) : (
-        <div className="bg-white border border-neutral-200 rounded-xl p-6 shadow-sm text-left max-w-lg mx-auto">
-          <h3 className="text-base font-semibold text-neutral-900 mb-4">Write a review</h3>
+        <div className="bg-white border border-neutral-200 p-8 shadow-sm text-left w-full">
+          <h3 className="text-base font-semibold text-neutral-900 mb-6">Write a review</h3>
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
               <input type="text" autoComplete="off" tabIndex={-1} className="hidden" aria-hidden="true" {...form.register("website")} />
 
-              <FormField control={form.control} name="name" render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="text-sm">Name</FormLabel>
-                  <FormControl><Input placeholder="Your name" {...field} /></FormControl>
-                  <FormMessage />
-                </FormItem>
-              )} />
+              {/* Row 1: Name + Email */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <FormField control={form.control} name="name" render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-sm">Name</FormLabel>
+                    <FormControl><Input placeholder="Your name" {...field} /></FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )} />
 
-              <FormField control={form.control} name="email" render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="text-sm">Email</FormLabel>
-                  <FormControl><Input type="email" placeholder="you@example.com" {...field} /></FormControl>
-                  <FormMessage />
-                </FormItem>
-              )} />
+                <FormField control={form.control} name="email" render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-sm">Email</FormLabel>
+                    <FormControl><Input type="email" placeholder="you@example.com" {...field} /></FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )} />
+              </div>
 
-              <FormField control={form.control} name="title" render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="text-sm">Location</FormLabel>
-                  <FormControl><Input placeholder="Perth, WA" {...field} /></FormControl>
-                  <FormMessage />
-                </FormItem>
-              )} />
+              {/* Row 2: Location + Rating */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <FormField control={form.control} name="title" render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-sm">Location</FormLabel>
+                    <FormControl><Input placeholder="Perth, WA" {...field} /></FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )} />
 
-              <FormField control={form.control} name="rating" render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="text-sm">Rating</FormLabel>
-                  <div className="flex gap-1">
-                    {[1, 2, 3, 4, 5].map((star) => {
-                      const filled = (hoveredStar || field.value || 0) >= star
-                      return (
-                        <FaStar key={star} size={20} className={`cursor-pointer transition-colors ${filled ? "text-amber-400" : "text-neutral-300"}`}
-                          onClick={() => field.onChange(star)}
-                          onMouseEnter={() => setHoveredStar(star)}
-                          onMouseLeave={() => setHoveredStar(0)}
-                        />
-                      )
-                    })}
-                  </div>
-                  <FormMessage />
-                </FormItem>
-              )} />
+                <FormField control={form.control} name="rating" render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-sm">Rating</FormLabel>
+                    <div className="flex gap-1 mt-2">
+                      {[1, 2, 3, 4, 5].map((star) => {
+                        const filled = (hoveredStar || field.value || 0) >= star
+                        return (
+                          <FaStar key={star} size={22} className={`cursor-pointer transition-colors ${filled ? "text-amber-400" : "text-neutral-300"}`}
+                            onClick={() => field.onChange(star)}
+                            onMouseEnter={() => setHoveredStar(star)}
+                            onMouseLeave={() => setHoveredStar(0)}
+                          />
+                        )
+                      })}
+                    </div>
+                    <FormMessage />
+                  </FormItem>
+                )} />
+              </div>
 
+              {/* Row 3: Review full width */}
               <FormField control={form.control} name="review" render={({ field }) => (
                 <FormItem>
                   <FormLabel className="text-sm">Review</FormLabel>
-                  <FormControl><Textarea rows={4} placeholder="Write your review…" {...field} /></FormControl>
+                  <FormControl><Textarea rows={5} placeholder="Write your review…" {...field} /></FormControl>
                   <FormMessage />
                 </FormItem>
               )} />
 
-              <FormField control={form.control} name="human" render={({ field }) => (
-                <FormItem>
-                  <div className="flex items-center gap-2">
-                    <FormControl><Checkbox checked={!!field.value} onCheckedChange={(v) => field.onChange(Boolean(v))} /></FormControl>
-                    <FormLabel className="text-sm m-0">I confirm I am human</FormLabel>
-                  </div>
-                  <FormMessage />
-                </FormItem>
-              )} />
+              {/* Row 4: Human + buttons */}
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pt-1">
+                <FormField control={form.control} name="human" render={({ field }) => (
+                  <FormItem>
+                    <div className="flex items-center gap-2">
+                      <FormControl><Checkbox checked={!!field.value} onCheckedChange={(v) => field.onChange(Boolean(v))} /></FormControl>
+                      <FormLabel className="text-sm m-0">I confirm I am human</FormLabel>
+                    </div>
+                    <FormMessage />
+                  </FormItem>
+                )} />
 
-              <div className="flex gap-3 pt-1">
-                <Button type="submit" disabled={loading} className="bg-green-600 hover:bg-green-700 text-white text-sm">
-                  {loading ? "Submitting…" : "Submit"}
-                </Button>
-                <Button type="button" variant="outline" disabled={loading} onClick={() => { form.reset(); setShowForm(false); setHoveredStar(0) }} className="text-sm">
-                  Cancel
-                </Button>
+                <div className="flex gap-3">
+                  <button type="submit" disabled={loading}
+                    className="px-7 py-3 bg-[#00A5E0] text-white text-sm font-medium tracking-wide hover:bg-[#0090c4] transition-colors duration-200 disabled:opacity-50">
+                    {loading ? "Submitting…" : "Submit"}
+                  </button>
+                  <button type="button" disabled={loading}
+                    onClick={() => { form.reset(); setShowForm(false); setHoveredStar(0) }}
+                    className="px-7 py-3 border border-neutral-300 text-neutral-600 text-sm font-medium tracking-wide hover:border-neutral-400 transition-colors duration-200 disabled:opacity-50">
+                    Cancel
+                  </button>
+                </div>
               </div>
             </form>
           </Form>
