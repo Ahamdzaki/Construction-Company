@@ -12,7 +12,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Alert, AlertDescription } from "@/components/ui/alert"
+import { toast } from "sonner"
 
 const formSchema = z.object({
   name: z.string().trim().min(1, "Full name is required"),
@@ -46,8 +46,7 @@ const socialColorClass: Record<string, string> = {
 }
 
 export default function ContactSection() {
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle")
-  const [errorMsg, setErrorMsg] = useState("")
+  const [status, setStatus] = useState<"idle" | "loading">("idle")
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -66,11 +65,12 @@ export default function ContactSection() {
         const data = await res.json().catch(() => ({}))
         throw new Error(data?.error || "Submission failed")
       }
-      setStatus("success")
+      setStatus("idle")
       form.reset()
+      toast.success("Thank you! Your message has been sent. We'll get back to you within one business day.")
     } catch (err) {
-      setStatus("error")
-      setErrorMsg(err instanceof Error ? err.message : "Something went wrong. Please try again.")
+      setStatus("idle")
+      toast.error(err instanceof Error ? err.message : "Something went wrong. Please try again.")
     }
   }
 
@@ -90,19 +90,6 @@ export default function ContactSection() {
           {/* LEFT: Form */}
           <div className="lg:col-span-3">
             <h2 className="text-xl font-semibold text-neutral-900 mb-6">Send an enquiry</h2>
-
-            {status === "success" && (
-              <Alert className="mb-6 bg-green-50 border-green-200">
-                <AlertDescription className="text-green-800">
-                  Thank you! Your message has been sent. We'll get back to you within one business day.
-                </AlertDescription>
-              </Alert>
-            )}
-            {status === "error" && (
-              <Alert className="mb-6 bg-red-50 border-red-200">
-                <AlertDescription className="text-red-800">{errorMsg}</AlertDescription>
-              </Alert>
-            )}
 
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
@@ -212,7 +199,7 @@ export default function ContactSection() {
                   </div>
                   <div>
                     <p className="text-xs text-neutral-500 mb-0.5">{card.label}</p>
-                    <p className="text-sm font-medium text-neutral-900">{card.value}</p>
+                    <p className="text-sm font-medium text-neutral-900 select-text">{card.value}</p>
                   </div>
                 </div>
               )

@@ -85,40 +85,40 @@ export default function GalleryClient() {
                 />
 
                 {/* Permanent bottom gradient */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
 
                 {/* Hover darkening */}
                 <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
                 {/* Project info */}
                 <div className="absolute bottom-0 left-0 right-0 p-5">
-                  <p className="text-[10px] uppercase tracking-[0.18em] text-white/60 mb-1">
+                  <p className="text-xs uppercase tracking-[0.18em] font-semibold mb-1" style={{ color: "#00A5E0" }}>
                     {project.category}
                   </p>
                   <h3 className="text-sm md:text-base font-semibold uppercase tracking-[0.1em] text-white leading-tight mb-1.5">
                     {project.title}
                   </h3>
-                  <p className="text-xs text-amber-400 font-medium mb-2">{project.price}</p>
+                  <p className="text-sm text-amber-300 font-semibold mb-2">{project.price}</p>
                   {(project.bedrooms || project.bathrooms || project.carSpaces || project.size) && (
                     <div className="flex flex-wrap gap-x-4 gap-y-1">
                       {project.bedrooms && (
-                        <span className="flex items-center gap-1 text-[10px] text-white/60">
-                          <BedDouble className="w-3 h-3" />{project.bedrooms} Bed
+                        <span className="flex items-center gap-1 text-xs text-white font-medium">
+                          <BedDouble className="w-3.5 h-3.5 text-white/70" />{project.bedrooms} Bed
                         </span>
                       )}
                       {project.bathrooms && (
-                        <span className="flex items-center gap-1 text-[10px] text-white/60">
-                          <Bath className="w-3 h-3" />{project.bathrooms} Bath
+                        <span className="flex items-center gap-1 text-xs text-white font-medium">
+                          <Bath className="w-3.5 h-3.5 text-white/70" />{project.bathrooms} Bath
                         </span>
                       )}
                       {project.carSpaces && (
-                        <span className="flex items-center gap-1 text-[10px] text-white/60">
-                          <Car className="w-3 h-3" />{project.carSpaces} Car
+                        <span className="flex items-center gap-1 text-xs text-white font-medium">
+                          <Car className="w-3.5 h-3.5 text-white/70" />{project.carSpaces} Car
                         </span>
                       )}
                       {project.size && (
-                        <span className="flex items-center gap-1 text-[10px] text-white/60">
-                          <Maximize className="w-3 h-3" />{project.size}
+                        <span className="flex items-center gap-1 text-xs text-white font-medium">
+                          <Maximize className="w-3.5 h-3.5 text-white/70" />{project.size}
                         </span>
                       )}
                     </div>

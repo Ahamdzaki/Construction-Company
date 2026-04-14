@@ -107,25 +107,25 @@ export default function Footer() {
             <div className="space-y-3 text-sm">
               <div className="flex items-start gap-2 text-neutral-400">
                 <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0 text-[#00A5E0]" />
-                <span>{contact.address}</span>
+                <span className="select-text">{contact.address}</span>
               </div>
               <a
                 href={contact.phoneHref}
                 className="flex items-center gap-2 text-neutral-400 hover:text-[#00A5E0] transition-colors"
               >
                 <Phone className="w-4 h-4 flex-shrink-0 text-[#00A5E0]" />
-                {contact.phone}
+                <span className="select-text">{contact.phone}</span>
               </a>
               <a
                 href={contact.emailHref}
                 className="flex items-center gap-2 text-neutral-400 hover:text-[#00A5E0] transition-colors"
               >
                 <Mail className="w-4 h-4 flex-shrink-0 text-[#00A5E0]" />
-                {contact.email}
+                <span className="select-text">{contact.email}</span>
               </a>
               <div className="flex items-start gap-2 text-neutral-400">
                 <Clock className="w-4 h-4 mt-0.5 flex-shrink-0 text-[#00A5E0]" />
-                <span>{contact.hoursShort}</span>
+                <span className="select-text">{contact.hoursShort}</span>
               </div>
             </div>
           </motion.div>

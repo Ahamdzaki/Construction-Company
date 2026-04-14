@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { toast } from "sonner"
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
@@ -26,7 +27,6 @@ export default function ReviewButton() {
   const [showForm, setShowForm] = useState(false)
   const [loading, setLoading] = useState(false)
   const [hoveredStar, setHoveredStar] = useState(0)
-  const [message, setMessage] = useState<{ type: "success" | "error"; text: string } | null>(null)
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -45,12 +45,11 @@ export default function ReviewButton() {
         const data = await res.json().catch(() => ({}))
         throw new Error(data?.error || "Submission failed")
       }
-      setMessage({ type: "success", text: "Thanks — we received your review. It will post shortly." })
+      toast.success("Thanks — we received your review. It will post shortly.")
       form.reset()
       setShowForm(false)
     } catch (err) {
-      const message = err instanceof Error ? err.message : "Submission failed. Please try again."
-      setMessage({ type: "error", text: message })
+      toast.error(err instanceof Error ? err.message : "Submission failed. Please try again.")
     } finally {
       setLoading(false)
       setHoveredStar(0)
@@ -59,16 +58,9 @@ export default function ReviewButton() {
 
   return (
     <div>
-      {message && (
-        <div className={`mb-4 p-4 rounded-lg text-sm ${message.type === "success" ? "bg-green-50 text-green-800 border border-green-200" : "bg-red-50 text-red-800 border border-red-200"}`}>
-          {message.text}
-          <button onClick={() => setMessage(null)} className="ml-3 underline text-xs">Dismiss</button>
-        </div>
-      )}
-
       {!showForm ? (
         <button
-          onClick={() => { setShowForm(true); setMessage(null) }}
+          onClick={() => setShowForm(true)}
           className="inline-block px-7 py-3 border border-[#00A5E0] text-[#00A5E0] text-sm font-medium tracking-wide hover:bg-[#00A5E0] hover:text-white transition-colors duration-200 whitespace-nowrap"
         >
           Leave a review

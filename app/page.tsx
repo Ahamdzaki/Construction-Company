@@ -2,6 +2,7 @@ import HeroSection from "@/components/hero-section"
 import StatCards from "@/components/stat-cards"
 import ServicesPreview from "@/components/services-preview"
 import GalleryPreview from "@/components/gallery-preview"
+import HomesUnderConstruction from "@/components/homes-under-construction"
 import TestimonialFeatured from "@/components/testimonial-featured"
 import LocationsMosaic from "@/components/locations-mosaic"
 import ContactSection from "@/components/contact-section"
@@ -15,6 +16,7 @@ export default function HomePage() {
       <StatCards />
       <ServicesPreview />
       <GalleryPreview />
+      <HomesUnderConstruction />
       <TestimonialFeatured />
       <LocationsMosaic />
       <ContactSection />

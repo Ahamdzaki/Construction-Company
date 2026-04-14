@@ -5,6 +5,7 @@ import { GeistMono } from "geist/font/mono"
 import { Montserrat } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { Suspense } from "react"
+import { Toaster } from "sonner"
 import "./globals.css"
 import Navigation from "@/components/navigation"
 import FixedContactButton from "@/components/fixed-contact-button"
@@ -90,6 +91,7 @@ export default function RootLayout({
           <main className="pt-[84px]">{children}</main>
         </Suspense>
         <FixedContactButton />
+        <Toaster position="bottom-right" />
         <Analytics />
       </body>
     </html>
