@@ -14,7 +14,9 @@ import { company, contact } from "@/lib/data/content"
 const montserrat = Montserrat({
   subsets: ["latin"],
   variable: "--font-montserrat",
-  display: "swap",
+  display: "optional",
+  weight: ["400", "500", "600", "700"],
+  preload: true,
 })
 
 export const metadata: Metadata = {
@@ -88,7 +90,7 @@ export default function RootLayout({
       <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable} ${montserrat.variable}`}>
         <Navigation />
         <Suspense fallback={null}>
-          <main className="pt-[84px]">{children}</main>
+          <main className="pt-[72px] sm:pt-[84px]">{children}</main>
         </Suspense>
         <FixedContactButton />
         <Toaster position="bottom-right" />

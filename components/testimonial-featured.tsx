@@ -1,7 +1,6 @@
 "use client"
 
 import { useState } from "react"
-import Image from "next/image"
 import { Star, ChevronLeft, ChevronRight, Quote } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 import ReviewButton from "@/app/testimonials/ReviewButton"
@@ -18,13 +17,13 @@ export default function TestimonialFeatured() {
   const visible = Array.from({ length: VISIBLE }, (_, i) => testimonials[(start + i) % testimonials.length])
 
   return (
-    <section id="testimonials" className="py-20 md:py-32 bg-white w-full">
+    <section id="testimonials" className="py-14 md:py-20 lg:py-32 bg-white w-full">
 
       <div className="w-full px-4 sm:px-6 lg:px-8">
 
         {/* Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-neutral-900 mb-4">What our clients <span className="text-[#00A5E0]">say</span></h2>
+        <div className="text-center mb-10 md:mb-16">
+          <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold text-neutral-900 mb-4">What our clients <span className="text-[#00A5E0]">say</span></h2>
           <p className="text-sm md:text-base text-neutral-500 max-w-xl mx-auto">
             Real stories from homeowners across Western Australia.
           </p>
@@ -38,12 +37,12 @@ export default function TestimonialFeatured() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -16 }}
             transition={{ duration: 0.4 }}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-10"
           >
             {visible.map((t, i) => (
               <div
                 key={`${t.id}-${i}`}
-                className="relative bg-white border border-neutral-200 p-8 flex flex-col gap-5 hover:border-[#00A5E0]/40 hover:shadow-md transition-all duration-300"
+                className="relative bg-white border border-neutral-200 p-5 sm:p-8 flex flex-col gap-5 hover:border-[#00A5E0]/40 hover:shadow-md transition-all duration-300"
               >
                 <Quote className="w-8 h-8 text-[#00A5E0]/30 flex-shrink-0" />
 
@@ -58,9 +57,6 @@ export default function TestimonialFeatured() {
                 <div className="h-px bg-neutral-100" />
 
                 <div className="flex items-center gap-3">
-                  <div className="relative w-10 h-10 rounded-full overflow-hidden flex-shrink-0 border border-neutral-200">
-                    <Image src={t.image} alt={t.name} fill className="object-cover" />
-                  </div>
                   <div>
                     <p className="text-sm font-semibold text-neutral-900">{t.name}</p>
                     <p className="text-xs text-neutral-400">{t.location}</p>

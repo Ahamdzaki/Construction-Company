@@ -16,29 +16,29 @@ export default function Navigation() {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-neutral-200 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-        <div className="flex justify-between items-center h-[84px]">
+        <div className="flex justify-between items-center h-[72px] sm:h-[84px]">
 
           {/* Logo */}
           <Link href="/" className="flex items-center flex-shrink-0">
             <Image
               src={company.logo}
               alt={`${company.name} Logo`}
-              width={180}
-              height={80}
-              className="h-10 sm:h-12 w-auto object-contain"
+              width={220}
+              height={90}
+              className="h-12 sm:h-14 md:h-16 w-auto object-contain"
               priority
             />
           </Link>
 
           {/* Desktop Nav Links */}
-          <div className="hidden md:flex items-center gap-7">
+          <div className="hidden md:flex items-center gap-5 lg:gap-7">
             {navItems.map((item) => {
               const active = pathname === item.href
               return (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`relative text-[0.9375rem] transition-colors duration-200 group font-montserrat ${
+                  className={`relative text-sm lg:text-[0.9375rem] transition-colors duration-200 group font-montserrat ${
                     active ? "text-[#00A5E0] font-semibold" : "text-neutral-700 font-medium hover:text-[#00A5E0]"
                   }`}
                 >
@@ -60,7 +60,7 @@ export default function Navigation() {
               size="sm"
               className="bg-amber-500 hover:bg-amber-600 text-neutral-900 font-semibold px-4 py-2 text-sm rounded-none"
             >
-              <Link href="/contact">Get a Free Quote</Link>
+              <Link href="/#contact">Get a Free Quote</Link>
             </Button>
           </div>
 

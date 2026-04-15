@@ -20,7 +20,7 @@ export default function GalleryPreview() {
     <section className="py-16 md:py-24 bg-neutral-50">
       <div className="w-full px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-neutral-900 mb-3">Featured <span className="text-[#00A5E0]">Projects</span></h2>
+          <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold text-neutral-900 mb-3">Featured <span className="text-[#00A5E0]">Projects</span></h2>
           <p className="text-sm md:text-base text-neutral-500 max-w-xl mx-auto">
             {sections.gallery.description}
           </p>
@@ -48,49 +48,48 @@ export default function GalleryPreview() {
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+                <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
                 {/* Info overlay */}
-                <div className="absolute bottom-0 left-0 right-0 p-4">
-                  <span className="text-[10px] uppercase tracking-wider text-[#00A5E0] font-medium">
+                <div className="absolute bottom-0 left-0 right-0 p-5">
+                  <p className="text-xs uppercase tracking-[0.18em] font-semibold mb-1" style={{ color: "#00A5E0" }}>
                     {project.category}
-                  </span>
-                  <h3 className="text-white font-semibold text-sm md:text-base mt-0.5 mb-1">
+                  </p>
+                  <h3 className="text-sm md:text-base font-semibold uppercase tracking-[0.1em] text-white leading-tight mb-1.5">
                     {project.title}
                   </h3>
                   {project.price && (
-                    <p className="text-xs text-amber-400 font-medium mb-2">{project.price}</p>
+                    <p className="text-sm text-amber-300 font-semibold mb-2">{project.price}</p>
                   )}
                   {(project.bedrooms || project.bathrooms || project.carSpaces || project.size) && (
                     <div className="flex flex-wrap gap-x-4 gap-y-1">
                       {project.bedrooms && (
-                        <span className="flex items-center gap-1 text-[10px] text-white/60">
-                          <BedDouble className="w-3 h-3" />{project.bedrooms} Bed
+                        <span className="flex items-center gap-1 text-xs text-white font-medium">
+                          <BedDouble className="w-3.5 h-3.5 text-white/70" />{project.bedrooms} Bed
                         </span>
                       )}
                       {project.bathrooms && (
-                        <span className="flex items-center gap-1 text-[10px] text-white/60">
-                          <Bath className="w-3 h-3" />{project.bathrooms} Bath
+                        <span className="flex items-center gap-1 text-xs text-white font-medium">
+                          <Bath className="w-3.5 h-3.5 text-white/70" />{project.bathrooms} Bath
                         </span>
                       )}
                       {project.carSpaces && (
-                        <span className="flex items-center gap-1 text-[10px] text-white/60">
-                          <Car className="w-3 h-3" />{project.carSpaces} Car
+                        <span className="flex items-center gap-1 text-xs text-white font-medium">
+                          <Car className="w-3.5 h-3.5 text-white/70" />{project.carSpaces} Car
                         </span>
                       )}
                       {project.size && (
-                        <span className="flex items-center gap-1 text-[10px] text-white/60">
-                          <Maximize className="w-3 h-3" />{project.size}
+                        <span className="flex items-center gap-1 text-xs text-white font-medium">
+                          <Maximize className="w-3.5 h-3.5 text-white/70" />{project.size}
                         </span>
                       )}
                     </div>
                   )}
                 </div>
 
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                  <span className="bg-white/90 text-neutral-900 text-sm font-medium px-4 py-2">
-                    View project →
-                  </span>
+                <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <span className="text-white/80 text-xs tracking-widest uppercase">View →</span>
                 </div>
               </Link>
             </motion.div>

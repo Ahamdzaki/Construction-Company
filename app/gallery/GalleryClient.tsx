@@ -1,37 +1,36 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useMemo } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { motion, AnimatePresence } from "framer-motion"
 import { BedDouble, Bath, Car, Maximize } from "lucide-react"
 import { projects } from "@/lib/data/projects"
 
-const categories = ["All", "Exterior", "Interior", "New Construction", "Custom Design"] as const
+const categories = ["All", "Exterior", "Interior", "New Construction"] as const
 type Filter = (typeof categories)[number]
 
-const categoryOrder: Record<string, number> = { Exterior: 0, Interior: 1, "New Construction": 2, "Custom Design": 3 }
+const categoryOrder: Record<string, number> = { Exterior: 0, Interior: 1, "New Construction": 2 }
 
 export default function GalleryClient() {
   const [active, setActive] = useState<Filter>("All")
   const [visible, setVisible] = useState(9)
 
-  const filtered = active === "All"
-    ? [...projects].sort((a, b) => (categoryOrder[a.category] ?? 99) - (categoryOrder[b.category] ?? 99))
-    : projects.filter((p) => p.category === active)
+  const filtered = useMemo(() =>
+    active === "All"
+      ? [...projects].sort((a, b) => (categoryOrder[a.category] ?? 99) - (categoryOrder[b.category] ?? 99))
+      : projects.filter((p) => p.category === active),
+    [active]
+  )
   const shown = filtered.slice(0, visible)
 
   return (
     <div className="min-h-screen bg-white">
 
       {/* Page header */}
-      <div className="pt-28 pb-8 px-6 lg:px-10 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 max-w-7xl mx-auto">
+      <div className="pt-[88px] sm:pt-[100px] pb-6 md:pb-8 px-4 sm:px-6 lg:px-10 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 sm:gap-6 max-w-7xl mx-auto">
         <div>
-          <p className="text-xs uppercase tracking-[0.2em] text-[#00A5E0] mb-2 font-medium">Our Work</p>
-          <h1 className="text-4xl md:text-5xl font-bold text-neutral-900 tracking-tight">Project Gallery</h1>
-          <p className="text-sm text-neutral-500 mt-2">
-            Completed homes &amp; interiors across Western Australia.
-          </p>
+          <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold text-neutral-900 tracking-tight">Project Gallery</h1>
         </div>
 
         {/* Filters */}

@@ -118,17 +118,17 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.8 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8"
+          className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-4 mt-8"
         >
           <Link
             href={hero.primaryCta.href}
-            className="px-8 py-4 bg-amber-500 hover:bg-amber-400 text-neutral-900 font-semibold text-base transition-colors w-full sm:w-auto text-center"
+            className="px-6 sm:px-8 py-4 bg-amber-500 hover:bg-amber-400 text-neutral-900 font-semibold text-sm sm:text-base transition-colors w-full sm:w-auto text-center border-2 border-transparent"
           >
             {hero.primaryCta.label}
           </Link>
           <Link
             href={hero.secondaryCta.href}
-            className="px-8 py-4 bg-transparent border-2 border-white/40 hover:bg-white/10 text-white font-medium text-base transition-colors w-full sm:w-auto text-center"
+            className="px-6 sm:px-8 py-4 bg-transparent border-2 border-white/40 hover:bg-white/10 text-white font-medium text-sm sm:text-base transition-colors w-full sm:w-auto text-center"
           >
             {hero.secondaryCta.label}
           </Link>

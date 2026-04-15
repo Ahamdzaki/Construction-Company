@@ -64,7 +64,7 @@ export const hero = {
   headline: "Building Dreams Into Reality",
   subtitle:
     "From custom new builds to complete renovations, we bring your vision to life with quality craftsmanship you can trust.",
-  primaryCta:   { label: "Get a Free Quote",  href: "/contact" },
+  primaryCta:   { label: "Get a Free Quote",  href: "/#contact" },
   secondaryCta: { label: "View Our Projects", href: "/gallery" },
   images: [
     { src: "/new images/pexels-break-media-186685971-14650436.jpg", alt: "BYD B construction project" },
@@ -222,18 +222,18 @@ export const ctaBanner = {
   heading:     "Ready to build your dream home?",
   description:
     "Contact us today for a free consultation and quote. Licensed builder BC106152 — serving Western Australia for 13+ years.",
-  primaryCta:   { label: "Request a Quote",        href: "/contact" },
+  primaryCta:   { label: "Request a Quote",        href: "/#contact" },
   secondaryCta: { label: "Call Now: 0410 664 649", href: "tel:+61410664649" },
 }
 
 // ── Locations Mosaic (Instagram-style grid) ───────────────────────────────────
 export const mosaicImages = [
-  { src: "/exterior-5.jpg",                                          alt: "BYD B luxury executive home exterior" },
-  { src: "/designer-bathroom-with-marble-finishes.png",              alt: "BYD B designer bathroom with marble finishes" },
-  { src: "/Exterior-17.jpg",                                         alt: "BYD B premier executive villa exterior" },
-  { src: "/modern-home-with-large-outdoor-entertaining-area.png",    alt: "BYD B modern home with outdoor entertaining area" },
-  { src: "/exterior-6.jpg",                                          alt: "BYD B coastal style home exterior" },
-  { src: "/luxury-pool-area-with-outdoor-kitchen.png",               alt: "BYD B luxury pool area with outdoor kitchen" },
+  { src: "/new images/beautiful-suburban-home-with-green-lawn-blue-sky.jpg",            alt: "BYD B suburban home with green lawn" },
+  { src: "/new images/charming-yellow-house-with-wooden-windows-green-grassy-garden.jpg", alt: "BYD B charming home with garden" },
+  { src: "/new images/esther-zheng-Y5NaxSbLPDA-unsplash.jpg",                           alt: "BYD B home exterior" },
+  { src: "/new images/bhuwan-bansal-MXFs1CztRIc-unsplash.jpg",                         alt: "BYD B residential project" },
+  { src: "/new images/nerissa-j-2Hk2biJ7_vc-unsplash.jpg",                             alt: "BYD B construction project" },
+  { src: "/new images/wes-fischer-g39p1kDjvSY-unsplash.jpg",                            alt: "BYD B modern home" },
 ]
 
 // ── Footer Services List ──────────────────────────────────────────────────────

@@ -35,15 +35,15 @@ export default function ServicesSections({ services, steps }: { services: Servic
   return (
     <>
       {/* Services Grid */}
-      <section className="py-16 md:py-24 bg-white">
+      <section className="py-12 md:py-16 lg:py-24 bg-white">
         <div className="w-full px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
+          <div className="text-center mb-8 md:mb-12">
             <p className="text-xs uppercase tracking-[0.15em] font-medium text-[#00A5E0] mb-2">What We Build</p>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-neutral-900">Services built around you</h2>
+            <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold text-neutral-900">Services built around you</h2>
           </div>
 
           <motion.div
-            className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6"
             variants={staggerContainer}
             initial="hidden"
             whileInView="visible"
@@ -56,7 +56,7 @@ export default function ServicesSections({ services, steps }: { services: Servic
                 <motion.div
                   key={service.title}
                   variants={fadeInUp}
-                  className="bg-white border border-neutral-100 rounded-xl p-7 shadow-sm hover:shadow-md transition-shadow"
+                  className="bg-white border border-neutral-100 rounded-xl p-5 md:p-7 shadow-sm hover:shadow-md transition-shadow"
                 >
                   <div className={`w-11 h-11 rounded-lg ${colors.bg} flex items-center justify-center mb-5`}>
                     <IconComponent className={`w-5 h-5 ${colors.text}`} />
@@ -79,15 +79,15 @@ export default function ServicesSections({ services, steps }: { services: Servic
       </section>
 
       {/* Process Section */}
-      <section className="py-16 md:py-20 bg-neutral-50">
+      <section className="py-12 md:py-16 lg:py-20 bg-neutral-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
+          <div className="text-center mb-8 md:mb-12">
             <p className="text-xs uppercase tracking-[0.15em] font-medium text-[#00A5E0] mb-2">How It Works</p>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-neutral-900">Our building process</h2>
+            <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold text-neutral-900">Our building process</h2>
           </div>
 
           <motion.div
-            className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6"
             variants={staggerContainer}
             initial="hidden"
             whileInView="visible"

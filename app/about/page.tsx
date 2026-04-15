@@ -1,7 +1,9 @@
 import type { Metadata } from "next"
+import dynamic from "next/dynamic"
 import AboutSections from "@/components/about-sections"
-import CtaBanner from "@/components/ui/cta-banner"
-import Footer from "@/components/footer"
+
+const CtaBanner = dynamic(() => import("@/components/ui/cta-banner"))
+const Footer    = dynamic(() => import("@/components/footer"))
 
 export const metadata: Metadata = {
   title: "About Us",

@@ -53,7 +53,7 @@ export default function HomesUnderConstruction() {
         viewport={{ once: true }}
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
-        <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-neutral-900 mb-3">
+        <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold text-neutral-900 mb-3">
           Homes Under <span className="text-[#00A5E0]">Construction</span>
         </h2>
         <p className="text-sm md:text-base text-neutral-500 max-w-xl mx-auto">

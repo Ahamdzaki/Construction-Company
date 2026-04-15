@@ -6,8 +6,7 @@ const LeafletMap = dynamic(() => import("./leaflet-map"), { ssr: false })
 
 export default function MapSection() {
   return (
-    <section className="bg-neutral-50 pb-0">
-      {/* Map with vertical breathing room */}
+    <section className="bg-neutral-50 pb-0 hidden md:block">
       <div className="w-full relative">
         <LeafletMap />
       </div>

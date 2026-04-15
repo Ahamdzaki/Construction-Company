@@ -1,13 +1,15 @@
+import dynamic from "next/dynamic"
 import HeroSection from "@/components/hero-section"
 import StatCards from "@/components/stat-cards"
-import ServicesPreview from "@/components/services-preview"
-import GalleryPreview from "@/components/gallery-preview"
-import HomesUnderConstruction from "@/components/homes-under-construction"
-import TestimonialFeatured from "@/components/testimonial-featured"
-import LocationsMosaic from "@/components/locations-mosaic"
-import ContactSection from "@/components/contact-section"
-import MapSection from "@/components/map-section"
-import Footer from "@/components/footer"
+
+const ServicesPreview       = dynamic(() => import("@/components/services-preview"))
+const GalleryPreview        = dynamic(() => import("@/components/gallery-preview"))
+const HomesUnderConstruction = dynamic(() => import("@/components/homes-under-construction"))
+const TestimonialFeatured   = dynamic(() => import("@/components/testimonial-featured"))
+const LocationsMosaic       = dynamic(() => import("@/components/locations-mosaic"))
+const ContactSection        = dynamic(() => import("@/components/contact-section"))
+const MapSection            = dynamic(() => import("@/components/map-section"))
+const Footer                = dynamic(() => import("@/components/footer"))
 
 export default function HomePage() {
   return (

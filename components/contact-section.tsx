@@ -75,21 +75,21 @@ export default function ContactSection() {
   }
 
   return (
-    <section id="contact" className="py-16 md:py-24 bg-white">
+    <section id="contact" className="py-12 md:py-16 lg:py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-neutral-900 mb-3">Contact <span className="text-[#00A5E0]">Us</span></h2>
+          <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold text-neutral-900 mb-3">Contact <span className="text-[#00A5E0]">Us</span></h2>
           <p className="text-sm md:text-base text-neutral-500 max-w-xl mx-auto">
             {sections.contact.description}
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12">
 
           {/* LEFT: Form */}
           <div className="lg:col-span-3">
-            <h2 className="text-xl font-semibold text-neutral-900 mb-6">Send an enquiry</h2>
+            <h2 className="text-lg sm:text-xl font-semibold text-neutral-900 mb-5 sm:mb-6">Send an enquiry</h2>
 
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
@@ -179,7 +179,7 @@ export default function ContactSection() {
                 <button
                   type="submit"
                   disabled={status === "loading"}
-                  className="px-8 py-3 bg-amber-500 hover:bg-amber-400 text-neutral-900 font-semibold transition-colors disabled:opacity-50"
+                  className="w-full sm:w-auto px-8 py-3 bg-amber-500 hover:bg-amber-400 text-neutral-900 font-semibold transition-colors disabled:opacity-50 text-sm sm:text-base"
                 >
                   {status === "loading" ? "Sending…" : "Send Enquiry"}
                 </button>
@@ -189,7 +189,7 @@ export default function ContactSection() {
 
           {/* RIGHT: Contact info */}
           <div className="lg:col-span-2 space-y-4">
-            <h2 className="text-xl font-semibold text-neutral-900 mb-6">Contact information</h2>
+            <h2 className="text-lg sm:text-xl font-semibold text-neutral-900 mb-5 sm:mb-6">Contact information</h2>
 
             {contactCards.map((card) => {
               const Inner = (

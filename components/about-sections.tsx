@@ -20,18 +20,18 @@ export default function AboutSections() {
   return (
     <>
       {/* ── Company Overview ── */}
-      <section className="bg-white overflow-hidden">
-        <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[600px]">
+      <section className="bg-white overflow-hidden pt-[72px] sm:pt-[84px]">
+        <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[400px] lg:min-h-[600px]">
 
           <motion.div
             variants={slideInLeft}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.25 }}
-            className="flex flex-col justify-center px-8 sm:px-14 lg:px-20 py-20"
+            className="flex flex-col justify-center px-5 sm:px-10 lg:px-20 py-12 lg:py-20"
           >
             <p className="text-xs uppercase tracking-[0.18em] font-medium text-[#00A5E0] mb-4">Who We Are</p>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-neutral-900 mb-6 leading-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold text-neutral-900 mb-6 leading-tight">
               Company Overview
             </h2>
             <p className="text-sm md:text-base text-neutral-600 leading-relaxed mb-5">
@@ -71,40 +71,36 @@ export default function AboutSections() {
       </section>
 
       {/* ── Mission & Values ── */}
-      <section className="py-20 md:py-28 bg-white">
+      <section className="py-12 md:py-20 lg:py-28 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-14">
+          <div className="text-center mb-8 md:mb-14">
             <p className="text-xs uppercase tracking-[0.18em] font-medium text-[#00A5E0] mb-3">Our Principles</p>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-neutral-900 mb-4">Mission &amp; values</h2>
+            <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold text-neutral-900 mb-4">Mission &amp; values</h2>
             <p className="text-sm md:text-base text-neutral-500 max-w-2xl mx-auto">
               Every home we build is guided by three core principles that define who we are.
             </p>
           </div>
 
           <motion.div
-            className="grid grid-cols-1 md:grid-cols-3 gap-6"
+            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6"
             variants={staggerContainer}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.15 }}
           >
-            {values.map((v, i) => (
+            {values.map((v) => (
               <motion.div
                 key={v.title}
                 variants={fadeInUp}
-                className="group relative bg-neutral-50 border border-neutral-100 rounded-2xl p-8 hover:shadow-lg hover:border-blue-100 transition-all duration-300 overflow-hidden"
+                className="group relative bg-neutral-50 border border-neutral-100 rounded-2xl p-5 sm:p-8 hover:shadow-lg hover:border-blue-100 transition-all duration-300 overflow-hidden"
               >
-                <span className="absolute top-4 right-6 text-7xl font-black text-neutral-100 group-hover:text-blue-50 transition-colors duration-300 select-none leading-none">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-
-                <div className="relative w-14 h-14 rounded-xl bg-[#e6f7fd] group-hover:bg-[#00A5E0] flex items-center justify-center mb-6 transition-colors duration-300">
+<div className="relative w-14 h-14 rounded-xl bg-[#e6f7fd] group-hover:bg-[#00A5E0] flex items-center justify-center mb-6 transition-colors duration-300">
                   <ValueIcon iconName={v.iconName} />
                 </div>
 
                 <p className="relative text-xs uppercase tracking-wider text-neutral-400 mb-2">{v.heading}</p>
-                <h3 className="relative text-xl font-bold text-neutral-900 mb-4">{v.title}</h3>
-                <p className="relative text-base text-neutral-600 leading-relaxed">{v.description}</p>
+                <h3 className="relative text-lg sm:text-xl font-bold text-neutral-900 mb-3 sm:mb-4">{v.title}</h3>
+                <p className="relative text-sm sm:text-base text-neutral-600 leading-relaxed">{v.description}</p>
               </motion.div>
             ))}
           </motion.div>
