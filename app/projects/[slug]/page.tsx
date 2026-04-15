@@ -39,7 +39,7 @@ export default async function ProjectPage({
   return (
     <>
       {/* Hero image */}
-      <div className="relative w-full aspect-video max-h-[500px] bg-neutral-900 mt-16">
+      <div className="relative w-full h-[50vh] sm:h-[60vh] md:h-[70vh] bg-neutral-900">
         <Image
           src={project.image}
           alt={project.title}
