@@ -5,15 +5,14 @@ import { motion } from "framer-motion"
 
 // Image-13 is used only as the full-width banner below — not repeated in the grid
 const grid = [
-  { src: "/Image-1.jpg",   alt: "Site 1" },  // 0 — wide hero
-  { src: "/Image-2.jpg",   alt: "Site 2" },  // 1
-  { src: "/Image-3.jpg",   alt: "Site 3" },  // 2
-  { src: "/Image-4.jpg",   alt: "Site 4" },  // 3
-  { src: "/Image-6.jpg",   alt: "Site 5" },  // 4
-  { src: "/Image-8.jpg",   alt: "Site 6" },  // 5
-  { src: "/Image-9.jpg",   alt: "Site 7" },  // 6
-  { src: "/Image-10.jpg",  alt: "Site 8" },  // 7 — wide
-  { src: "/Image-12.jpeg", alt: "Site 9" },  // 8 — wide
+  { src: "/Image-1.jpg",  alt: "Site 1" },  // 0 — wide hero
+  { src: "/Image-2.jpg",  alt: "Site 2" },  // 1
+  { src: "/Image-3.jpg",  alt: "Site 3" },  // 2
+  { src: "/Image-4.jpg",  alt: "Site 4" },  // 3
+  { src: "/Image-6.jpg",  alt: "Site 5" },  // 4
+  { src: "/Image-8.jpg",  alt: "Site 6" },  // 5
+  { src: "/Image-9.jpg",  alt: "Site 7" },  // 6
+  { src: "/Image-10.jpg", alt: "Site 8" },  // 7 — full-width
 ]
 
 function Tile({
@@ -70,8 +69,7 @@ export default function HomesUnderConstruction() {
 
         Row 2:  [3] [4] [5] [6]  — 4 equal tiles
 
-        Row 3:  [7 col-span-2 aspect-[4/3] md:aspect-[8/3]] [8 col-span-2 aspect-[4/3] md:aspect-[8/3]]
-                 Two wide tiles that together fill all 4 columns.
+        Row 3:  [7 col-span-4 aspect-[21/6]] — single full-width tile.
       */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-0.5">
 
@@ -93,15 +91,11 @@ export default function HomesUnderConstruction() {
         <Tile src={grid[5].src} alt={grid[5].alt} className="col-span-1" style={{ aspectRatio: "4/3" }} delay={0.12} sizes="(max-width: 768px) 50vw, 25vw" />
         <Tile src={grid[6].src} alt={grid[6].alt} className="col-span-1" style={{ aspectRatio: "4/3" }} delay={0.17} sizes="(max-width: 768px) 50vw, 25vw" />
 
-        {/* Row 3 — two wide tiles */}
+        {/* Row 3 — one full-width tile */}
         <Tile src={grid[7].src} alt={grid[7].alt}
-          className="col-span-2"
-          style={{ aspectRatio: "4/3" }}
-          delay={0} sizes="(max-width: 768px) 100vw, 50vw" />
-        <Tile src={grid[8].src} alt={grid[8].alt}
-          className="col-span-2"
-          style={{ aspectRatio: "4/3" }}
-          delay={0.1} sizes="(max-width: 768px) 100vw, 50vw" />
+          className="col-span-2 md:col-span-4"
+          style={{ aspectRatio: "21/6" }}
+          delay={0} sizes="100vw" />
 
       </div>
 
