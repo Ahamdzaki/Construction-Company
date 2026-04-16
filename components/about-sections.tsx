@@ -1,156 +1,109 @@
 "use client"
 
-import { motion } from "framer-motion"
-import { Card, CardContent } from "@/components/ui/card"
 import Image from "next/image"
+import { Award, Shield, Zap } from "lucide-react"
+import type { LucideIcon } from "lucide-react"
+import { motion } from "framer-motion"
+import { slideInLeft, slideInRight, fadeInUp, staggerContainer } from "@/lib/animations"
+import { about } from "@/lib/data/content"
 
-// Variants
-const bottomToTop = {
-  hidden: { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0 },
-}
+const iconMap: Record<string, LucideIcon> = { Award, Shield, Zap }
 
-const leftToRight = {
-  hidden: { opacity: 0, x: -50 },
-  visible: { opacity: 1, x: 0 },
-}
+const { overview, credentials: checkpoints, values } = about
 
-const rightToLeft = {
-  hidden: { opacity: 0, x: 50 },
-  visible: { opacity: 1, x: 0 },
+function ValueIcon({ iconName }: { iconName: string }) {
+  const Icon = iconMap[iconName]
+  return <Icon className="w-7 h-7 text-[#00A5E0] group-hover:text-white transition-colors duration-300" />
 }
 
 export default function AboutSections() {
   return (
     <>
-      {/* Hero Section */}
-      <section className="py-16 bg-muted/30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* ── Company Overview ── */}
+      <section className="bg-white overflow-hidden pt-[72px] sm:pt-[84px]">
+        <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[400px] lg:min-h-[600px]">
+
           <motion.div
+            variants={slideInLeft}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
-            variants={bottomToTop}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-12"
+            viewport={{ once: true, amount: 0.25 }}
+            className="flex flex-col justify-center px-5 sm:px-10 lg:px-20 py-12 lg:py-20"
           >
-            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-              About BYD B
-            </h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              For over 13 years, we've been building exceptional homes across Australia, combining traditional
-              craftsmanship with modern innovation.
+            <p className="text-xs uppercase tracking-[0.18em] font-medium text-[#00A5E0] mb-4">Who We Are</p>
+            <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold text-neutral-900 mb-6 leading-tight">
+              Company Overview
+            </h2>
+            <p className="text-sm md:text-base text-neutral-600 leading-relaxed mb-5">
+              {overview.paragraph1}
             </p>
+            <p className="text-sm md:text-base text-neutral-600 leading-relaxed mb-8">
+              {overview.paragraph2}
+            </p>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {checkpoints.map((point) => (
+                <div key={point.label} className="flex flex-col bg-neutral-50 border border-neutral-100 rounded-lg px-4 py-3">
+                  <span className="text-xs text-[#00A5E0] uppercase tracking-[0.1em] mb-0.5">{point.label}</span>
+                  <span className="text-sm font-semibold text-neutral-900">{point.value}</span>
+                </div>
+              ))}
+            </div>
           </motion.div>
-        </div>
-      </section>
 
-      {/* Company History */}
-      <section className="py-16">
-        <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-40 items-stretch">
-            {/* Text */}
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={leftToRight}
-              transition={{ duration: 0.8 }}
-            >
-              <h2 className="text-4xl font-bold text-foreground mb-10">Company Overview</h2>
-              <p className="text-lg text-muted-foreground mb-4 text-justify">
-                BYD B PTY LTD was established/registered on 10/JUL/2024, but brings 13 years of experience in the
-                construction industry. We specialize in building high-quality residential houses and have built a
-                reputation for quality, reliability, and innovation.
-              </p>
-              <p className="text-lg text-muted-foreground mb-4 text-justify">
-                Our company holds ACN: 678 883 488, ABN: 66678883488, and is fully licensed with Builder License:
-                BC106152. We are registered with the Building Commission and maintain comprehensive insurance coverage
-                for all our projects.
-              </p>
-              <p className="text-lg text-muted-foreground text-justify tracking-[0.99px]">
-                This is to certify that BYD B PTY LTD Australian Company Number
-              </p>
-              <p className="text-lg text-muted-foreground text-justify">
-                678 883 488 is a proprietary company. The company is limited by shares. The company is registered under
-                the Corporations Act 2001 and is taken to be registered in Western Australia and the date of commencement
-                of registration is the fifth day of July, 2024
-              </p>
-            </motion.div>
-
-            {/* Image */}
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={rightToLeft}
-              transition={{ duration: 0.8 }}
-              className="relative w-full"
-            >
-              <Image
-                src="/construction-team-working-on-building-site-with-mo.png"
-                alt="BYD B construction team"
-                fill
-                className="rounded-lg shadow-lg object-cover"
-                loading="lazy"
-              />
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Mission & Values */}
-      <section className="py-16 bg-muted/30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
+            variants={slideInRight}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
-            variants={bottomToTop}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-12"
+            viewport={{ once: true, amount: 0.25 }}
+            className="relative min-h-[400px] lg:min-h-full"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Our Mission & Values</h2>
+            <Image
+              src={overview.image}
+              alt={overview.imageAlt}
+              fill
+              className="object-cover"
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              loading="lazy"
+            />
           </motion.div>
+        </div>
+      </section>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                icon: "🏗️",
-                title: "Quality First",
-                text: "We never compromise on quality. Every home we build meets the highest standards of craftsmanship and durability, backed by our 13 years of experience.",
-              },
-              {
-                icon: "🤝",
-                title: "Trust & Transparency",
-                text: "Open communication and honest pricing ensure our clients are informed and confident throughout the building process. We maintain full licensing and insurance.",
-              },
-              {
-                icon: "🌱",
-                title: "Innovation & Excellence",
-                text: "We combine traditional building techniques with modern technology and sustainable practices to deliver homes that are both beautiful and environmentally responsible.",
-              },
-            ].map((item, i) => (
+      {/* ── Mission & Values ── */}
+      <section className="py-12 md:py-20 lg:py-28 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-8 md:mb-14">
+            <p className="text-xs uppercase tracking-[0.18em] font-medium text-[#00A5E0] mb-3">Our Principles</p>
+            <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold text-neutral-900 mb-4">Mission &amp; values</h2>
+            <p className="text-sm md:text-base text-neutral-500 max-w-2xl mx-auto">
+              Every home we build is guided by three core principles that define who we are.
+            </p>
+          </div>
+
+          <motion.div
+            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6"
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.15 }}
+          >
+            {values.map((v) => (
               <motion.div
-                key={i}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={bottomToTop}
-                transition={{ duration: 0.8, delay: i * 0.2 }}
+                key={v.title}
+                variants={fadeInUp}
+                className="group relative bg-neutral-50 border border-neutral-100 rounded-2xl p-5 sm:p-8 hover:shadow-lg hover:border-blue-100 transition-all duration-300 overflow-hidden"
               >
-                <Card>
-                  <CardContent className="p-8 text-center">
-                    <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
-                      <span className="text-2xl text-primary-foreground">{item.icon}</span>
-                    </div>
-                    <h3 className="text-xl font-semibold text-foreground mb-4">{item.title}</h3>
-                    <p className="text-muted-foreground">{item.text}</p>
-                  </CardContent>
-                </Card>
+<div className="relative w-14 h-14 rounded-xl bg-[#e6f7fd] group-hover:bg-[#00A5E0] flex items-center justify-center mb-6 transition-colors duration-300">
+                  <ValueIcon iconName={v.iconName} />
+                </div>
+
+                <p className="relative text-xs uppercase tracking-wider text-neutral-400 mb-2">{v.heading}</p>
+                <h3 className="relative text-lg sm:text-xl font-bold text-neutral-900 mb-3 sm:mb-4">{v.title}</h3>
+                <p className="relative text-sm sm:text-base text-neutral-600 leading-relaxed">{v.description}</p>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
     </>

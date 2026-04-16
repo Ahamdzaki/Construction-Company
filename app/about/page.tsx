@@ -1,16 +1,20 @@
+import type { Metadata } from "next"
 import dynamic from "next/dynamic"
-const Footer = dynamic(() => import("@/components/footer"), { ssr: true, loading: () => null })
-export const metadata = {
-  title: "About",
-  description: "Learn more about BYD B PTY LTD, our history, and our commitment to quality construction.",
-}
+import AboutSections from "@/components/about-sections"
 
-const AboutSections = dynamic(() => import("@/components/about-sections"), { ssr: true, loading: () => null })
+const CtaBanner = dynamic(() => import("@/components/ui/cta-banner"))
+const Footer    = dynamic(() => import("@/components/footer"))
+
+export const metadata: Metadata = {
+  title: "About Us",
+  description: "Learn about BYD B PTY LTD — licensed home builders in Western Australia with 13+ years experience, Builder Licence BC106152.",
+}
 
 export default function AboutPage() {
   return (
     <>
       <AboutSections />
+      <CtaBanner />
       <Footer />
     </>
   )

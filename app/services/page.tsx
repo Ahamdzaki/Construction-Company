@@ -1,77 +1,21 @@
-export const metadata = {
-  title: "Services",
-  description: "Discover the range of construction and design services offered by BYD B PTY LTD.",
-};
+import type { Metadata } from "next"
 import dynamic from "next/dynamic"
-const Footer = dynamic(() => import("@/components/footer"), { ssr: true, loading: () => null })
-const ServicesSections = dynamic(() => import("@/components/services-sections"), { ssr: true, loading: () => null })
-const services = [
-  {
-    iconName: "Home",
-    title: "New Home Construction",
-    description:
-      "Complete home building services from foundation to finish, backed by 13 years of experience and full licensing.",
-    features: ["Custom floor plans", "Premium materials", "Energy-efficient designs", "Fixed-price contracts"],
-  },
-  {
-    iconName: "Wrench",
-    title: "Home Renovations",
-    description:
-      "Transform your existing home with our comprehensive renovation services, from kitchen makeovers to full home extensions.",
-    features: [
-      "Kitchen & bathroom renovations",
-      "Home extensions",
-      "Structural modifications",
-      "Heritage restorations",
-    ],
-  },
-  {
-    iconName: "Palette",
-    title: "Custom Designs",
-    description:
-      "Work with our experienced team to create a truly unique home that reflects your lifestyle and preferences.",
-    features: [
-      "Architectural design",
-      "Interior design consultation",
-      "Planning permit assistance",
-      "Material selection guidance",
-    ],
-  },
-]
+import ServicesSections from "@/components/services-sections"
+import { services, processSteps } from "@/lib/data/content"
 
-const steps = [
-  {
-    step: "01",
-    title: "Consultation",
-    description: "Initial meeting to discuss your vision, budget, and timeline",
-  },
-  {
-    step: "02",
-    title: "Design",
-    description: "Create detailed plans and specifications for your project",
-  },
-  { step: "03", title: "Construction", description: "Professional building with regular progress updates" },
-  { step: "04", title: "Handover", description: "Final inspection and keys to your completed home" },
-]
+const CtaBanner = dynamic(() => import("@/components/ui/cta-banner"))
+const Footer    = dynamic(() => import("@/components/footer"))
+
+export const metadata: Metadata = {
+  title: "Our Services",
+  description: "Comprehensive building services in Western Australia — new home construction, renovations, extensions, and custom design. Licensed builder BC106152.",
+}
 
 export default function ServicesPage() {
   return (
     <>
-
-      {/* Hero Section */}
-      <section className="py-16 bg-muted/30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">Our Services</h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              With 13 years of experience, we offer comprehensive building services to bring your vision to life. From
-              new home construction to renovations and custom designs, we deliver excellence in every project.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <ServicesSections services={services} steps={steps} />
+      <ServicesSections services={services} steps={processSteps} />
+      <CtaBanner />
       <Footer />
     </>
   )

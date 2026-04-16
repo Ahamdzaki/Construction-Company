@@ -7,7 +7,11 @@ module.exports = {
     './public/index.html',
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        montserrat: ['var(--font-montserrat)', 'sans-serif'],
+      },
+    },
     screens: {
       'xs': '360px', // for very small phones
       'sm': '480px',

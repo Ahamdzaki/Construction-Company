@@ -1,27 +1,25 @@
 "use client"
 
 import type React from "react"
-
 import { Mail, Phone, MessageCircle } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useState } from "react"
+import { contact, socials } from "@/lib/data/content"
+
+const whatsappHref = socials.find((s) => s.label === "WhatsApp")?.href ?? contact.phoneHref
 
 export default function FixedContactButton() {
   const [showCopied, setShowCopied] = useState(false)
 
   const handleCallClick = (e: React.MouseEvent) => {
-    // Check if user is on mobile device
     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
-
     if (!isMobile) {
       e.preventDefault()
-      // Copy phone number to clipboard on desktop
-      navigator.clipboard.writeText("0410 664 649").then(() => {
+      navigator.clipboard.writeText(contact.phone).then(() => {
         setShowCopied(true)
         setTimeout(() => setShowCopied(false), 2000)
       })
     }
-    // On mobile, let the tel: link work normally
   }
 
   return (
@@ -32,12 +30,7 @@ export default function FixedContactButton() {
           className="rounded-full shadow-lg hover:shadow-xl transition-all duration-300 bg-green-600 hover:bg-green-700"
           asChild
         >
-          <a
-            href="https://wa.me/61410664649"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2"
-          >
+          <a href={whatsappHref} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
             <MessageCircle className="w-5 h-5" />
             <span className="hidden sm:inline">WhatsApp</span>
           </a>
@@ -48,7 +41,7 @@ export default function FixedContactButton() {
           className="rounded-full shadow-lg hover:shadow-xl transition-all duration-300 bg-primary hover:bg-primary/90"
           asChild
         >
-          <a href="mailto:bpanahi@bydb.com.au" className="flex items-center gap-2">
+          <a href={contact.emailHref} className="flex items-center gap-2">
             <Mail className="w-5 h-5" />
             <span className="hidden sm:inline">Email Us</span>
           </a>
@@ -61,7 +54,7 @@ export default function FixedContactButton() {
           onClick={handleCallClick}
           asChild
         >
-          <a href="tel:+61410664649" className="flex items-center gap-2">
+          <a href={contact.phoneHref} className="flex items-center gap-2">
             <Phone className="w-5 h-5" />
             <span className="hidden sm:inline">Call Us</span>
           </a>

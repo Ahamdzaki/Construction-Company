@@ -3,17 +3,8 @@ import nodemailer from "nodemailer";
 
 export async function POST(req: Request) {
   try {
-    // --- DEBUGGING ENV VARIABLES ---
-    console.log("SMTP_HOST:", process.env.SMTP_HOST);
-    console.log("SMTP_PORT:", process.env.SMTP_PORT);
-    console.log("SMTP_SECURE:", process.env.SMTP_SECURE);
-    console.log("SMTP_USER:", process.env.SMTP_USER);
-    console.log("SMTP_PASS length:", process.env.SMTP_PASS?.length);
-    console.log("REVIEW_INBOX:", process.env.REVIEW_INBOX);
-
     const body = await req.json();
 
-    // Create transporter using environment variables
     const transporter = nodemailer.createTransport({
       host: process.env.SMTP_HOST,
       port: Number(process.env.SMTP_PORT),
@@ -33,7 +24,7 @@ Name: ${body.name}
 Email: ${body.email}
 Title: ${body.title}
 Rating: ${body.rating}/5
-Date: ${new Date().toLocaleString("en-AU", { timeZone: "Australia/Sydney" })}
+Date: ${new Date().toLocaleString("en-AU", { timeZone: "Australia/Perth" })}
 Review:
 ${body.review}
       `,
@@ -41,7 +32,7 @@ ${body.review}
 
     return NextResponse.json({ success: true });
   } catch (error) {
-    console.error("Error sending email:", error);
+    console.error("Error sending review email:", error);
     return NextResponse.json({ error: "Failed to send email" }, { status: 500 });
   }
 }

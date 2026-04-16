@@ -1,0 +1,152 @@
+"use client"
+
+import { useState, useMemo } from "react"
+import Image from "next/image"
+import Link from "next/link"
+import { motion, AnimatePresence } from "framer-motion"
+import { BedDouble, Bath, Car, Maximize } from "lucide-react"
+import { projects } from "@/lib/data/projects"
+
+const categories = ["All", "Exterior", "Interior", "New Construction"] as const
+type Filter = (typeof categories)[number]
+
+const categoryOrder: Record<string, number> = { Exterior: 0, Interior: 1, "New Construction": 2 }
+
+export default function GalleryClient() {
+  const [active, setActive] = useState<Filter>("All")
+  const [visible, setVisible] = useState(9)
+
+  const filtered = useMemo(() =>
+    active === "All"
+      ? [...projects].sort((a, b) => (categoryOrder[a.category] ?? 99) - (categoryOrder[b.category] ?? 99))
+      : projects.filter((p) => p.category === active),
+    [active]
+  )
+  const shown = filtered.slice(0, visible)
+
+  return (
+    <div className="min-h-screen bg-white">
+
+      {/* Page header */}
+      <div className="pt-[88px] sm:pt-[100px] pb-6 md:pb-8 px-4 sm:px-6 lg:px-10 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 sm:gap-6 max-w-7xl mx-auto">
+        <div>
+          <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold text-neutral-900 tracking-tight">Project Gallery</h1>
+        </div>
+
+        {/* Filters */}
+        <div className="flex flex-wrap gap-2">
+          {categories.map((cat) => (
+            <button
+              key={cat}
+              onClick={() => { setActive(cat); setVisible(9) }}
+              className={`px-4 py-1.5 text-xs font-medium uppercase tracking-widest border transition-colors ${
+                active === cat
+                  ? "bg-[#00A5E0] text-white border-[#00A5E0]"
+                  : "bg-transparent border-neutral-300 text-neutral-500 hover:text-[#00A5E0] hover:border-[#00A5E0]"
+              }`}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Grid */}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={active}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.35 }}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-0.5 bg-neutral-200"
+        >
+          {shown.map((project, i) => {
+            const col = i % 3
+            const verticalBorder =
+              col === 0 ? "lg:border-r lg:border-neutral-200"
+              : col === 1 ? "lg:border-x lg:border-neutral-200"
+              : "lg:border-l lg:border-neutral-200"
+
+            return (
+              <Link
+                key={project.id}
+                href={`/projects/${project.slug}`}
+                className={`group relative block aspect-[4/3] overflow-hidden bg-neutral-100 ${verticalBorder}`}
+              >
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  fill
+                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  loading={i < 6 ? "eager" : "lazy"}
+                />
+
+                {/* Permanent bottom gradient */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+
+                {/* Hover darkening */}
+                <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+                {/* Project info */}
+                <div className="absolute bottom-0 left-0 right-0 p-5">
+                  <p className="text-xs uppercase tracking-[0.18em] font-semibold mb-1" style={{ color: "#00A5E0" }}>
+                    {project.category}
+                  </p>
+                  <h3 className="text-sm md:text-base font-semibold uppercase tracking-[0.1em] text-white leading-tight mb-1.5">
+                    {project.title}
+                  </h3>
+                  <p className="text-sm text-amber-300 font-semibold mb-2">{project.price}</p>
+                  {(project.bedrooms || project.bathrooms || project.carSpaces || project.size) && (
+                    <div className="flex flex-wrap gap-x-4 gap-y-1">
+                      {project.bedrooms && (
+                        <span className="flex items-center gap-1 text-xs text-white font-medium">
+                          <BedDouble className="w-3.5 h-3.5 text-white/70" />{project.bedrooms} Bed
+                        </span>
+                      )}
+                      {project.bathrooms && (
+                        <span className="flex items-center gap-1 text-xs text-white font-medium">
+                          <Bath className="w-3.5 h-3.5 text-white/70" />{project.bathrooms} Bath
+                        </span>
+                      )}
+                      {project.carSpaces && (
+                        <span className="flex items-center gap-1 text-xs text-white font-medium">
+                          <Car className="w-3.5 h-3.5 text-white/70" />{project.carSpaces} Car
+                        </span>
+                      )}
+                      {project.size && (
+                        <span className="flex items-center gap-1 text-xs text-white font-medium">
+                          <Maximize className="w-3.5 h-3.5 text-white/70" />{project.size}
+                        </span>
+                      )}
+                    </div>
+                  )}
+                </div>
+
+                {/* Hover arrow */}
+                <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <span className="text-white/80 text-xs tracking-widest uppercase">View →</span>
+                </div>
+              </Link>
+            )
+          })}
+        </motion.div>
+      </AnimatePresence>
+
+      {/* Load more */}
+      {visible < filtered.length && (
+        <div className="text-center py-12">
+          <button
+            onClick={() => setVisible((v) => v + 9)}
+            className="px-8 py-3 border border-neutral-300 text-neutral-600 text-xs uppercase tracking-widest hover:bg-neutral-50 hover:border-neutral-400 transition-colors"
+          >
+            Load More
+          </button>
+        </div>
+      )}
+
+      <div className="h-8" />
+    </div>
+  )
+}

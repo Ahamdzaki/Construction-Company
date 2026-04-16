@@ -1,240 +1,111 @@
-"use client";
-import { useState } from "react"
-import { Card } from "@/components/ui/card"
-import Image from "next/image"
+"use client"
+
 import Link from "next/link"
-import { Bed, Bath, Car, Home } from "lucide-react";
-import { Button } from "@/components/ui/button"
+import Image from "next/image"
 import { motion } from "framer-motion"
-import type { Variants } from "framer-motion"
-const galleryImages = [
-  
-  // --- EXTERIOR IMAGES ---
-  {
-    id: 1,
-    title: "Contemporary Exterior",
-    image: "/exterior-1.jpg",
-    category: "Exterior",
-    // price: "Start from $359,000",
-     price: "Start from $559,999",
-    bedrooms: 4,
-    bathrooms: 3,
-    carSpaces: 2,
-    size: "280m²"
-  },
-  {
-    id: 2,
-    title: "Luxury Pool Area",
-    image: "/exterior-2.jpg",
-    category: "Exterior",
-    // price: "Start from $599,999",
-     price: "Start from $699,999",
-    bedrooms: 4,
-    bathrooms: 3,
-    carSpaces: 2,
-    size: "350m²"
-  },
-  {
-    id: 3,
-    title: "Coastal Style Home",
-    category: "Exterior",
-    image: "/exterior-6.jpg",
-    // price: "Start from $299,999",
-     price: "Start from $439,999",
-    bedrooms: 3,
-    bathrooms: 2,
-    carSpaces: 2,
-    size: "220m²"
-  },
-  
-  {
-    id: 4,
-    title: "Modern Townhouse",
-    image: "/exterior-4.jpg",
-    category: "Exterior",
-    // price: "Start from $299,999",
-    price: "Start from $359,999",
-    bedrooms: 3,
-    bathrooms: 2,
-    carSpaces: 1,
-    size: "180m²"
-  },
-  {
-    id: 5,
-    title: "Luxury Executive Home",
-    image: "/exterior-5.jpg",
-    category: "Exterior",
-    // price: "Start from $299,999",
-    price: "Start from $399,999",
-    bedrooms: 3,
-    bathrooms: 2,
-    carSpaces: 2,
-    size: "200m²"
-  },
-  {
-    id: 6,
-    title: "High-End Executive Home",
-    image: "/main.png",
-    category: "Exterior",
-    bedrooms: 3,
-    bathrooms: 2,
-    carSpaces: 2,
-    size: "220m²",
-    // price: "Start from $299,999",
-    price: "Start from $439,999",
-  },
-  
-  {
-    id: 7,
-    title: "Modern Home Office",
-    image: "/modern-home-office-with-built-in-storage.png",
-    category: "Interior",
-    price: "Start from $10,000",
-    
-  },
-  {
-    id: 208,
-    title: "Elegant Dining Area",
-    image: "/elegant-dining-area-with-chandelier.png",
-    category: "Interior",
-    price: "Start from $10,000",
-    
-  },
-  {
-    id: 209,
-    title: "Luxury Master Bedroom",
-    image: "/luxury-master-bedroom-with-ensuite.png",
-    category: "Interior",
-    price: "Start from $10,000",
-    
-  },
-  {
-    id: 210,
-    title: "Modern Kitchen Design",
-    image: "/modern-kitchen-island-lights.png",
-    category: "Interior",
-    price: "Start from $10,000",
-    
-  },
-  {
-    id: 211,
-    title: "Walk-in Wardrobe",
-    image: "/walk-in-wardrobe-with-custom-storage.png",
-    category: "Interior",
-    price: "Start from $10,000",
-    
-  },
-  {
-    id: 212,
-    title: "Designer Bathroom",
-    image: "/designer-bathroom-with-marble-finishes.png",
-    category: "Interior",
-    price: "Start from $10,000",
-    
-  }
-  
-  
-]
+import { BedDouble, Bath, Car, Maximize } from "lucide-react"
+import { staggerContainer, fadeInUp } from "@/lib/animations"
+import { projects } from "@/lib/data/projects"
+import { sections } from "@/lib/data/content"
 
-const infoContainer: Variants = {
-  hidden: { opacity: 1 },
-  visible: {
-    opacity: 1,
-    transition: { when: "beforeChildren", staggerChildren: 0.1 }
-  }
-}
+const categoryOrder: Record<string, number> = { Exterior: 0, Interior: 1, "New Construction": 2, "Custom Design": 3 }
 
-const rise: Variants = {
-  hidden: { opacity: 0, y: 18 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.45, ease: "easeOut" } }
-}
+const featured = projects
+  .filter((p) => p.featured)
+  .sort((a, b) => (categoryOrder[a.category] ?? 99) - (categoryOrder[b.category] ?? 99))
+  .slice(0, 6)
 
 export default function GalleryPreview() {
-  // Modal logic removed; images are now unclickable
-
   return (
-    <section className="py-16 bg-muted/30" id="gallery-preview">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-16 md:py-24 bg-neutral-50">
+      <div className="w-full px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Our Work Gallery</h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Explore our portfolio of completed projects showcasing 13 years of quality craftsmanship and attention to
-            detail in every home we build.
+          <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold text-neutral-900 mb-3">Featured <span className="text-[#00A5E0]">Projects</span></h2>
+          <p className="text-sm md:text-base text-neutral-500 max-w-xl mx-auto">
+            {sections.gallery.description}
           </p>
         </div>
+      </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {galleryImages.map((item) => (
-            <Card key={item.id} className="group overflow-hidden hover:shadow-lg transition-shadow duration-300">
+      <motion.div
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-1"
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+        >
+          {featured.map((project) => (
+            <motion.div key={project.id} variants={fadeInUp}>
               <Link
-                href={{
-                  pathname: `/projects/${item.id}`,
-                  query: {
-                    title: item.title,
-                    category: item.category,
-                    price: item.price,
-                    image: item.image,
-                    bedrooms: item.bedrooms,
-                    bathrooms: item.bathrooms,
-                    carSpaces: item.carSpaces,
-                    size: item.size,
-                  },
-                }}
-                className="block"
+                href="/gallery"
+                className="group block relative overflow-hidden aspect-[4/3] bg-neutral-200"
               >
-                <div className="relative overflow-hidden cursor-pointer">
-                  <Image
-                    src={item.image || "/placeholder.svg"}
-                    alt={item.title}
-                    width={400}
-                    height={300}
-                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
-                    loading="lazy"
-                  />
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+                <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+                {/* Info overlay */}
+                <div className="absolute bottom-0 left-0 right-0 p-5">
+                  <p className="text-xs uppercase tracking-[0.18em] font-semibold mb-1" style={{ color: "#00A5E0" }}>
+                    {project.category}
+                  </p>
+                  <h3 className="text-sm md:text-base font-semibold uppercase tracking-[0.1em] text-white leading-tight mb-1.5">
+                    {project.title}
+                  </h3>
+                  {project.price && (
+                    <p className="text-sm text-amber-300 font-semibold mb-2">{project.price}</p>
+                  )}
+                  {(project.bedrooms || project.bathrooms || project.carSpaces || project.size) && (
+                    <div className="flex flex-wrap gap-x-4 gap-y-1">
+                      {project.bedrooms && (
+                        <span className="flex items-center gap-1 text-xs text-white font-medium">
+                          <BedDouble className="w-3.5 h-3.5 text-white/70" />{project.bedrooms} Bed
+                        </span>
+                      )}
+                      {project.bathrooms && (
+                        <span className="flex items-center gap-1 text-xs text-white font-medium">
+                          <Bath className="w-3.5 h-3.5 text-white/70" />{project.bathrooms} Bath
+                        </span>
+                      )}
+                      {project.carSpaces && (
+                        <span className="flex items-center gap-1 text-xs text-white font-medium">
+                          <Car className="w-3.5 h-3.5 text-white/70" />{project.carSpaces} Car
+                        </span>
+                      )}
+                      {project.size && (
+                        <span className="flex items-center gap-1 text-xs text-white font-medium">
+                          <Maximize className="w-3.5 h-3.5 text-white/70" />{project.size}
+                        </span>
+                      )}
+                    </div>
+                  )}
                 </div>
-                {/* Details bar below image */}
-                <motion.div
-                  className="w-full px-3 py-2 bg-gray-100 text-gray-800 text-center rounded-b-lg min-h-[56px] flex flex-col justify-center"
-                  variants={infoContainer}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, amount: 0.2 }}
-                >
-                  <motion.h3 className="text-lg font-semibold mb-1" variants={rise}>{item.title}</motion.h3>
-                  <motion.p className="text-sm" variants={rise}>{item.category}</motion.p>
-                    {item.price && (
-                      <motion.div variants={rise}>
-                        <span className="inline-block px-3 py-1 bg-accent text-white rounded-full text-sm font-semibold mt-1 w-auto">{item.price}</span>
-                      </motion.div>
-                    )}
-                  <div className="flex justify-center gap-4 mt-2">
-                    {item.bedrooms !== undefined && (
-                      <motion.span className="flex items-center gap-1" variants={rise}><Bed className="w-4 h-4" />{item.bedrooms}</motion.span>
-                    )}
-                    {item.bathrooms !== undefined && (
-                      <motion.span className="flex items-center gap-1" variants={rise}><Bath className="w-4 h-4" />{item.bathrooms}</motion.span>
-                    )}
-                    {item.carSpaces !== undefined && (
-                      <motion.span className="flex items-center gap-1" variants={rise}><Car className="w-4 h-4" />{item.carSpaces}</motion.span>
-                    )}
-                    {item.size && (
-                      <motion.span className="flex items-center gap-1" variants={rise}><Home className="w-4 h-4" />{item.size}</motion.span>
-                    )}
-                  </div>
-                </motion.div>
+
+                <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <span className="text-white/80 text-xs tracking-widest uppercase">View →</span>
+                </div>
               </Link>
-            </Card>
+            </motion.div>
           ))}
-        </div>
-          
-          <div className="text-center mt-20">
-          <Link href="/gallery">
-            <Button size="lg" className="bg-primary hover:bg-primary/90">
-              View Our Gallery
-            </Button>
+        </motion.div>
+
+      <div className="w-full px-4 sm:px-6 lg:px-8">
+        <div className="text-center mt-10 mb-6">
+          <Link
+            href={sections.gallery.cta.href}
+            className="inline-block px-7 py-3 border border-[#00A5E0] text-[#00A5E0] text-sm font-medium tracking-wide hover:bg-[#00A5E0] hover:text-white transition-colors duration-200"
+          >
+            {sections.gallery.cta.label}
           </Link>
         </div>
       </div>
     </section>
-  );
+  )
 }

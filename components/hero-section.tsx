@@ -1,35 +1,30 @@
 "use client"
 
 import Image from "next/image"
+import Link from "next/link"
 import { motion } from "framer-motion"
 import { useEffect, useState, useRef } from "react"
 
-// Images for background slideshow
-const imageSources = [
-  "/main.png",
- "/exterior-5.jpg",
-  "/exterior-1.jpg",
-]
+import { hero } from "@/lib/data/content"
 
-// slideshow timing (ms)
-const SLIDE_DURATION = 6000 // time each slide is visible (adjust as you like)
-const FADE_DURATION = 800 // fade length (ms)
+const imageSources = hero.images.map((img) => ({ src: img.src, alt: img.alt, rotate: false }))
+
+const SLIDE_DURATION = 6000
+const FADE_DURATION = 800
 
 export default function HeroSection() {
   const [index, setIndex] = useState(0)
   const [displayedText, setDisplayedText] = useState("")
-  const text = "Building Dreams Into Reality"
+  const text = hero.headline
   const mounted = useRef(false)
 
-  // Preload images (best practice to avoid flicker)
   useEffect(() => {
-    imageSources.forEach((src) => {
+    imageSources.forEach((slide) => {
       const img = new window.Image()
-      img.src = src
+      img.src = slide.src
     })
   }, [])
 
-  // Slideshow interval (uses a ref-safe pattern)
   useEffect(() => {
     mounted.current = true
     const id = setInterval(() => {
@@ -41,12 +36,10 @@ export default function HeroSection() {
     }
   }, [])
 
-  // Typewriter effect for <h1>
   useEffect(() => {
     let currentIndex = 0
-    const typingSpeed = 120 // ms per char
-    const pauseDuration = 2200 // pause at end
-
+    const typingSpeed = 120
+    const pauseDuration = 2200
     let timeoutId: number | undefined
 
     const type = () => {
@@ -56,7 +49,6 @@ export default function HeroSection() {
         currentIndex++
         timeoutId = window.setTimeout(type, typingSpeed)
       } else {
-        // Wait then restart
         timeoutId = window.setTimeout(() => {
           currentIndex = 0
           type()
@@ -71,15 +63,14 @@ export default function HeroSection() {
   }, [])
 
   return (
-    <section className="relative min-h-[70vh] xs:min-h-[80vh] sm:min-h-[85vh] md:min-h-[90vh] lg:min-h-[95vh] xl:min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background wrapper with fallback background to prevent white flash */}
+    <section className="relative min-h-[480px] h-[calc(85vh-20px)] sm:h-[calc(88vh-20px)] md:h-[calc(90vh-20px)] lg:h-[calc(92vh-20px)] flex items-center justify-center overflow-hidden">
+      {/* Background slideshow */}
       <div className="absolute inset-0 z-0 pointer-events-none bg-slate-900">
-        {/* All slides mounted — each positioned absolutely and crossfaded by opacity */}
-        {imageSources.map((src, i) => {
+        {imageSources.map((slide, i) => {
           const isActive = i === index
           return (
             <motion.div
-              key={src + "-" + i}
+              key={slide.src + "-" + i}
               aria-hidden={!isActive}
               initial={false}
               animate={{ opacity: isActive ? 1 : 0 }}
@@ -88,30 +79,62 @@ export default function HeroSection() {
               style={{ willChange: "opacity" }}
             >
               <Image
-                src={src}
+                src={slide.src}
                 alt={`Slide ${i + 1}`}
                 fill
-                priority={i === 0} // prioritize first slide; others are preloaded above
+                priority={i === 0}
                 sizes="100vw"
-                style={{ objectFit: "cover", objectPosition: "center 35%" }}
-                placeholder="empty" // avoid blur flash
+                style={{ objectFit: "cover", objectPosition: "center 35%", transform: slide.rotate ? "rotate(180deg)" : undefined }}
+                placeholder="empty"
               />
-              {/* subtle overlay for consistent tone (optional) */}
-              <div className="absolute inset-0 bg-primary/30"></div>
+              <div className="absolute inset-0 bg-black/30" />
             </motion.div>
           )
         })}
       </div>
 
-      {/* Content (on top of slideshow) */}
-      <div className="relative z-10 text-center text-white max-w-xs xs:max-w-sm sm:max-w-2xl md:max-w-3xl lg:max-w-4xl xl:max-w-5xl mx-auto px-3 xs:px-4 sm:px-6 md:px-8 lg:px-10">
-        <h1 className="text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-3 xs:mb-4 sm:mb-5 md:mb-6 text-balance whitespace-pre inline-block leading-tight">
+      {/* Content */}
+      <div className="relative z-10 text-center text-white w-full max-w-sm sm:max-w-2xl md:max-w-3xl lg:max-w-4xl xl:max-w-5xl mx-auto px-6 sm:px-8 py-8">
+        
+
+        {/* Typewriter headline */}
+        <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-balance leading-tight">
           {displayedText}
           <span className="blinking-cursor">|</span>
         </h1>
+
+        {/* Subtitle */}
+        <motion.p
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
+          className="text-sm md:text-base text-white/75 max-w-2xl mx-auto mt-4"
+        >
+          {hero.subtitle}
+        </motion.p>
+
+        {/* CTA buttons */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.8 }}
+          className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-4 mt-8"
+        >
+          <Link
+            href={hero.primaryCta.href}
+            className="px-6 sm:px-8 py-4 bg-amber-500 hover:bg-amber-400 text-neutral-900 font-semibold text-sm sm:text-base transition-colors w-full sm:w-auto text-center border-2 border-transparent"
+          >
+            {hero.primaryCta.label}
+          </Link>
+          <Link
+            href={hero.secondaryCta.href}
+            className="px-6 sm:px-8 py-4 bg-transparent border-2 border-white/40 hover:bg-white/10 text-white font-medium text-sm sm:text-base transition-colors w-full sm:w-auto text-center"
+          >
+            {hero.secondaryCta.label}
+          </Link>
+        </motion.div>
       </div>
 
-      {/* Blinking cursor style */}
       <style jsx>{`
         .blinking-cursor {
           display: inline-block;
@@ -119,12 +142,8 @@ export default function HeroSection() {
           animation: blink 1s infinite;
         }
         @keyframes blink {
-          0%, 50% {
-            opacity: 1;
-          }
-          51%, 100% {
-            opacity: 0;
-          }
+          0%, 50% { opacity: 1; }
+          51%, 100% { opacity: 0; }
         }
       `}</style>
     </section>
