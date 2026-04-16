@@ -8,7 +8,7 @@ import { staggerContainer, fadeInUp } from "@/lib/animations"
 import { projects } from "@/lib/data/projects"
 import { sections } from "@/lib/data/content"
 
-const categoryOrder: Record<string, number> = { Exterior: 0, Interior: 1, "New Construction": 2, "Custom Design": 3 }
+const categoryOrder: Record<string, number> = { Exterior: 0, Interior: 1, "New Construction": 2, "Custom Design": 3, "Double Storey": 4 }
 
 const featured = projects
   .filter((p) => p.featured)

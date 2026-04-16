@@ -2,7 +2,7 @@ export interface Project {
   id: number
   slug: string
   title: string
-  category: "Exterior" | "Interior" | "New Construction" | "Custom Design"
+  category: "Exterior" | "Interior" | "New Construction" | "Custom Design" | "Double Storey"
   price: string
   description: string
   image: string
@@ -103,6 +103,52 @@ export const projects: Project[] = [
     price: "Start from $400,000",
     description: "A bold contemporary estate with architectural precision, clean façade lines, and premium outdoor living spaces designed for the modern lifestyle.",
   },
+  // ── Double Storey ─────────────────────────────────────────────────────────────
+  {
+    id: 7,
+    slug: "classic-coastal-double-storey",
+    title: "Classic Coastal Double Storey",
+    category: "Exterior",
+    image: "/new images/double-story-1.jpeg",
+    gallery: ["/new images/double-story-1.jpeg"],
+    bedrooms: 4,
+    bathrooms: 3,
+    carSpaces: 2,
+    size: "320m²",
+    price: "Start from $550,000",
+    description: "A crisp white coastal double storey featuring a pitched roof, timber entry door, shuttered windows, and lush tropical landscaping — timeless street appeal in every detail.",
+    featured: true,
+  },
+  {
+    id: 10,
+    slug: "hamptons-double-storey",
+    title: "Hamptons Double Storey",
+    category: "Exterior",
+    image: "/new images/double-story-3.jpeg",
+    gallery: ["/new images/double-story-3.jpeg"],
+    bedrooms: 4,
+    bathrooms: 2,
+    carSpaces: 2,
+    size: "340m²",
+    price: "Start from $550,000",
+    description: "A refined Hamptons-style double storey with board-and-batten cladding, a full upper balcony with white railings, and a welcoming open-plan design perfect for families.",
+    featured: true,
+  },
+  {
+    id: 8,
+    slug: "modern-glass-double-storey",
+    title: "Modern Glass Double Storey",
+    category: "Exterior",
+    image: "/new images/double-story-2.jpeg",
+    gallery: ["/new images/double-story-2.jpeg"],
+    bedrooms: 5,
+    bathrooms: 3,
+    carSpaces: 2,
+    size: "380m²",
+    price: "Start from $550,000",
+    description: "A bold contemporary double storey with a flat roof, floor-to-ceiling glass façade, vertical screening, and stunning illuminated interiors — designed for the modern lifestyle.",
+  },
+  
   {
     id: 38,
     slug: "hillside-residence",
@@ -144,6 +190,7 @@ export const projects: Project[] = [
     size: "290m²",
     price: "Start from $400,000",
     description: "A modern masterpiece delivering clean lines, bold geometry, and resort-style outdoor living — a home that makes a lasting impression.",
+    featured: true,
   },
   {
     id: 4,
@@ -353,40 +400,6 @@ export const projects: Project[] = [
     size: "240m²",
     price: "Start from $400,000",
     description: "An energy-efficient home with solar integration, sustainable materials, and smart home technology built in from the ground up.",
-  },
-  // ── Interior ──────────────────────────────────────────────────────────────────
-  {
-    id: 7,
-    slug: "elegant-dining-area",
-    title: "Elegant Dining Area",
-    category: "Interior",
-    image: "/luxury-master-bedroom-with-ensuite.png",
-    gallery: ["/luxury-master-bedroom-with-ensuite.png"],
-    price: "Start from $10,000",
-    description: "A spacious master bedroom suite with premium carpet, custom window treatments, and direct access to a beautifully appointed ensuite.",
-    featured: true,
-  },
-  {
-    id: 8,
-    slug: "designer-bathroom",
-    title: "Designer Bathroom",
-    category: "Interior",
-    image: "/walk-in-wardrobe-with-custom-storage.png",
-    gallery: ["/walk-in-wardrobe-with-custom-storage.png"],
-    price: "Start from $10,000",
-    description: "A fully custom walk-in wardrobe with island drawer unit, integrated lighting, and tailored hanging and shelving solutions.",
-    featured: true,
-  },
-  {
-    id: 10,
-    slug: "modern-kitchen-design",
-    title: "Modern Kitchen Design",
-    category: "Interior",
-    image: "/designer-bathroom-with-marble-finishes.png",
-    gallery: ["/designer-bathroom-with-marble-finishes.png"],
-    price: "Start from $10,000",
-    description: "A luxurious bathroom with full marble finishes, freestanding bath, and custom vanity — the ultimate retreat within your home.",
-    featured: true,
   },
   {
     id: 11,

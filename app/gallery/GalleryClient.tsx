@@ -7,10 +7,8 @@ import { motion, AnimatePresence } from "framer-motion"
 import { BedDouble, Bath, Car, Maximize } from "lucide-react"
 import { projects } from "@/lib/data/projects"
 
-const categories = ["All", "Exterior", "Interior", "New Construction"] as const
+const categories = ["All", "Exterior", "Interior", "New Construction", "Double Storey"] as const
 type Filter = (typeof categories)[number]
-
-const categoryOrder: Record<string, number> = { Exterior: 0, Interior: 1, "New Construction": 2 }
 
 export default function GalleryClient() {
   const [active, setActive] = useState<Filter>("All")
@@ -18,7 +16,7 @@ export default function GalleryClient() {
 
   const filtered = useMemo(() =>
     active === "All"
-      ? [...projects].sort((a, b) => (categoryOrder[a.category] ?? 99) - (categoryOrder[b.category] ?? 99))
+      ? [...projects]
       : projects.filter((p) => p.category === active),
     [active]
   )
