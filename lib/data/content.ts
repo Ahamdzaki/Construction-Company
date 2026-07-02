@@ -67,9 +67,8 @@ export const hero = {
   primaryCta:   { label: "Get a Free Quote",  href: "/#contact" },
   secondaryCta: { label: "View Our Projects", href: "/gallery" },
   images: [
-    { src: "/new images/pexels-break-media-186685971-14650436.jpg", alt: "BYD B construction project" },
-    { src: "/new images/pexels-macourt-media-1519726-33440163.jpg", alt: "BYD B construction project" },
-    { src: "/new images/pexels-davidpickup-36875521.jpg",           alt: "BYD B construction project" },
+    { src: "/hero/nathan-hurst-ymgOYi8mroc-unsplash.jpg",       alt: "BYD B construction project" },
+    { src: "/hero/pexels-david-274852429-16545023.jpg",         alt: "BYD B construction project" },
   ],
 }
 
