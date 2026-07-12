@@ -84,7 +84,11 @@ export default function HeroSection() {
                 fill
                 priority={i === 0}
                 sizes="100vw"
-                style={{ objectFit: "cover", objectPosition: "center 35%", transform: slide.rotate ? "rotate(180deg)" : undefined }}
+                style={{
+                  objectFit: "cover",
+                  objectPosition: i === 0 ? "center 30%" : "center 35%",
+                  transform: slide.rotate ? "rotate(180deg)" : undefined,
+                }}
                 placeholder="empty"
               />
               <div className="absolute inset-0 bg-black/30" />
