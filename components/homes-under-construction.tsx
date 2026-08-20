@@ -9,15 +9,22 @@ import { X, ChevronLeft, ChevronRight } from "lucide-react"
 // hClass = Tailwind class applied to the image container
 // Order is tuned so the shortest-column-first algorithm produces ~28px variance at 4 cols
 const images = [
-  { src: "/Image-1.jpg",  title: "Brick & Roof Framing",     description: "Early stage brickwork with roof truss installation underway.",                 h: 350, hClass: "h-[350px]" },
-  { src: "/Image-6.jpg",  title: "Upper Level Masonry",      description: "Bricklayers completing the upper level with full scaffolding in place.",        h: 280, hClass: "h-[280px]" },
-  { src: "/Image-13.jpg", title: "Completed Night View",     description: "Finished double storey home illuminated at dusk — ready for handover.",         h: 300, hClass: "h-[300px]" },
-  { src: "/Image-10.jpg", title: "Double Storey Scaffold",   description: "Full scaffold wrap on a large double storey family home.",                      h: 178, hClass: "h-[178px]" },
-  { src: "/Image-2.jpg",  title: "Concrete Slab Foundation", description: "Fresh concrete slab poured and curing before framing begins.",                  h: 192, hClass: "h-[192px]" },
-  { src: "/Image-9.jpg",  title: "Lock-Up Stage",            description: "Windows and doors going in as the home approaches lock-up.",                    h: 262, hClass: "h-[262px]" },
-  { src: "/Image-3.jpg",  title: "Double Storey Brickwork",  description: "Scaffolding up as the second storey walls take shape.",                         h: 242, hClass: "h-[242px]" },
-  { src: "/Image-4.jpg",  title: "Wall Frame Progress",      description: "Ground floor walls rising from the slab on a new estate block.",                h: 178, hClass: "h-[178px]" },
-  { src: "/Image-8.jpg",  title: "Steel Reinforcement",      description: "Reinforcing steel mesh laid and inspected before the slab pour.",               h: 178, hClass: "h-[178px]" },
+  { src: "/Homes-Under-Construction/home2.jpeg",  title: "Concrete Slab Foundation", description: "Fresh concrete slab poured and curing before framing begins.",                  h: 192, hClass: "h-[192px]" },
+  { src: "/Homes-Under-Construction/home3.jpeg",  title: "Double Storey Brickwork",  description: "Scaffolding up as the second storey walls take shape.",                         h: 242, hClass: "h-[242px]" },
+  { src: "/Homes-Under-Construction/home4.jpeg",  title: "Wall Frame Progress",      description: "Ground floor walls rising from the slab on a new estate block.",                h: 178, hClass: "h-[178px]" },
+  { src: "/Homes-Under-Construction/home5.jpeg",  title: "Foundation Pour",         description: "Site preparing and foundation pour in progress.",                               h: 220, hClass: "h-[220px]" },
+  { src: "/Homes-Under-Construction/home6.jpeg",  title: "Upper Level Masonry",      description: "Bricklayers completing the upper level with full scaffolding in place.",        h: 280, hClass: "h-[280px]" },
+  { src: "/Homes-Under-Construction/home7.jpeg",  title: "Framing Stage",           description: "Timber framing going up for a new family home.",                                 h: 260, hClass: "h-[260px]" },
+  { src: "/Homes-Under-Construction/home8.jpeg",  title: "Steel Reinforcement",      description: "Reinforcing steel mesh laid and inspected before the slab pour.",               h: 178, hClass: "h-[178px]" },
+  { src: "/Homes-Under-Construction/home9.jpeg",  title: "Lock-Up Stage",            description: "Windows and doors going in as the home approaches lock-up.",                    h: 262, hClass: "h-[262px]" },
+  { src: "/Homes-Under-Construction/home10.jpeg", title: "Double Storey Scaffold",   description: "Full scaffold wrap on a large double storey family home.",                      h: 178, hClass: "h-[178px]" },
+  { src: "/Homes-Under-Construction/home11.jpeg", title: "Roofing Complete",        description: "Roof installed and weatherproofing in place.",                                    h: 300, hClass: "h-[300px]" },
+  { src: "/Homes-Under-Construction/home12.jpeg", title: "Exterior Cladding",       description: "External cladding being installed for finished look.",                            h: 240, hClass: "h-[240px]" },
+  { src: "/Homes-Under-Construction/home13.jpeg", title: "Completed Night View",     description: "Finished double storey home illuminated at dusk — ready for handover.",         h: 300, hClass: "h-[300px]" },
+  { src: "/Homes-Under-Construction/home14.jpeg", title: "Site Prep",               description: "Early site preparation and excavation works underway.",                            h: 190, hClass: "h-[190px]" },
+  { src: "/Homes-Under-Construction/home15.jpeg", title: "Finished Exterior",       description: "Completed exterior with landscaping and driveway.",                               h: 310, hClass: "h-[310px]" },
+  { src: "/Homes-Under-Construction/home16.jpeg", title: "Blockwork",               description: "Blockwork progressing on a mid-sized family home.",                                 h: 200, hClass: "h-[200px]" },
+  { src: "/Homes-Under-Construction/home17.jpeg", title: "Final Touches",           description: "Final finishing touches before handover.",                                         h: 270, hClass: "h-[270px]" },
 ]
 
 const GAP = 8 // px — must match gap-2 (8px)

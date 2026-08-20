@@ -67,7 +67,7 @@ export const hero = {
   primaryCta:   { label: "Get a Free Quote",  href: "/#contact" },
   secondaryCta: { label: "View Our Projects", href: "/gallery" },
   images: [
-    { src: "/hero/hero-section-1-image.png", alt: "BYD B construction project" },
+    { src: "/hero/nathan-hurst-ymgOYi8mroc-unsplash.jpg", alt: "BYD B construction project" },
     { src: "/hero/hero-section-2-image.png", alt: "BYD B construction project" },
   ],
 }

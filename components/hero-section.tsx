@@ -82,6 +82,7 @@ export default function HeroSection() {
                 src={slide.src}
                 alt={`Slide ${i + 1}`}
                 fill
+                quality={100}
                 priority={i === 0}
                 sizes="100vw"
                 style={{

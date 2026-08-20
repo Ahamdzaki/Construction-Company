@@ -10,13 +10,13 @@ export interface Testimonial {
 
 export const testimonials: Testimonial[] = [
   {
-    id: 1,
-    name: "Sarah & Michael Thompson",
+    id: 7,
+    name: "Mohammad",
     location: "Perth, WA",
-    text: "BYD B PTY LTD exceeded our expectations in every way. From the initial consultation to the final walkthrough, their attention to detail and commitment to quality was outstanding. Our dream home became a reality!",
+    text: "Wonderful people, wondeful service and Great experience working With them",
     rating: 5,
-    date: "2024-11",
-    image: "https://i.pravatar.cc/80?img=47",
+    date: "2026-07-30T21:27:11",
+    image: "https://i.pravatar.cc/80?img=12",
   },
   {
     id: 2,
@@ -62,5 +62,14 @@ export const testimonials: Testimonial[] = [
     rating: 5,
     date: "2024-06",
     image: "https://i.pravatar.cc/80?img=52",
+  },
+  {
+    id: 1,
+    name: "Sarah & Michael Thompson",
+    location: "Perth, WA",
+    text: "BYD B PTY LTD exceeded our expectations in every way. From the initial consultation to the final walkthrough, their attention to detail and commitment to quality was outstanding. Our dream home became a reality!",
+    rating: 5,
+    date: "2024-11",
+    image: "https://i.pravatar.cc/80?img=47",
   },
 ]
