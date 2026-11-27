@@ -8,6 +8,7 @@ import { Menu, X, Phone } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { navItems, company, contact } from "@/lib/data/content"
+import { trackCallConversion } from "@/lib/google-ads"
 
 export default function Navigation() {
   const [mobileOpen, setMobileOpen] = useState(false)
@@ -104,12 +105,12 @@ export default function Navigation() {
               </nav>
               <div className="px-6 pt-2 pb-6 flex flex-col gap-3 border-t mt-2">
                 <Button asChild className="bg-amber-500 hover:bg-amber-600 text-neutral-900 font-semibold w-full rounded-none">
-                  <Link href="/contact" onClick={() => setMobileOpen(false)}>
+                  <Link href="/#contact" onClick={() => setMobileOpen(false)}>
                     Get a Free Quote
                   </Link>
                 </Button>
                 <Button asChild variant="outline" size="sm" className="w-full rounded-none">
-                  <a href={contact.phoneHref} className="flex items-center justify-center gap-2">
+                  <a href={contact.phoneHref} onClick={trackCallConversion} className="flex items-center justify-center gap-2">
                     <Phone className="w-4 h-4" />
                     {contact.phone}
                   </a>

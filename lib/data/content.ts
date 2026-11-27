@@ -56,7 +56,7 @@ export const footerLinks = [
   { href: "/services",     label: "Services" },
   { href: "/gallery",      label: "Gallery" },
   { href: "/testimonials", label: "Testimonials" },
-  { href: "/contact",      label: "Contact" },
+  { href: "/#contact",     label: "Contact" },
 ]
 
 // ── Hero Section ──────────────────────────────────────────────────────────────
@@ -83,6 +83,23 @@ export const stats = [
 // ── Services ──────────────────────────────────────────────────────────────────
 // iconName maps to lucide-react icons used in ServicesSections and ServicesPreview
 export const services = [
+  {
+    iconName: "Home",
+    title: "New Build Homes",
+    shortDescription:
+      "Brand-new, custom-built homes designed to your specifications with quality materials and expert craftsmanship.",
+    description:
+      "Complete new home builds from foundation to finish, backed by 13 years of experience and full licensing. We specialise in single and double storey new build homes across Western Australia.",
+    features: [
+      "Custom floor plans",
+      "Single & double storey homes",
+      "Premium materials & energy-efficient designs",
+      "Fixed-price contracts",
+    ],
+    href: "/services",
+  },
+  // Previous services — commented out for now, uncomment to bring them back:
+  /*
   {
     iconName: "Home",
     title: "New Home Construction",
@@ -143,6 +160,7 @@ export const services = [
     ],
     href: "/services",
   },
+  */
 ]
 
 // ── Process Steps ─────────────────────────────────────────────────────────────
@@ -227,12 +245,12 @@ export const ctaBanner = {
 
 // ── Locations Mosaic (Instagram-style grid) ───────────────────────────────────
 export const mosaicImages = [
-  { src: "/new images/beautiful-suburban-home-with-green-lawn-blue-sky.jpg",            alt: "BYD B suburban home with green lawn" },
-  { src: "/new images/charming-yellow-house-with-wooden-windows-green-grassy-garden.jpg", alt: "BYD B charming home with garden" },
-  { src: "/new images/esther-zheng-Y5NaxSbLPDA-unsplash.jpg",                           alt: "BYD B home exterior" },
-  { src: "/new images/bhuwan-bansal-MXFs1CztRIc-unsplash.jpg",                         alt: "BYD B residential project" },
-  { src: "/new images/nerissa-j-2Hk2biJ7_vc-unsplash.jpg",                             alt: "BYD B construction project" },
-  { src: "/new images/wes-fischer-g39p1kDjvSY-unsplash.jpg",                            alt: "BYD B modern home" },
+  { src: "/images/new/beautiful-suburban-home-with-green-lawn-blue-sky.jpg",            alt: "BYD B suburban home with green lawn" },
+  { src: "/images/new/charming-yellow-house-with-wooden-windows-green-grassy-garden.jpg", alt: "BYD B charming home with garden" },
+  { src: "/images/new/esther-zheng-y5naxsblpda-unsplash.jpg",                           alt: "BYD B home exterior" },
+  { src: "/images/new/bhuwan-bansal-mxfs1cztric-unsplash.jpg",                         alt: "BYD B residential project" },
+  { src: "/images/new/nerissa-j-2hk2bij7_vc-unsplash.jpg",                             alt: "BYD B construction project" },
+  { src: "/images/new/wes-fischer-g39p1kdjvsy-unsplash.jpg",                            alt: "BYD B modern home" },
 ]
 
 // ── Footer Services List ──────────────────────────────────────────────────────

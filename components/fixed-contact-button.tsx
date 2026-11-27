@@ -5,6 +5,7 @@ import { Mail, Phone, MessageCircle } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useState } from "react"
 import { contact, socials } from "@/lib/data/content"
+import { trackCallConversion, trackContactLinkClick } from "@/lib/google-ads"
 
 const whatsappHref = socials.find((s) => s.label === "WhatsApp")?.href ?? contact.phoneHref
 
@@ -13,7 +14,10 @@ export default function FixedContactButton() {
 
   const handleCallClick = (e: React.MouseEvent) => {
     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
-    if (!isMobile) {
+    if (isMobile) {
+      // Only real taps-to-call on mobile count as a call conversion.
+      trackCallConversion()
+    } else {
       e.preventDefault()
       navigator.clipboard.writeText(contact.phone).then(() => {
         setShowCopied(true)
@@ -30,7 +34,7 @@ export default function FixedContactButton() {
           className="rounded-full shadow-lg hover:shadow-xl transition-all duration-300 bg-green-600 hover:bg-green-700"
           asChild
         >
-          <a href={whatsappHref} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+          <a href={whatsappHref} onClick={() => trackContactLinkClick(whatsappHref)} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
             <MessageCircle className="w-5 h-5" />
             <span className="hidden sm:inline">WhatsApp</span>
           </a>

@@ -9,6 +9,9 @@ import { X, ChevronLeft, ChevronRight } from "lucide-react"
 // hClass = Tailwind class applied to the image container
 // Order is tuned so the shortest-column-first algorithm produces ~28px variance at 4 cols
 const images = [
+  { src: "/images/new/image1-2026.jpeg", title: "Ready for Landscaping",   description: "Exposed aggregate driveway poured — final landscaping still to come.",          h: 210, hClass: "h-[210px]" },
+  { src: "/images/new/image2-2026.jpeg", title: "Corner Block Home",       description: "Corner block build nearing handover, with fencing and driveway in place.",     h: 200, hClass: "h-[200px]" },
+  { src: "/images/new/image3-2026.jpeg", title: "Facade Complete",         description: "Feature stone facade and double garage finished on a new single storey home.", h: 230, hClass: "h-[230px]" },
   { src: "/Homes-Under-Construction/home2.jpeg",  title: "Concrete Slab Foundation", description: "Fresh concrete slab poured and curing before framing begins.",                  h: 192, hClass: "h-[192px]" },
   { src: "/Homes-Under-Construction/home3.jpeg",  title: "Double Storey Brickwork",  description: "Scaffolding up as the second storey walls take shape.",                         h: 242, hClass: "h-[242px]" },
   { src: "/Homes-Under-Construction/home4.jpeg",  title: "Wall Frame Progress",      description: "Ground floor walls rising from the slab on a new estate block.",                h: 178, hClass: "h-[178px]" },

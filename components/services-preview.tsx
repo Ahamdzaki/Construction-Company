@@ -11,6 +11,7 @@ const iconMap: Record<string, LucideIcon> = { Home, Wrench, Palette, Building2 }
 
 export default function ServicesPreview() {
   const { description } = sections.services
+  const single = services.length === 1
   return (
     <section className="py-14 md:py-20 lg:py-32 bg-white">
       <div className="w-full px-4 sm:px-6 lg:px-8">
@@ -21,7 +22,11 @@ export default function ServicesPreview() {
       </div>
 
         <motion.div
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border-t border-b border-[#e2e8f0]"
+          className={
+            single
+              ? "grid grid-cols-1 max-w-2xl mx-auto border border-[#e2e8f0]"
+              : "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border-t border-b border-[#e2e8f0]"
+          }
           variants={staggerContainer}
           initial="hidden"
           whileInView="visible"
@@ -33,10 +38,14 @@ export default function ServicesPreview() {
               <motion.div
                 key={service.title}
                 variants={fadeInUp}
-                className="flex flex-col items-center text-center px-5 py-8 sm:px-8 sm:py-12 group border-[#e2e8f0]
+                className={
+                  single
+                    ? "flex flex-col items-center text-center px-5 py-8 sm:px-8 sm:py-12 group"
+                    : `flex flex-col items-center text-center px-5 py-8 sm:px-8 sm:py-12 group border-[#e2e8f0]
                   border-b last:border-b-0 first:border-l
                   sm:border-b-0 sm:[&:nth-child(-n+2)]:border-b sm:border-r sm:even:border-r-0 sm:first:border-l
-                  lg:[&:nth-child(-n+2)]:border-b-0 lg:border-r lg:even:border-r lg:last:border-r-0 lg:first:border-l"
+                  lg:[&:nth-child(-n+2)]:border-b-0 lg:border-r lg:even:border-r lg:last:border-r-0 lg:first:border-l`
+                }
               >
                 <Icon className="w-10 h-10 sm:w-14 sm:h-14 text-[#00A5E0] mb-6 stroke-[1.25]" />
                 <h3 className="text-sm font-semibold uppercase tracking-[0.12em] text-[#00A5E0] mb-5 leading-snug">

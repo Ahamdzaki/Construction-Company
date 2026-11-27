@@ -13,6 +13,7 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { toast } from "sonner"
+import { trackContactLinkClick, trackFormConversion } from "@/lib/google-ads"
 
 const formSchema = z.object({
   name: z.string().trim().min(1, "Full name is required"),
@@ -65,6 +66,8 @@ export default function ContactSection() {
         const data = await res.json().catch(() => ({}))
         throw new Error(data?.error || "Submission failed")
       }
+      // Only reached when the API responded OK — failed submissions throw above.
+      trackFormConversion()
       setStatus("idle")
       form.reset()
       toast.success("Thank you! Your message has been sent. We'll get back to you within one business day.")
@@ -204,7 +207,7 @@ export default function ContactSection() {
                 </div>
               )
               return card.href ? (
-                <a key={card.label} href={card.href} className="block hover:opacity-80 transition-opacity">
+                <a key={card.label} href={card.href} onClick={() => trackContactLinkClick(card.href)} className="block hover:opacity-80 transition-opacity">
                   {Inner}
                 </a>
               ) : (
@@ -220,6 +223,7 @@ export default function ContactSection() {
                   <a
                     key={label}
                     href={href}
+                    onClick={() => trackContactLinkClick(href)}
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={label}

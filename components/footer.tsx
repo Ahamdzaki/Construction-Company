@@ -7,6 +7,7 @@ import { Phone, Mail, MapPin, Clock } from "lucide-react"
 import { FaFacebook, FaInstagram, FaWhatsapp } from "react-icons/fa"
 import { motion } from "framer-motion"
 import { company, contact, socials, footerLinks, footerServices } from "@/lib/data/content"
+import { trackCallConversion, trackContactLinkClick } from "@/lib/google-ads"
 
 const socialIcons: Record<string, React.ElementType> = {
   Facebook: FaFacebook,
@@ -62,6 +63,7 @@ export default function Footer() {
                   <a
                     key={label}
                     href={href}
+                    onClick={() => trackContactLinkClick(href)}
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={label}
@@ -111,6 +113,7 @@ export default function Footer() {
               </div>
               <a
                 href={contact.phoneHref}
+                onClick={trackCallConversion}
                 className="flex items-center gap-2 text-neutral-400 hover:text-[#00A5E0] transition-colors"
               >
                 <Phone className="w-4 h-4 flex-shrink-0 text-[#00A5E0]" />

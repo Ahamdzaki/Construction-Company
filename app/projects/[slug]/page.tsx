@@ -125,7 +125,7 @@ export default async function ProjectPage({
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row gap-3">
             <Link
-              href="/contact"
+              href="/#contact"
               className="px-6 py-3 bg-amber-500 hover:bg-amber-400 text-neutral-900 rounded-lg font-semibold text-sm text-center transition-colors"
             >
               Enquire about this project

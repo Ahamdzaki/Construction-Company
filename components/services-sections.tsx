@@ -43,7 +43,11 @@ export default function ServicesSections({ services, steps }: { services: Servic
           </div>
 
           <motion.div
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6"
+            className={
+              services.length === 1
+                ? "grid grid-cols-1 max-w-xl mx-auto"
+                : "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6"
+            }
             variants={staggerContainer}
             initial="hidden"
             whileInView="visible"

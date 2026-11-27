@@ -5,6 +5,7 @@ import StatCards from "@/components/stat-cards"
 const ServicesPreview       = dynamic(() => import("@/components/services-preview"))
 const GalleryPreview        = dynamic(() => import("@/components/gallery-preview"))
 const HomesUnderConstruction = dynamic(() => import("@/components/homes-under-construction"))
+const ConstructionVideos    = dynamic(() => import("@/components/construction-videos"))
 const TestimonialFeatured   = dynamic(() => import("@/components/testimonial-featured"))
 const LocationsMosaic       = dynamic(() => import("@/components/locations-mosaic"))
 const ContactSection        = dynamic(() => import("@/components/contact-section"))
@@ -19,6 +20,7 @@ export default function HomePage() {
       <ServicesPreview />
       <GalleryPreview />
       <HomesUnderConstruction />
+      <ConstructionVideos />
       <TestimonialFeatured />
       <LocationsMosaic />
       <ContactSection />

@@ -4,11 +4,13 @@ import { GeistSans } from "geist/font/sans"
 import { GeistMono } from "geist/font/mono"
 import { Analytics } from "@vercel/analytics/next"
 import { Suspense } from "react"
+import Script from "next/script"
 import { Toaster } from "sonner"
 import "./globals.css"
 import Navigation from "@/components/navigation"
 import FixedContactButton from "@/components/fixed-contact-button"
 import { company, contact } from "@/lib/data/content"
+import { GOOGLE_ADS_ID } from "@/lib/google-ads"
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://bydb.com.au"),
@@ -86,6 +88,20 @@ export default function RootLayout({
         <FixedContactButton />
         <Toaster position="bottom-right" />
         <Analytics />
+
+        {/* Google tag (gtag.js) — Google Ads */}
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ADS_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="google-ads-gtag" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GOOGLE_ADS_ID}');
+          `}
+        </Script>
       </body>
     </html>
   )

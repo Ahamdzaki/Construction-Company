@@ -1,6 +1,9 @@
+"use client"
+
 import Link from "next/link"
 import { Phone } from "lucide-react"
 import { ctaBanner } from "@/lib/data/content"
+import { trackContactLinkClick } from "@/lib/google-ads"
 
 export default function CtaBanner() {
   return (
@@ -18,6 +21,7 @@ export default function CtaBanner() {
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <a
             href={ctaBanner.secondaryCta.href}
+            onClick={() => trackContactLinkClick(ctaBanner.secondaryCta.href)}
             className="flex items-center gap-2 px-7 py-3 border border-neutral-300 text-neutral-700 text-sm font-medium uppercase tracking-[0.1em] hover:border-[#00A5E0] hover:text-[#00A5E0] transition-colors duration-200"
           >
             <Phone className="w-4 h-4" />
