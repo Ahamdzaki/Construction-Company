@@ -254,10 +254,10 @@ export const mosaicImages = [
 ]
 
 // ── Footer Services List ──────────────────────────────────────────────────────
+// We only build new homes in Perth. Each item links to an existing page/section.
 export const footerServices = [
-  "Custom Home Building",
-  "Home Renovations",
-  "Kitchen & Bathroom",
-  "Extensions & Additions",
-  "Custom Design",
+  { label: "Custom Home Builds", href: "/services" },
+  { label: "New Home Builds",    href: "/services" },
+  { label: "Home Designs",       href: "/gallery" },
+  { label: "First Home Buyers",  href: "/#contact" },
 ]

@@ -19,7 +19,6 @@ const formSchema = z.object({
   name: z.string().trim().min(1, "Full name is required"),
   email: z.string().trim().email("Enter a valid email address"),
   phone: z.string().trim().min(8, "Phone number is required"),
-  projectType: z.string().min(1, "Please select a project type"),
   suburb: z.string().optional(),
   budget: z.string().optional(),
   message: z.string().trim().min(20, "Message must be at least 20 characters"),
@@ -51,7 +50,7 @@ export default function ContactSection() {
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
-    defaultValues: { name: "", email: "", phone: "", projectType: "", suburb: "", budget: "", message: "" },
+    defaultValues: { name: "", email: "", phone: "", suburb: "", budget: "", message: "" },
   })
 
   const onSubmit = async (values: FormValues) => {
@@ -96,14 +95,17 @@ export default function ContactSection() {
 
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
+                {/* Row 1: Name (full width) */}
+                <FormField control={form.control} name="name" render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Full Name *</FormLabel>
+                    <FormControl><Input placeholder="John Smith" {...field} /></FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )} />
+
+                {/* Row 2: Email | Phone */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                  <FormField control={form.control} name="name" render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Full Name *</FormLabel>
-                      <FormControl><Input placeholder="John Smith" {...field} /></FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )} />
                   <FormField control={form.control} name="email" render={({ field }) => (
                     <FormItem>
                       <FormLabel>Email *</FormLabel>
@@ -111,9 +113,6 @@ export default function ContactSection() {
                       <FormMessage />
                     </FormItem>
                   )} />
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <FormField control={form.control} name="phone" render={({ field }) => (
                     <FormItem>
                       <FormLabel>Phone *</FormLabel>
@@ -121,26 +120,9 @@ export default function ContactSection() {
                       <FormMessage />
                     </FormItem>
                   )} />
-                  <FormField control={form.control} name="projectType" render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Project Type *</FormLabel>
-                      <Select onValueChange={field.onChange} value={field.value}>
-                        <FormControl>
-                          <SelectTrigger><SelectValue placeholder="Select type" /></SelectTrigger>
-                        </FormControl>
-                        <SelectContent>
-                          <SelectItem value="New Home">New Home</SelectItem>
-                          <SelectItem value="Renovation">Renovation</SelectItem>
-                          <SelectItem value="Extension">Extension</SelectItem>
-                          <SelectItem value="Commercial">Commercial</SelectItem>
-                          <SelectItem value="Other">Other</SelectItem>
-                        </SelectContent>
-                      </Select>
-                      <FormMessage />
-                    </FormItem>
-                  )} />
                 </div>
 
+                {/* Row 3: Suburb | Budget */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <FormField control={form.control} name="suburb" render={({ field }) => (
                     <FormItem>
@@ -154,7 +136,7 @@ export default function ContactSection() {
                       <FormLabel>Budget Range</FormLabel>
                       <Select onValueChange={field.onChange} value={field.value}>
                         <FormControl>
-                          <SelectTrigger><SelectValue placeholder="Select range" /></SelectTrigger>
+                          <SelectTrigger className="w-full"><SelectValue placeholder="Select range" /></SelectTrigger>
                         </FormControl>
                         <SelectContent>
                           <SelectItem value="Under $300k">Under $300k</SelectItem>

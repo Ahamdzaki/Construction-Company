@@ -26,7 +26,6 @@ New quote request received from the website.
 Name:         ${body.name}
 Email:        ${body.email}
 Phone:        ${body.phone}
-Project Type: ${body.projectType}
 Suburb:       ${body.suburb || "Not provided"}
 Budget:       ${body.budget || "Not provided"}
 Date:         ${new Date().toLocaleString("en-AU", { timeZone: "Australia/Perth" })}

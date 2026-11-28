@@ -96,9 +96,16 @@ export default function Footer() {
           {/* Col 3: Services */}
           <motion.div variants={rise}>
             <h3 className="text-white font-semibold text-sm uppercase tracking-wider mb-4">Services</h3>
-            <ul className="space-y-2 text-sm text-neutral-400">
+            <ul className="space-y-2">
               {footerServices.map((s) => (
-                <li key={s}>{s}</li>
+                <li key={s.label}>
+                  <Link
+                    href={s.href}
+                    className="text-sm text-neutral-400 hover:text-[#00A5E0] transition-colors"
+                  >
+                    {s.label}
+                  </Link>
+                </li>
               ))}
             </ul>
           </motion.div>
